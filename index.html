@@ -416,7 +416,7 @@
                     </div>
                     <div class="btn-grid">
                         <a href="https://maps.google.com/?q=The+Plaza+Hotel+Manhattan" target="_blank" class="btn-action">🗺️ Google Maps Navigatie</a>
-                        <a href="tel:+12127593000" class="btn-action">📞 Receptie: +1 212 759 3000</a>
+                        <button class="btn-action" onclick="safeCall('+12127593000', 'The Plaza Hotel Receptie')">📞 Receptie: +1 212 759 3000</button>
                     </div>
                 </div>
 
@@ -430,7 +430,7 @@
                     </div>
                     <div class="btn-grid">
                         <a href="https://maps.google.com/?q=The+William+Vale+Brooklyn" target="_blank" class="btn-action">🗺️ Google Maps Brooklyn</a>
-                        <a href="tel:+17186318400" class="btn-action">📞 +1 718 631 8400</a>
+                        <button class="btn-action" onclick="safeCall('+17186318400', 'The William Vale Receptie')">📞 +1 718 631 8400</button>
                     </div>
                 </div>
             </div>
@@ -450,7 +450,7 @@
                     </div>
                     <div class="btn-grid">
                         <a href="https://maps.google.com/?q=The+Strip+Plaza+Hotel+Las+Vegas" target="_blank" class="btn-action">🗺️ Google Maps</a>
-                        <a href="tel:+17027317110" class="btn-action">📞 Receptie</a>
+                        <button class="btn-action" onclick="safeCall('+17027317110', 'Strip Plaza Receptie')">📞 Receptie</button>
                     </div>
                 </div>
             </div>
@@ -470,7 +470,7 @@
                     </div>
                     <div class="btn-grid">
                         <a href="https://maps.google.com/?q=Ocean+Drive+Resort+Miami" target="_blank" class="btn-action">🗺️ Google Maps</a>
-                        <a href="tel:+13055316611" class="btn-action">📞 Receptie</a>
+                        <button class="btn-action" onclick="safeCall('+13055316611', 'Ocean Drive Resort Receptie')">📞 Receptie</button>
                     </div>
                 </div>
             </div>
@@ -516,7 +516,6 @@
                     </div>
                 </div>
 
-                <!-- DIRECT ZICHTBAAR: BALIE VOOR VERTREK & BAGAGEBAND NA LANDING -->
                 <div class="airport-highlight-grid">
                     <div class="airport-badge-box checkin">
                         <div class="airport-lbl">🛫 Incheckbalie (DUS)</div>
@@ -626,7 +625,7 @@
                 </div>
                 <div class="btn-grid">
                     <a href="mailto:peter.producer@omroep.nl" class="btn-action btn-gold">✉️ Mail Producer</a>
-                    <a href="tel:+31612345678" class="btn-action">📞 +31 6 12345678</a>
+                    <button class="btn-action" onclick="safeCall('+31612345678', 'Producer Peter van Halem')">📞 +31 6 12345678</button>
                 </div>
             </div>
 
@@ -640,7 +639,7 @@
                 </div>
                 <div class="btn-grid">
                     <a href="https://wa.me/31612345671" class="btn-action">💬 WhatsApp</a>
-                    <a href="tel:+31612345671" class="btn-action">📞 Bellen</a>
+                    <button class="btn-action" onclick="safeCall('+31612345671', 'Charlotte (Presentatie)')">📞 Bellen</button>
                 </div>
             </div>
 
@@ -654,7 +653,7 @@
                 </div>
                 <div class="btn-grid">
                     <a href="https://wa.me/31612345672" class="btn-action">💬 WhatsApp</a>
-                    <a href="tel:+31612345672" class="btn-action">📞 Bellen</a>
+                    <button class="btn-action" onclick="safeCall('+31612345672', 'Daan (Camera/DoP)')">📞 Bellen</button>
                 </div>
             </div>
 
@@ -668,21 +667,38 @@
                 </div>
                 <div class="btn-grid">
                     <a href="https://wa.me/31612345674" class="btn-action">💬 WhatsApp</a>
-                    <a href="tel:+31612345674" class="btn-action">📞 Bellen</a>
+                    <button class="btn-action" onclick="safeCall('+31612345674', 'Geluidstechnicus')">📞 Bellen</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- TAB 5: CRISIS & SECURITY -->
+    <!-- TAB 5: CRISIS & DIPLOMATIEKE CONTACTEN PER STAD -->
     <div id="tab-crisis" class="tab-pane">
-        <div class="card">
+        
+        <!-- HOOFDREDACTEUR & NOODKNOPPEN MET BEL-BEVEILIGING -->
+        <div class="card" style="border: 1px solid var(--accent-red);">
             <div class="card-header-title">
-                <span>🚨 Crisis & Noodprotocol</span>
-                <span class="status-badge badge-green">Advies: Geel</span>
+                <span style="color:#FF8080;">🚨 Directe Nood-Escalatie (24/7)</span>
+                <span class="status-badge" style="background:var(--accent-red-bg); color:#FF8080; border:1px solid var(--accent-red);">🔒 Bel-Beveiligd</span>
             </div>
-            <div class="card-subtitle">High-Risk & Emergency Response</div>
+            <div class="card-subtitle">Redactie Hilversum & Nooddiensten</div>
 
+            <!-- HOOFDREDACTEUR NOODKNOP -->
+            <div class="item-box" style="border: 1px solid var(--accent-gold); background: var(--accent-gold-bg);">
+                <div class="item-header">
+                    <div class="icon-container" style="background:#4A3205; border-color:var(--accent-gold);">📺</div>
+                    <div class="item-title-group">
+                        <div class="item-title" style="color:var(--accent-gold);">Hoofdredacteur / Redactie Noodlijn</div>
+                        <div class="item-desc">24/7 Redactie Escalatie & Calamiteiten Hilversum</div>
+                    </div>
+                </div>
+                <button class="btn-action btn-gold" onclick="safeCall('+31356779000', 'Hoofdredacteur / Redactie Noodlijn Hilversum')" style="width: 100%; margin-top: 6px;">
+                    📞 BEL HOOFDREDACTEUR 24/7
+                </button>
+            </div>
+
+            <!-- 911 US EMERGENCY -->
             <div class="item-box" style="border: 1px solid var(--accent-red);">
                 <div class="item-header">
                     <div class="icon-container" style="background:var(--accent-red-bg); border-color:var(--accent-red);">🚨</div>
@@ -691,44 +707,87 @@
                         <div class="item-desc">Politie, Ambulance, Brandweer in alle Amerikaanse staten</div>
                     </div>
                 </div>
-                <a href="tel:911" class="btn-action btn-red" style="width: 100%; margin-top: 6px;">📞 BEL DIRECT 911</a>
+                <button class="btn-action btn-red" onclick="safeCall('911', 'Lokaal Alarmnummer 911 (USA)')" style="width: 100%; margin-top: 6px;">
+                    📞 BEL DIRECT 911 (USA)
+                </button>
             </div>
+        </div>
 
+        <!-- AMBASSADES & CONSULATEN PER STAD/HUB -->
+        <div class="card">
+            <div class="card-header-title">
+                <span>🏛️ Ambassades & Consulaten per Stad</span>
+                <span class="status-badge badge-cyan">Diplomatiek</span>
+            </div>
+            <div class="card-subtitle">Nederlandse Vertegenwoordiging in de VS</div>
+
+            <!-- Hub 1: New York -->
             <div class="item-box">
                 <div class="item-header">
-                    <div class="icon-container">🏛️</div>
+                    <div class="icon-container">🗽</div>
                     <div class="item-title-group">
-                        <div class="item-title">Ambassade NL & BuZa Noodcentrum</div>
-                        <div class="item-desc">24/7 Diplomatische Assistentie & Consulaat VS</div>
+                        <div class="item-title">Consulaat-Generaal New York (Hub 1)</div>
+                        <div class="item-desc">666 3rd Ave 19th floor, New York, NY 10017</div>
                     </div>
                 </div>
                 <div class="btn-grid">
-                    <a href="tel:+31247247247" class="btn-action">📞 +31 247 247 247</a>
-                    <a href="mailto:247@buza.nl" class="btn-action">✉️ Mail BuZa 24/7</a>
+                    <button class="btn-action" onclick="safeCall('+12123707400', 'Consulaat-Generaal New York')">📞 +1 212 370 7400</button>
+                    <a href="https://maps.google.com/?q=Consulate+General+of+the+Netherlands+New+York" target="_blank" class="btn-action">🗺️ Google Maps</a>
                 </div>
             </div>
 
+            <!-- Hub 2: Las Vegas / Nevada -->
             <div class="item-box">
                 <div class="item-header">
-                    <div class="icon-container">🛡️</div>
+                    <div class="icon-container">🎰</div>
                     <div class="item-title-group">
-                        <div class="item-title">Reisadvies & Status per Hub</div>
-                        <div class="item-desc">Ministerie van Buitenlandse Zaken</div>
+                        <div class="item-title">Consulaat / Ambassade Washington (Hub 2)</div>
+                        <div class="item-desc">Regiokantoor Nevada & West-Coast Relaties</div>
                     </div>
                 </div>
-                <div class="info-row"><span class="info-lbl">Hub 1: New York</span><span class="info-val" style="color:var(--accent-green);">🟢 Geel (Let op)</span></div>
-                <div class="info-row"><span class="info-lbl">Hub 2: Las Vegas</span><span class="info-val" style="color:var(--accent-green);">🟢 Geel (Let op)</span></div>
-                <div class="info-row"><span class="info-lbl">Hub 3: Miami</span><span class="info-val" style="color:var(--accent-green);">🟢 Geel (Let op)</span></div>
+                <div class="btn-grid">
+                    <button class="btn-action" onclick="safeCall('+18773882443', 'Nederlandse Ambassade Washington DC')">📞 +1 877 388 2443</button>
+                    <a href="mailto:was@minbuza.nl" class="btn-action">✉️ Mail Ambassade</a>
+                </div>
             </div>
 
+            <!-- Hub 3: Miami -->
             <div class="item-box">
                 <div class="item-header">
-                    <div class="icon-container">🏥</div>
+                    <div class="icon-container">🌴</div>
                     <div class="item-title-group">
-                        <div class="item-title">Medische Assistentie & Polissen</div>
-                        <div class="item-desc">Productie Reisverzekering & SOS</div>
+                        <div class="item-title">Consulaat-Generaal Miami (Hub 3)</div>
+                        <div class="item-desc">701 Brickell Ave Suite 1600, Miami, FL 33131</div>
                     </div>
                 </div>
+                <div class="btn-grid">
+                    <button class="btn-action" onclick="safeCall('+17868660480', 'Consulaat-Generaal Miami')">📞 +1 786 866 0480</button>
+                    <a href="https://maps.google.com/?q=Consulate+General+of+the+Netherlands+Miami" target="_blank" class="btn-action">🗺️ Google Maps</a>
+                </div>
+            </div>
+
+            <!-- BuZa 24/7 Den Haag -->
+            <div class="item-box">
+                <div class="item-header">
+                    <div class="icon-container">🌐</div>
+                    <div class="item-title-group">
+                        <div class="item-title">BuZa Noodcentrum Den Haag (24/7)</div>
+                        <div class="item-desc">Wereldwijd alarmnummer Rijksoverheid</div>
+                    </div>
+                </div>
+                <div class="btn-grid">
+                    <button class="btn-action" onclick="safeCall('+31247247247', 'Ministerie van Buitenlandse Zaken 24/7')">📞 +31 247 247 247</button>
+                    <a href="mailto:247@buza.nl" class="btn-action">✉️ Mail 24/7</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- MEDISCHE ASSISTENTIE & POLISSEN -->
+        <div class="card">
+            <div class="card-header-title">🏥 Medische Assistentie & Polissen</div>
+            <div class="card-subtitle">Verzekering & Documenten</div>
+
+            <div class="item-box">
                 <div class="info-row"><span class="info-lbl">Polisnummer Prod.</span><span class="info-val">#US-PROD-99201-B</span></div>
                 <div class="info-row"><span class="info-lbl">SOS International</span><span class="info-val">+31 20 592 9292</span></div>
                 <div class="notes-box">📌 Paspoortkopieën, ESTA-bevestigingen en medische paspoorten van de gehele crew staan veilig opgeslagen in de beveiligde Google Drive van Producer Peter.</div>
@@ -770,6 +829,13 @@
     </div>
 
     <script>
+        /* Bel-Beveiliging Functie (Voorkomt per ongeluk bellen) */
+        function safeCall(phoneNumber, contactName) {
+            if (confirm("🚨 BEVESTIGING NOODOPROEP\n\nWeet je zeker dat je wilt bellen met:\n" + contactName + " (" + phoneNumber + ")?")) {
+                window.location.href = "tel:" + phoneNumber;
+            }
+        }
+
         function switchMainTab(tabId, btn) {
             document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.bottom-nav .nav-item').forEach(el => el.classList.remove('active'));
