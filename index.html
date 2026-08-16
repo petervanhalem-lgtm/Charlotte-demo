@@ -34,24 +34,13 @@
             padding-bottom: calc(115px + env(safe-area-inset-bottom));
         }
 
-        /* Top Header */
         .app-header {
             margin-bottom: 16px;
             padding-top: env(safe-area-inset-top);
         }
-        .app-header h1 {
-            font-size: 20px;
-            font-weight: 800;
-            margin: 0 0 4px 0;
-            letter-spacing: -0.5px;
-        }
-        .app-header p {
-            font-size: 13px;
-            color: var(--text-sub);
-            margin: 0;
-        }
+        .app-header h1 { font-size: 20px; font-weight: 800; margin: 0 0 4px 0; letter-spacing: -0.5px; }
+        .app-header p { font-size: 13px; color: var(--text-sub); margin: 0; }
 
-        /* Hub Selectors (Pills) */
         .hub-pills {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -72,10 +61,9 @@
             background: linear-gradient(180deg, var(--accent-gold-bg) 0%, var(--card-bg) 100%);
             box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
         }
-        .hub-pill .hub-sub { font-size: 9px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 2px; letter-spacing: 0.5px; }
+        .hub-pill .hub-sub { font-size: 9px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 2px; }
         .hub-pill .hub-name { font-size: 12px; font-weight: 700; color: var(--text-main); }
 
-        /* General Card Formatting */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -83,25 +71,9 @@
             padding: 16px;
             margin-bottom: 14px;
         }
+        .card-header-title { font-size: 15px; font-weight: 800; margin: 0 0 2px 0; display: flex; align-items: center; justify-content: space-between; }
+        .card-subtitle { font-size: 11px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 12px; }
 
-        .card-header-title {
-            font-size: 15px;
-            font-weight: 800;
-            margin: 0 0 2px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .card-subtitle {
-            font-size: 11px;
-            font-weight: 800;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
-        }
-
-        /* Sub Items / Boxes */
         .item-box {
             background: var(--item-bg);
             border: 1px solid var(--card-border);
@@ -109,213 +81,85 @@
             padding: 14px;
             margin-top: 10px;
         }
-        .item-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
+        .item-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
         .icon-container {
-            width: 38px;
-            height: 38px;
+            width: 38px; height: 38px;
             background: var(--btn-dark);
             border: 1px solid var(--card-border);
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; flex-shrink: 0;
         }
         .item-title-group { flex: 1; }
         .item-title { font-size: 14px; font-weight: 700; margin: 0 0 2px 0; color: var(--text-main); }
         .item-desc { font-size: 12px; color: var(--text-sub); margin: 0; line-height: 1.4; }
 
-        /* Airport Action Grid */
-        .airport-highlight-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin: 8px 0;
-        }
-        .airport-badge-box {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 8px 10px;
-            border-radius: 10px;
-        }
-        .airport-badge-box.checkin {
-            border-color: var(--accent-cyan);
-            background: var(--accent-cyan-bg);
-        }
-        .airport-badge-box.baggage {
-            border-color: var(--accent-green);
-            background: var(--accent-green-bg);
-        }
+        .airport-highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
+        .airport-badge-box { background: var(--card-bg); border: 1px solid var(--card-border); padding: 8px 10px; border-radius: 10px; }
+        .airport-badge-box.checkin { border-color: var(--accent-cyan); background: var(--accent-cyan-bg); }
+        .airport-badge-box.baggage { border-color: var(--accent-green); background: var(--accent-green-bg); }
         .airport-lbl { font-size: 9px; font-weight: 800; text-transform: uppercase; color: var(--text-sub); margin-bottom: 2px; }
         .airport-val { font-size: 12px; font-weight: 800; color: var(--text-main); }
 
-        /* Button Grid inside cards */
-        .btn-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 10px;
-        }
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
         .btn-action {
             background: var(--btn-dark);
             border: 1px solid var(--card-border);
             color: var(--text-main);
             padding: 10px 8px;
             border-radius: 10px;
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 11px; font-weight: 700;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            text-align: center;
-            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            gap: 6px; text-align: center; cursor: pointer;
         }
-        .btn-action:active { opacity: 0.8; }
         .btn-red { background: var(--accent-red-bg); border-color: var(--accent-red); color: #FF8080; }
         .btn-gold { background: var(--accent-gold-bg); border-color: var(--accent-gold); color: var(--accent-gold); }
         .btn-cyan { background: var(--accent-cyan-bg); border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 800; }
 
-        /* Status Badges */
-        .status-badge {
-            font-size: 10px;
-            font-weight: 800;
-            padding: 3px 8px;
-            border-radius: 6px;
-            text-transform: uppercase;
-        }
+        .status-badge { font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; }
         .badge-green { background: #064E3B; color: var(--accent-green); border: 1px solid #059669; }
         .badge-cyan { background: #0C4A6E; color: var(--accent-cyan); border: 1px solid #0284C7; }
 
-        /* Tab Visibility */
         .tab-pane { display: none; }
         .tab-pane.active { display: block; }
 
-        /* Sticky Bottom Navigation Bar (5 Items Dock) */
         .bottom-nav {
             position: fixed;
             bottom: max(16px, env(safe-area-inset-bottom));
-            left: 10px;
-            right: 10px;
+            left: 10px; right: 10px;
             background: rgba(18, 30, 54, 0.92);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--card-border);
             border-radius: 28px;
             padding: 5px 3px;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 2px;
-            box-shadow: 0 12px 32px rgba(0,0,0,0.6);
-            z-index: 1000;
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.6); z-index: 1000;
         }
         .nav-item {
-            background: transparent;
-            border: none;
-            color: var(--text-sub);
-            padding: 8px 0;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            background: transparent; border: none; color: var(--text-sub);
+            padding: 8px 0; border-radius: 20px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 2px; cursor: pointer; transition: all 0.2s ease;
         }
-        .nav-item.active {
-            background: var(--accent-gold);
-            color: #000;
-            font-weight: 800;
-        }
+        .nav-item.active { background: var(--accent-gold); color: #000; font-weight: 800; }
         .nav-item .icon { font-size: 16px; }
-        .nav-item .label { font-size: 9px; font-weight: 800; letter-spacing: -0.2px; }
+        .nav-item .label { font-size: 9px; font-weight: 800; }
 
-        /* Info Rows */
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .info-row:last-child { border-bottom: none; }
+        .info-row { display: flex; justify-content: space-between; font-size: 12px; padding: 6px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .info-lbl { color: var(--text-sub); }
         .info-val { font-weight: 600; text-align: right; }
-        
-        .notes-box {
-            background: #0D223A;
-            border-left: 3px solid var(--accent-cyan);
-            padding: 8px 10px;
-            border-radius: 8px;
-            font-size: 11px;
-            margin-top: 8px;
-            color: #BAE6FD;
-            line-height: 1.4;
-        }
-
-        /* In-App Universal Portal Modal Overlay */
-        .portal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(11, 18, 32, 0.96);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            padding: 12px;
-            padding-top: max(12px, env(safe-area-inset-top));
-            padding-bottom: max(12px, env(safe-area-inset-bottom));
-        }
-        .portal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 16px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px 16px 0 0;
-            font-size: 13px;
-            font-weight: 800;
-            color: var(--accent-cyan);
-        }
-        .btn-close-portal {
-            background: var(--accent-red-bg);
-            border: 1px solid var(--accent-red);
-            color: #FF8080;
-            padding: 6px 12px;
-            border-radius: 10px;
-            font-size: 11px;
-            font-weight: 800;
-            cursor: pointer;
-        }
-        .portal-frame {
-            flex: 1;
-            width: 100%;
-            border: 1px solid var(--card-border);
-            border-top: none;
-            border-radius: 0 0 16px 16px;
-            background: #FFFFFF;
-        }
+        .notes-box { background: #0D223A; border-left: 3px solid var(--accent-cyan); padding: 8px 10px; border-radius: 8px; font-size: 11px; margin-top: 8px; color: #BAE6FD; }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <div class="app-header">
         <h1>Prinses Charlotte in de VS</h1>
         <p>3 Werelden &bull; Digitaal Roadbook & Logistiek Dashboard</p>
     </div>
 
-    <!-- TAB 1: TRANSPORT (OVERZICHT ALLERLEI VERVOER) -->
+    <!-- TAB 1: TRANSPORT -->
     <div id="tab-transport" class="tab-pane active">
         <div class="card">
             <div class="card-header-title">
@@ -405,7 +249,6 @@
             <div class="card">
                 <div class="card-header-title">🏨 Hotel 1 (Hoofdverblijf) : The Plaza Hotel</div>
                 <div class="card-subtitle">15 OKT – 20 OKT</div>
-
                 <div class="item-box">
                     <div class="item-header">
                         <div class="icon-container">🏨</div>
@@ -417,20 +260,6 @@
                     <div class="btn-grid">
                         <a href="https://maps.google.com/?q=The+Plaza+Hotel+Manhattan" target="_blank" class="btn-action">🗺️ Google Maps Navigatie</a>
                         <button class="btn-action" onclick="safeCall('+12127593000', 'The Plaza Hotel Receptie')">📞 Receptie: +1 212 759 3000</button>
-                    </div>
-                </div>
-
-                <div class="item-box">
-                    <div class="item-header">
-                        <div class="icon-container">🏨</div>
-                        <div class="item-title-group">
-                            <div class="item-title">Hotel 2: The William Vale</div>
-                            <div class="item-desc">111 N 12th St, Brooklyn, NY 11249 &bull; Reservering: #VALE-BK-9921</div>
-                        </div>
-                    </div>
-                    <div class="btn-grid">
-                        <a href="https://maps.google.com/?q=The+William+Vale+Brooklyn" target="_blank" class="btn-action">🗺️ Google Maps Brooklyn</a>
-                        <button class="btn-action" onclick="safeCall('+17186318400', 'The William Vale Receptie')">📞 +1 718 631 8400</button>
                     </div>
                 </div>
             </div>
@@ -477,25 +306,23 @@
         </div>
     </div>
 
-    <!-- TAB 3: VLUCHTEN & LUCHTHAVEN ACTUEEL -->
+    <!-- TAB 3: VLUCHTEN -->
     <div id="tab-vluchten" class="tab-pane">
-        
-        <!-- IN-APP PORTAL SNELLINKS (DOUANE & LIVE FLIGHT TRACKER) -->
         <div class="item-box" style="border: 1px solid var(--accent-cyan); background: var(--accent-cyan-bg); margin-bottom: 14px; margin-top: 0;">
             <div class="item-header" style="margin-bottom: 6px;">
                 <div class="icon-container" style="background:var(--card-bg); border-color:var(--accent-cyan);">🌐</div>
                 <div class="item-title-group">
                     <div class="item-title" style="color:var(--accent-cyan);">In-App Portals & Live Status</div>
-                    <div class="item-desc">Douane-formulieren & Flight Status zonder de app te verlaten</div>
+                    <div class="item-desc">Douane-formulieren & Vluchtstatus via Beveiligde Browser</div>
                 </div>
             </div>
             <div class="btn-grid" style="margin-top: 6px;">
-                <button class="btn-action btn-cyan" onclick="openPortal('https://m.cbp.gov/', '🛃 Custom Finder & Douane Portal')">
-                    🛃 Custom Finder
-                </button>
-                <button class="btn-action btn-cyan" onclick="openPortal('https://www.flightradar24.com/', '✈️ Live Flight Status')">
-                    ✈️ Live Tracker
-                </button>
+                <a href="https://m.cbp.gov/" target="_blank" class="btn-action btn-cyan">
+                    🛃 Custom Finder (US Douane)
+                </a>
+                <a href="https://www.google.com/travel/flights" target="_blank" class="btn-action btn-cyan">
+                    ✈️ Google Flights Status
+                </a>
             </div>
         </div>
 
@@ -506,7 +333,6 @@
             </div>
             <div class="card-subtitle">Luchthaven & Terminal Details</div>
 
-            <!-- Vlucht 1 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🛫</div>
@@ -515,7 +341,6 @@
                         <div class="item-desc">Lufthansa / Eurowings</div>
                     </div>
                 </div>
-
                 <div class="airport-highlight-grid">
                     <div class="airport-badge-box checkin">
                         <div class="airport-lbl">🛫 Incheckbalie (DUS)</div>
@@ -526,14 +351,12 @@
                         <div class="airport-val">🧳 Carousel 4 (T1)</div>
                     </div>
                 </div>
-
                 <div class="info-row"><span class="info-lbl">Vluchtnummer</span><span class="info-val" style="color:var(--accent-cyan);">LH408 / EW1102</span></div>
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">16-10 | 09:45 ➔ 12:30</span></div>
                 <div class="info-row"><span class="info-lbl">Boekingscode (PNR)</span><span class="info-val" style="color:var(--accent-gold);">PNR: ABC123</span></div>
                 <div class="notes-box">🧳 2x Ruimbagage (23kg) p.p. + Media Bags op Carnet BKK code.</div>
             </div>
 
-            <!-- Vlucht 2 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">✈️</div>
@@ -542,7 +365,6 @@
                         <div class="item-desc">Delta Airlines</div>
                     </div>
                 </div>
-
                 <div class="airport-highlight-grid">
                     <div class="airport-badge-box checkin">
                         <div class="airport-lbl">🛫 Incheckbalie (JFK)</div>
@@ -553,13 +375,11 @@
                         <div class="airport-val">🧳 Carousel 8 (T1)</div>
                     </div>
                 </div>
-
                 <div class="info-row"><span class="info-lbl">Vluchtnummer</span><span class="info-val" style="color:var(--accent-cyan);">DL0420</span></div>
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">20-10 | 09:30 ➔ 12:15</span></div>
                 <div class="info-row"><span class="info-lbl">Boekingscode (PNR)</span><span class="info-val" style="color:var(--accent-gold);">PNR: DL773M</span></div>
             </div>
 
-            <!-- Vlucht 3 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">✈️</div>
@@ -568,7 +388,6 @@
                         <div class="item-desc">American Airlines</div>
                     </div>
                 </div>
-
                 <div class="airport-highlight-grid">
                     <div class="airport-badge-box checkin">
                         <div class="airport-lbl">🛫 Incheckbalie (LAS)</div>
@@ -579,13 +398,11 @@
                         <div class="airport-val">🧳 Carousel 14 (North)</div>
                     </div>
                 </div>
-
                 <div class="info-row"><span class="info-lbl">Vluchtnummer</span><span class="info-val" style="color:var(--accent-cyan);">AA1204</span></div>
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">25-10 | 11:00 ➔ 18:45</span></div>
                 <div class="info-row"><span class="info-lbl">Boekingscode (PNR)</span><span class="info-val" style="color:var(--accent-gold);">PNR: AA9921</span></div>
             </div>
 
-            <!-- Vlucht 4 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🛬</div>
@@ -594,7 +411,6 @@
                         <div class="item-desc">KLM Royal Dutch</div>
                     </div>
                 </div>
-
                 <div class="airport-highlight-grid">
                     <div class="airport-badge-box checkin">
                         <div class="airport-lbl">🛫 Incheckbalie (MIA)</div>
@@ -605,7 +421,6 @@
                         <div class="airport-val">🧳 Carousel 16 (Plaza)</div>
                     </div>
                 </div>
-
                 <div class="info-row"><span class="info-lbl">Vluchtnummer</span><span class="info-val" style="color:var(--accent-cyan);">KL0642</span></div>
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">30-10 | 21:15 ➔ 11:30 (+1d)</span></div>
                 <div class="info-row"><span class="info-lbl">Boekingscode (PNR)</span><span class="info-val" style="color:var(--accent-gold);">PNR: KL9012</span></div>
@@ -613,7 +428,7 @@
         </div>
     </div>
 
-    <!-- TAB 4: TEAM & PRODUCER THUISFRONT -->
+    <!-- TAB 4: TEAM -->
     <div id="tab-team" class="tab-pane">
         <div class="card">
             <div class="card-header-title">👥 Productie Team & Contacten</div>
@@ -660,24 +475,10 @@
                     <button class="btn-action" onclick="safeCall('+31612345672', 'Daan (Camera/DoP)')">📞 Bellen</button>
                 </div>
             </div>
-
-            <div class="item-box">
-                <div class="item-header">
-                    <div class="icon-container">🎧</div>
-                    <div class="item-title-group">
-                        <div class="item-title">Geluid / Technicus</div>
-                        <div class="item-desc">Audiotechniek & Equipment</div>
-                    </div>
-                </div>
-                <div class="btn-grid">
-                    <a href="https://wa.me/31612345674" class="btn-action">💬 WhatsApp</a>
-                    <button class="btn-action" onclick="safeCall('+31612345674', 'Geluidstechnicus')">📞 Bellen</button>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- TAB 5: CRISIS & DIPLOMATIEKE CONTACTEN PER STAD -->
+    <!-- TAB 5: CRISIS -->
     <div id="tab-crisis" class="tab-pane">
         <div class="card" style="border: 1px solid var(--accent-red);">
             <div class="card-header-title">
@@ -691,10 +492,10 @@
                     <div class="icon-container" style="background:#4A3205; border-color:var(--accent-gold);">📺</div>
                     <div class="item-title-group">
                         <div class="item-title" style="color:var(--accent-gold);">Hoofdredacteur / Redactie Noodlijn</div>
-                        <div class="item-desc">24/7 Redactie Escalatie & Calamiteiten Hilversum</div>
+                        <div class="item-desc">24/7 Redactie Escalatie Hilversum</div>
                     </div>
                 </div>
-                <button class="btn-action btn-gold" onclick="safeCall('+31356779000', 'Hoofdredacteur / Redactie Noodlijn Hilversum')" style="width: 100%; margin-top: 6px;">
+                <button class="btn-action btn-gold" onclick="safeCall('+31356779000', 'Hoofdredacteur Noodlijn Hilversum')" style="width: 100%; margin-top: 6px;">
                     📞 BEL HOOFDREDACTEUR 24/7
                 </button>
             </div>
@@ -743,7 +544,7 @@
                     </div>
                 </div>
                 <div class="btn-grid">
-                    <button class="btn-action" onclick="safeCall('+18773882443', 'Nederlandse Ambassade Washington DC')">📞 +1 877 388 2443</button>
+                    <button class="btn-action" onclick="safeCall('+18773882443', 'Ambassade Washington DC')">📞 +1 877 388 2443</button>
                     <a href="mailto:was@minbuza.nl" class="btn-action">✉️ Mail Ambassade</a>
                 </div>
             </div>
@@ -761,44 +562,10 @@
                     <a href="https://maps.google.com/?q=Consulate+General+of+the+Netherlands+Miami" target="_blank" class="btn-action">🗺️ Google Maps</a>
                 </div>
             </div>
-
-            <div class="item-box">
-                <div class="item-header">
-                    <div class="icon-container">🌐</div>
-                    <div class="item-title-group">
-                        <div class="item-title">BuZa Noodcentrum Den Haag (24/7)</div>
-                        <div class="item-desc">Wereldwijd alarmnummer Rijksoverheid</div>
-                    </div>
-                </div>
-                <div class="btn-grid">
-                    <button class="btn-action" onclick="safeCall('+31247247247', 'Ministerie van Buitenlandse Zaken 24/7')">📞 +31 247 247 247</button>
-                    <a href="mailto:247@buza.nl" class="btn-action">✉️ Mail 24/7</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header-title">🏥 Medische Assistentie & Polissen</div>
-            <div class="card-subtitle">Verzekering & Documenten</div>
-
-            <div class="item-box">
-                <div class="info-row"><span class="info-lbl">Polisnummer Prod.</span><span class="info-val">#US-PROD-99201-B</span></div>
-                <div class="info-row"><span class="info-lbl">SOS International</span><span class="info-val">+31 20 592 9292</span></div>
-                <div class="notes-box">📌 Paspoortkopieën, ESTA-bevestigingen en medische paspoorten van de gehele crew staan veilig opgeslagen in de beveiligde Google Drive van Producer Peter.</div>
-            </div>
         </div>
     </div>
 
-    <!-- IN-APP PORTAL MODAL OVERLAY (UNIVERSEEL) -->
-    <div id="portal-modal" class="portal-overlay" style="display: none;">
-        <div class="portal-header">
-            <span id="portal-title">🌐 In-App Portal</span>
-            <button class="btn-close-portal" onclick="closePortal()">✖ Sluiten</button>
-        </div>
-        <iframe id="portal-iframe" class="portal-frame" src="about:blank"></iframe>
-    </div>
-
-    <!-- Sticky Bottom Dock Navigation (5 Items) -->
+    <!-- Bottom Nav Dock -->
     <div class="bottom-nav">
         <button class="nav-item active" onclick="switchMainTab('transport', this)">
             <span class="icon">🚘</span>
@@ -824,6 +591,12 @@
 
     <script>
         function safeCall(phoneNumber, contactName) {
+            // Direct bellen voor echte alarmnummers
+            if (phoneNumber === '911' || phoneNumber === '112') {
+                window.location.href = "tel:" + phoneNumber;
+                return;
+            }
+            // Bevestigingsscherm voor alle overige nummers
             if (confirm("🚨 BEVESTIGING NOODOPROEP\n\nWeet je zeker dat je wilt bellen met:\n" + contactName + " (" + phoneNumber + ")?")) {
                 window.location.href = "tel:" + phoneNumber;
             }
@@ -845,17 +618,6 @@
             document.getElementById('hub-content-1').style.display = hubNum === 1 ? 'block' : 'none';
             document.getElementById('hub-content-2').style.display = hubNum === 2 ? 'block' : 'none';
             document.getElementById('hub-content-3').style.display = hubNum === 3 ? 'block' : 'none';
-        }
-
-        function openPortal(targetUrl, titleText) {
-            document.getElementById('portal-title').innerText = titleText;
-            document.getElementById('portal-iframe').src = targetUrl;
-            document.getElementById('portal-modal').style.display = 'flex';
-        }
-
-        function closePortal() {
-            document.getElementById('portal-modal').style.display = 'none';
-            document.getElementById('portal-iframe').src = 'about:blank';
         }
     </script>
 </body>
