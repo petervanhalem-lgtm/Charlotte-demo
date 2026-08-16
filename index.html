@@ -2,1162 +2,201 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Digital Production Roadbook — Next-Gen Media Companion</title>
-    <!-- Modern Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charlotte Demo - Roadbook</title>
     <style>
         :root {
-            --bg-main: #040711;
-            --bg-card: rgba(15, 23, 42, 0.88);
-            --bg-card-border: rgba(255, 255, 255, 0.12);
-            --bg-card-hover: rgba(30, 41, 59, 0.95);
-            --neon-blue: #38BDF8;
-            --neon-emerald: #10B981;
-            --neon-gold: #F59E0B;
-            --neon-rose: #F43F5E;
-            --neon-purple: #C084FC;
-            --text-light: #F8FAFC;
-            --text-dim: #94A3B8;
-            --text-dark: #0F172A;
-            --glass-blur: blur(16px);
-        }
-
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            -webkit-tap-highlight-color: transparent; 
-        }
-
-        html, body {
-            width: 100%;
-            overflow-x: hidden;
+            --primary: #1B365D;
+            --secondary: #2C4D75;
+            --accent: #007AFF;
+            --bg: #F4F6F9;
+            --card-bg: #FFFFFF;
+            --text: #1C1C1E;
+            --text-muted: #6E6E73;
+            --border: #E5E5EA;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-light);
-            min-height: 100vh;
-            padding-bottom: 6rem;
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(192, 132, 252, 0.12) 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, rgba(56, 189, 248, 0.12) 0%, transparent 45%);
-            background-attachment: fixed;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 16px;
         }
 
-        /* HEADER APP BAR */
-        .app-bar {
-            position: sticky; 
-            top: 0; 
-            z-index: 100;
-            background: rgba(4, 7, 17, 0.94); 
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border-bottom: 1px solid var(--bg-card-border);
-            padding: clamp(0.6rem, 2vw, 0.9rem) clamp(0.8rem, 3vw, 1.5rem); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            width: 100%;
-        }
-
-        .app-brand { display: flex; align-items: center; gap: clamp(0.5rem, 2vw, 0.85rem); }
-        .app-logo {
-            width: clamp(38px, 8vw, 46px); 
-            height: clamp(38px, 8vw, 46px); 
-            border-radius: 14px;
-            background: linear-gradient(135deg, var(--neon-gold), var(--neon-purple));
-            display: flex; align-items: center; justify-content: center;
-            font-size: clamp(1.2rem, 3vw, 1.4rem); 
-            box-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
-            flex-shrink: 0;
-        }
-        .app-title h1 {
-            font-size: clamp(0.88rem, 2.5vw, 1.15rem); 
-            font-weight: 900; 
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #FFFFFF, var(--neon-gold));
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent;
-            line-height: 1.2;
-        }
-        .app-title p { font-size: clamp(0.65rem, 1.8vw, 0.75rem); color: var(--text-dim); font-weight: 600; }
-
-        .top-badge {
-            background: rgba(16, 185, 129, 0.15); 
-            border: 1px solid var(--neon-emerald);
-            color: var(--neon-emerald); 
-            padding: 0.3rem clamp(0.5rem, 2vw, 0.85rem); 
-            border-radius: 999px;
-            font-size: clamp(0.65rem, 1.8vw, 0.78rem); 
-            font-weight: 800; 
-            display: flex; 
-            align-items: center; 
-            gap: 0.35rem;
-            white-space: nowrap;
-        }
-
-        /* BOTTOM DOCK NAVIGATION */
-        .bottom-dock {
-            position: fixed; 
-            bottom: max(0.75rem, env(safe-area-inset-bottom)); 
-            left: 50%; 
-            transform: translateX(-50%);
-            z-index: 200; 
-            width: calc(100% - 1.5rem); 
-            max-width: 600px;
-            background: rgba(15, 23, 42, 0.95); 
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(255, 255, 255, 0.2); 
-            border-radius: 24px;
-            padding: 0.4rem; 
-            display: flex; 
-            justify-content: space-around;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85);
-        }
-
-        .dock-btn {
-            background: transparent; 
-            border: none; 
-            color: var(--text-dim);
-            padding: 0.5rem 0.3rem; 
-            border-radius: 16px; 
-            font-size: clamp(0.62rem, 1.7vw, 0.75rem); 
-            font-weight: 800;
-            cursor: pointer; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center;
-            gap: 0.2rem; 
-            transition: all 0.25s ease; 
-            flex: 1;
-            text-align: center;
-        }
-        .dock-btn span.icon { font-size: clamp(1.1rem, 3.5vw, 1.3rem); }
-        .dock-btn.active {
-            background: var(--neon-gold); 
-            color: var(--text-dark);
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
-        }
-
-        /* CONTAINER */
-        main { 
-            width: 100%;
-            max-width: 900px; 
-            margin: clamp(0.8rem, 2vw, 1.5rem) auto; 
-            padding: 0 clamp(0.75rem, 2.5vw, 1.25rem); 
-        }
-
-        .tab-section { display: none; }
-        .tab-section.active { display: block; animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* PROJECT / ONDERWERP BANNER */
-        .project-banner {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(56, 189, 248, 0.12));
-            border: 1px solid rgba(245, 158, 11, 0.35);
-            border-radius: 20px;
-            padding: 1rem 1.25rem;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .project-info .tag {
-            font-size: 0.68rem;
-            font-weight: 900;
-            color: var(--neon-gold);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .project-info .title {
-            font-size: clamp(1rem, 2.8vw, 1.25rem);
-            font-weight: 900;
-            color: #FFFFFF;
-            margin-top: 0.1rem;
-        }
-
-        .project-info .sub {
-            font-size: 0.78rem;
-            color: var(--text-dim);
-            margin-top: 0.15rem;
-        }
-
-        /* HUB SWITCHER TABS */
-        .hub-switcher {
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: clamp(0.35rem, 1.5vw, 0.65rem); 
-            margin-bottom: 1.25rem;
-        }
-        .hub-tab-btn {
-            background: rgba(15, 23, 42, 0.7); 
-            border: 1px solid var(--bg-card-border);
-            padding: clamp(0.65rem, 2vw, 0.85rem) 0.3rem; 
-            border-radius: 16px; 
-            text-align: center; 
-            cursor: pointer;
-            transition: all 0.25s ease; 
-            color: var(--text-dim);
-            width: 100%;
-        }
-        .hub-tab-btn.active {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(192, 132, 252, 0.25));
-            border-color: var(--neon-gold); 
-            color: #FFF; 
-            font-weight: 800;
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
-        }
-        .hub-tab-btn .num { font-size: clamp(0.6rem, 1.6vw, 0.7rem); color: var(--neon-gold); font-weight: 900; letter-spacing: 0.03em; }
-        .hub-tab-btn .name { font-size: clamp(0.78rem, 2.2vw, 0.9rem); font-weight: 800; margin-top: 0.15rem; }
-
-        /* GLASS CARDS */
-        .glass-card {
-            background: var(--bg-card); 
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--bg-card-border); 
-            border-radius: clamp(16px, 3vw, 22px);
-            padding: clamp(1rem, 3vw, 1.4rem); 
-            margin-bottom: 1.25rem; 
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            width: 100%;
-        }
-
-        .card-header {
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            margin-bottom: 0.85rem; 
-            padding-bottom: 0.6rem; 
-            border-bottom: 1px solid var(--bg-card-border);
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        .card-title { font-size: clamp(0.92rem, 2.5vw, 1.05rem); font-weight: 800; color: var(--text-light); display: flex; align-items: center; gap: 0.5rem; }
-
-        /* COMPACT BONNETJES SCANNER STRIP (COMPACT ADVIES LOCATION) */
-        .scanner-strip {
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(16, 185, 129, 0.15));
-            border: 1.5px solid var(--neon-blue);
-            border-radius: 18px;
-            padding: 0.85rem 1.1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-bottom: 1.25rem;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .scanner-strip:hover { transform: translateY(-2px); }
-
-        .scanner-strip .info {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .scanner-strip .icon {
-            font-size: 1.5rem;
-            background: rgba(56, 189, 248, 0.2);
-            width: 42px;
-            height: 42px;
+        .header {
+            background-color: var(--primary);
+            color: white;
+            padding: 16px;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+            margin-bottom: 20px;
         }
 
-        .scanner-strip .text h4 { font-size: 0.95rem; font-weight: 800; color: var(--neon-blue); }
-        .scanner-strip .text p { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.1rem; }
+        .header h1 { margin: 0 0 6px 0; font-size: 20px; }
+        .header p { margin: 0; font-size: 13px; opacity: 0.85; }
 
-        .scanner-strip .btn-open {
-            background: var(--neon-blue);
-            color: var(--text-dark);
-            font-size: 0.78rem;
-            font-weight: 800;
-            padding: 0.5rem 0.85rem;
-            border-radius: 10px;
-            white-space: nowrap;
-        }
-
-        /* ACTION MAPS / PHONE BUTTONS */
-        .btn-link-grid {
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
-            gap: 0.5rem; 
-            margin-top: 0.75rem;
-            width: 100%;
-        }
-
-        .btn-link {
-            background: rgba(255, 255, 255, 0.05); 
-            border: 1px solid var(--bg-card-border);
-            color: var(--text-light); 
-            text-decoration: none; 
-            padding: 0.6rem 0.75rem;
-            border-radius: 12px; 
-            font-size: clamp(0.72rem, 1.8vw, 0.8rem); 
+        .section-title {
+            font-size: 16px;
             font-weight: 700;
-            display: inline-flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 0.35rem;
-            transition: all 0.2s ease;
-            width: 100%;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .btn-link:hover, .btn-link:active { background: var(--neon-blue); color: var(--text-dark); border-color: var(--neon-blue); }
-        .btn-link.maps { border-color: rgba(16, 185, 129, 0.4); color: #A7F3D0; }
-        .btn-link.maps:hover, .btn-link.maps:active { background: var(--neon-emerald); color: var(--text-dark); }
-        .btn-link.phone { border-color: rgba(245, 158, 11, 0.4); color: #FDE68A; }
-        .btn-link.phone:hover, .btn-link.phone:active { background: var(--neon-gold); color: var(--text-dark); }
-        .btn-link.mail { border-color: rgba(168, 85, 247, 0.4); color: #E9D5FF; }
-        .btn-link.mail:hover, .btn-link.mail:active { background: var(--neon-purple); color: var(--text-dark); }
-        .btn-link.danger { border-color: rgba(244, 63, 94, 0.5); color: #FECDD3; }
-        .btn-link.danger:hover, .btn-link.danger:active { background: var(--neon-rose); color: #FFF; }
-
-        /* GADGET: SUBTLE/COMPACT GOLDEN HOUR AT BOTTOM */
-        .sun-widget-compact {
+            color: var(--primary);
+            margin: 20px 0 12px 0;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background: rgba(245, 158, 11, 0.06);
-            border: 1px solid rgba(245, 158, 11, 0.2);
+            gap: 8px;
+        }
+
+        /* Transport Cards Styling */
+        .transport-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .transport-card {
+            background: var(--card-bg);
             border-radius: 12px;
-            padding: 0.6rem 0.85rem;
-            margin-top: 1rem;
+            padding: 14px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
         }
 
-        .sun-widget-compact .lbl { font-size: 0.72rem; color: var(--neon-gold); font-weight: 700; display: flex; align-items: center; gap: 0.35rem; }
-        .sun-widget-compact .val { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 800; color: #FFF; }
-
-        /* LIST ITEMS */
-        .list-item { 
-            display: flex; 
-            align-items: flex-start; 
-            gap: 0.75rem; 
-            padding: 0.75rem 0; 
-            border-bottom: 1px solid var(--bg-card-border); 
-            width: 100%;
-        }
-        .list-item:last-child { border-bottom: none; }
-        .list-badge {
-            background: rgba(245, 158, 11, 0.15); 
-            color: var(--neon-gold);
-            width: 34px; 
-            height: 34px; 
-            border-radius: 12px; 
-            display: flex; 
-            align-items: center;
-            justify-content: center; 
-            font-weight: 800; 
-            font-size: 0.95rem; 
-            flex-shrink: 0;
-        }
-        .list-text { flex: 1; min-width: 0; }
-        .list-text .title { font-size: clamp(0.85rem, 2.2vw, 0.95rem); font-weight: 800; color: var(--text-light); word-break: break-word; }
-        .list-text .desc { font-size: clamp(0.75rem, 1.8vw, 0.82rem); color: var(--text-dim); margin-top: 0.2rem; line-height: 1.4; word-break: break-word; }
-
-        /* DUAL CLOCK WIDGET */
-        .tz-widget {
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 0.75rem;
-            background: rgba(5, 8, 17, 0.8); 
-            border-radius: 18px; 
-            padding: 0.85rem; 
-            text-align: center;
-        }
-        .tz-clock .time { font-family: 'JetBrains Mono', monospace; font-size: clamp(1.2rem, 3.5vw, 1.5rem); font-weight: 800; color: var(--neon-gold); }
-        .tz-clock .label { font-size: clamp(0.65rem, 1.6vw, 0.75rem); color: var(--text-dim); font-weight: 600; margin-top: 0.2rem; }
-
-        /* CREW CARD */
-        .crew-card {
-            background: rgba(255, 255, 255, 0.03); 
-            border: 1px solid var(--bg-card-border);
-            border-radius: 18px; 
-            padding: 1rem; 
-            margin-bottom: 0.85rem;
-        }
-
-        .crew-card-top {
+        .transport-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.85rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 8px;
         }
 
-        .crew-avatar {
-            width: clamp(44px, 10vw, 52px); 
-            height: clamp(44px, 10vw, 52px); 
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--neon-gold), var(--neon-purple));
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            font-size: clamp(1.2rem, 3vw, 1.4rem); 
-            font-weight: 900; 
-            color: var(--text-dark);
-            flex-shrink: 0;
+        .badge {
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
-        .crew-info-main .name { font-weight: 800; font-size: clamp(0.95rem, 2.5vw, 1.08rem); color: var(--text-light); }
-        .crew-info-main .role { font-size: clamp(0.75rem, 1.8vw, 0.82rem); color: var(--neon-gold); font-weight: 700; margin-top: 0.1rem; }
+        .badge-auto { background: #E3F2FD; color: #0D47A1; }
+        .badge-vlucht { background: #E8EAF6; color: #1A237E; }
+        .badge-trein { background: #E8F5E9; color: #1B5E20; }
+        .badge-huurauto { background: #FFF3E0; color: #E65100; }
+        .badge-taxi { background: #FFFDE7; color: #F57F17; }
 
-        /* MODALS */
-        .modal {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(4, 7, 17, 0.92); backdrop-filter: blur(14px); z-index: 1000;
-            display: flex; align-items: center; justify-content: center; padding: 1.25rem;
-            opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
-        }
-        .modal.active { opacity: 1; pointer-events: auto; }
-        .modal-card {
-            background: #121A2C; border: 1.5px solid var(--neon-rose); border-radius: 24px;
-            padding: 1.5rem; max-width: 440px; width: 100%; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.85);
-            position: relative; text-align: center;
-        }
-        .modal-card.blue-border { border-color: var(--neon-blue); }
-        .modal-close {
-            position: absolute; top: 0.85rem; right: 0.85rem; background: rgba(255, 255, 255, 0.1);
-            border: none; color: #FFF; width: 32px; height: 32px; border-radius: 50%; font-weight: bold; cursor: pointer;
+        .time-tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
         }
 
-        /* PRESS BADGE CARD */
-        .press-badge-card {
-            background: linear-gradient(135deg, #1E293B, #0F172A);
-            border: 2px solid var(--neon-gold);
-            border-radius: 18px;
-            padding: 1.25rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        .route-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin: 0 0 6px 0;
         }
 
-        .press-badge-card::before {
-            content: 'PRESS / MEDIA';
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%) rotate(-30deg);
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: rgba(245, 158, 11, 0.08);
-            white-space: nowrap;
-            pointer-events: none;
+        .transport-details {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0 0 6px 0;
+            line-height: 1.4;
+        }
+
+        .transport-notes {
+            font-size: 12px;
+            background: #F8F9FA;
+            padding: 8px;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent);
+            margin: 0;
+        }
+
+        /* Bonnetjes Scanner Styling */
+        .scanner-card-hidden {
+            display: none; /* Veiligheidshalve extra verborgen via CSS */
         }
     </style>
 </head>
 <body>
 
-    <!-- APP BAR -->
-    <div class="app-bar">
-        <div class="app-brand">
-            <div class="app-logo">👑</div>
-            <div class="app-title">
-                <h1>PRINSES CHARLOTTE IN DE VS</h1>
-                <p>Onderwerp: 3 Werelden in Amerika • Producer: Peter</p>
-            </div>
-        </div>
-        <div class="top-badge-group">
-            <div class="top-badge">
-                🟢 BZ: GEEL
-            </div>
-        </div>
+    <div class="header">
+        <h1 id="project-title">Prinses Charlotte in de VS</h1>
+        <p>📱 Digitaal Roadbook & Logistiek Dashboard</p>
     </div>
 
-    <!-- MAIN CONTAINER -->
-    <main>
+    <!-- ========================================================= -->
+    <!-- TIJDELIJK VERBORGEN: BONNETJES SCANNER (OPTIER A)           -->
+    <!-- Om later te heractiveren: verwijder de commentaar-tags    -->
+    <!-- ========================================================= -->
+    <!--
+    <div class="scanner-card">
+        <div class="section-title">📸 Bonnetjes Scanner</div>
+        <p>Upload je declaratie of kassabon rechtstreeks naar het productiedossier.</p>
+        <a href="https://forms.gle/demo-charlotte-usa" class="btn" target="_blank">Scan Bonnetje</a>
+    </div>
+    -->
 
-        <!-- PROJECT / ONDERWERP HEADER BANNER -->
-        <div class="project-banner">
-            <div class="project-info">
-                <div class="tag">🎬 MEDIAPRODUCTIE ROADBOOK ENGINE</div>
-                <div class="title">Prinses Charlotte in de VS</div>
-                <div class="sub">Projectcode: <strong>USA-CHARLOTTE-2026</strong> • Regie: Daan • Host: Charlotte</div>
+    <!-- ========================================================= -->
+    <!-- CHRONOLOGISCHE TRANSPORT TIJDSLIJN                          -->
+    <!-- ========================================================= -->
+    <div class="section-title">🚘 Transport & Reisschema</div>
+
+    <div class="transport-timeline">
+
+        <!-- Etappe 1: Eigen Auto -->
+        <div class="transport-card">
+            <div class="transport-header">
+                <span class="badge badge-auto">🚘 Eigen auto</span>
+                <span class="time-tag">16-10 | 05:30 - 07:15</span>
             </div>
-            <button class="btn-link" onclick="sendWhatsAppStatus()" style="background: rgba(16, 185, 129, 0.2); border-color: var(--neon-emerald); color: #A7F3D0; width: auto; padding: 0.5rem 0.85rem;">
-                💬 WhatsApp Status naar Producer
-            </button>
+            <div class="route-title">Baarn (Thuis) ➔ Düsseldorf Airport (DUS)</div>
+            <div class="transport-details">
+                <strong>Kenteken:</strong> AB-123-C &bull; <strong>Crew:</strong> Peter & Daan
+            </div>
+            <p class="transport-notes">📌 Parkeren op P3. 210 km (Km-vergoeding declareerbaar).</p>
         </div>
 
-        <!-- TAB 1: 3 HUBS LOGISTIEK -->
-        <div id="tab-hubs" class="tab-section active">
-
-            <!-- COMPACT BONNETJES SCANNER STRIP (STRATIGIC UNCLUTTERED ADVIES) -->
-            <div class="scanner-strip" onclick="openScannerModal()">
-                <div class="info">
-                    <div class="icon">📸</div>
-                    <div class="text">
-                        <h4>Bonnetjes Invoeren (20 Sec)</h4>
-                        <p>Tik om taxi-, eten- of brandstofbonnetje te uploaden</p>
-                    </div>
-                </div>
-                <div class="btn-open">Open Scanner ➔</div>
+        <!-- Etappe 2: Vlucht -->
+        <div class="transport-card">
+            <div class="transport-header">
+                <span class="badge badge-vlucht">✈️ Vlucht</span>
+                <span class="time-tag">16-10 | 09:45 - 12:30</span>
             </div>
-
-            <!-- HUB SWITCHER -->
-            <div class="hub-switcher">
-                <div class="hub-tab-btn active" onclick="showHub(1, this)">
-                    <div class="num">HUB 1 (OV)</div>
-                    <div class="name">New York</div>
-                </div>
-                <div class="hub-tab-btn" onclick="showHub(2, this)">
-                    <div class="num">HUB 2 (AUTO 1)</div>
-                    <div class="name">Las Vegas</div>
-                </div>
-                <div class="hub-tab-btn" onclick="showHub(3, this)">
-                    <div class="num">HUB 3 (AUTO+FIXER)</div>
-                    <div class="name">Miami</div>
-                </div>
+            <div class="route-title">Düsseldorf (DUS) ➔ New York (JFK)</div>
+            <div class="transport-details">
+                <strong>Airline:</strong> Eurowings / Lufthansa &bull; <strong>PNR:</strong> ABC123<br>
+                <strong>Passagiers:</strong> Alle Crew (4p)
             </div>
-
-            <!-- HUB 1 DETAILS (NYC) -->
-            <div id="hub-details-1" class="hub-details-panel">
-                
-                <!-- HOTEL INFO NYC -->
-                <div class="glass-card">
-                    <div class="card-header">
-                        <div class="card-title">🏨 Hotel 1 (Hoofdverblijf): The Plaza Hotel</div>
-                        <span style="font-size: 0.75rem; color: var(--neon-gold); font-weight: 800;">15 OKT – 20 OKT</span>
-                    </div>
-
-                    <div class="list-item">
-                        <div class="list-badge">🏨</div>
-                        <div class="list-text">
-                            <div class="title">The Plaza Hotel Manhattan</div>
-                            <div class="desc">768 5th Ave, New York, NY 10019 • Reservering: <strong>#PLAZA-NY-8812</strong> (2 Kamers, Ontbijt inbegrepen)</div>
-                            <div class="btn-link-grid">
-                                <a href="https://maps.google.com/?q=The+Plaza+Hotel+768+5th+Ave+New+York+NY+10019" target="_blank" class="btn-link maps">
-                                    🗺️ Google Maps Navigatie
-                                </a>
-                                <button onclick="requestCall('Receptie The Plaza Hotel', '+12127593000')" class="btn-link phone">
-                                    📞 Receptie: +1 212 759 3000
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="list-item">
-                        <div class="list-badge" style="background: rgba(56, 189, 248, 0.15); color: var(--neon-blue);">🏨</div>
-                        <div class="list-text">
-                            <div class="title">Hotel 2 (Extra / Boutique Stay): The William Vale Brooklyn</div>
-                            <div class="desc">111 N 12th St, Brooklyn, NY 11249 • Reservering: <strong>#VALE-BK-9921</strong></div>
-                            <div class="btn-link-grid">
-                                <a href="https://maps.google.com/?q=The+William+Vale+111+N+12th+St+Brooklyn+NY+11249" target="_blank" class="btn-link maps">
-                                    🗺️ Google Maps Brooklyn
-                                </a>
-                                <button onclick="requestCall('Receptie The William Vale', '+17186318400')" class="btn-link phone">
-                                    📞 +1 718 631 8400
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VERVOER INFO NYC -->
-                <div class="glass-card">
-                    <div class="card-header">
-                        <div class="card-title">🚲 Vervoer: Openbaar Vervoer & Yellow Cabs</div>
-                    </div>
-                    <div class="list-item">
-                        <div class="list-badge">🚇</div>
-                        <div class="list-text">
-                            <div class="title">MTA NYC Subway & Yellow Cabs / Uber XL</div>
-                            <div class="desc">Geen huurauto op Hub 1 i.v.m. Manhattan-drukte. Crew reist via Metrocard Unlimited 7-Day & Uber XL Zakelijk Account.</div>
-                            <div class="btn-link-grid">
-                                <a href="https://new.mta.info/" target="_blank" class="btn-link maps">
-                                    🌐 MTA Metro Kaart & Tijden
-                                </a>
-                                <a href="https://m.uber.com" target="_blank" class="btn-link">
-                                    🚕 Open Uber App
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SUBTLE COMPACT GOLDEN HOUR AT BOTTOM -->
-                <div class="sun-widget-compact">
-                    <div class="lbl">🌅 Golden Hour Filmlicht (NYC Hub):</div>
-                    <div class="val">17:25 - 18:12 EST</div>
-                </div>
-
-            </div>
-
-            <!-- HUB 2 DETAILS (LAS VEGAS) -->
-            <div id="hub-details-2" class="hub-details-panel" style="display: none;">
-                
-                <!-- HOTEL INFO VEGAS -->
-                <div class="glass-card">
-                    <div class="card-header">
-                        <div class="card-title">🎰 Hotel: Bellagio Resort & Casino</div>
-                        <span style="font-size: 0.75rem; color: var(--neon-gold); font-weight: 800;">20 OKT – 25 OKT</span>
-                    </div>
-
-                    <div class="list-item">
-                        <div class="list-badge">🏨</div>
-                        <div class="list-text">
-                            <div class="title">Bellagio Resort & Casino</div>
-                            <div class="desc">3600 S Las Vegas Blvd, Las Vegas, NV 89109 • Reservering: <strong>#BEL-LV-44910</strong> (2 Luxury Suites)</div>
-                            <div class="btn-link-grid">
-                                <a href="https://maps.google.com/?q=Bellagio+Hotel+3600+S+Las+Vegas+Blvd+Las+Vegas+NV+89109" target="_blank" class="btn-link maps">
-                                    🗺️ Google Maps Bellagio
-                                </a>
-                                <button onclick="requestCall('Receptie Bellagio Casino', '+18889876667')" class="btn-link phone">
-                                    📞 Receptie: +1 888 987 6667
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AUTOHUUR INFO VEGAS -->
-                <div class="glass-card">
-                    <div class="card-header">
-                        <div class="card-title">🚗 Autohuur 1: Hertz Rent-A-Car (SUV 4x4)</div>
-                    </div>
-                    <div class="list-item" style="flex-direction: column; gap: 0.5rem; padding: 0.5rem 0;">
-                        <div style="display: flex; gap: 0.75rem; width: 100%;">
-                            <div class="list-badge">🚙</div>
-                            <div class="list-text">
-                                <div class="title">Hertz SUV 4x4 (Chevrolet Tahoe)</div>
-                                <div class="desc">Ophalen: LAS Harry Reid Airport Hertz Center • Inclusief Full Casco & Afkoop ER</div>
-                                <div style="margin-top: 0.4rem; font-size: 0.75rem; color: var(--neon-emerald); font-weight: 700;">Reservering: #HTZ-LV-90481</div>
-                            </div>
-                        </div>
-                        <div class="btn-link-grid">
-                            <a href="https://maps.google.com/?q=Hertz+Rent+A+Car+Harry+Reid+International+Airport+Las+Vegas" target="_blank" class="btn-link maps">
-                                🗺️ Navigeer naar Hertz
-                            </a>
-                            <a href="https://www.hertz.com/rentacar/reservation/" target="_blank" class="btn-link">
-                                ✅ Online Check-in
-                            </a>
-                        </div>
-                    </div>
-                </div></div>
-
-            </div>
-
-            <!-- HUB 3 DETAILS (MIAMI) -->
-            <div id="hub-details-3" class="hub-details-panel" style="display: none;">
-                
-                <!-- HOTEL INFO MIAMI -->
-                <div class="glass-card">
-                    <div class="card-header">
-                        <div class="card-title">🌴 Hotel: The Setai South Beach</div>
-                        <span style="font-size: 0.75rem; color: var(--neon-gold); font-weight: 800;">25 OKT – 30 OKT</span>
-                    </div>
-
-                    <div class="list-item">
-                        <div class="list-badge">🏨</div>
-                        <div class="list-text">
-                            <div class="title">The Setai South Beach</div>
-                            <div class="desc">2001 Collins Ave, Miami Beach, FL 33139 • Reservering: <strong>#SETAI-MIA-1102</strong> (2 Ocean Suites)</div>
-                            <div class="btn-link-grid">
-                                <a href="https://maps.google.com/?q=The+Setai+2001+Collins+Ave+Miami+Beach+FL+33139" target="_blank" class="btn-link maps">
-                                    🗺️ Google Maps Setai MIA
-                                </a>
-                                <button onclick="requestCall('Receptie The Setai Miami', '+13055208000')" class="btn-link phone">
-                                    📞 Receptie: +1 305 520 8000
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AUTOHUUR & FIXER INFO MIAMI -->
-                <div class="glass-card">
-                    <div class="card-header">
-                        <div class="card-title">🚐 Autohuur 2: Enterprise Transit Passenger Van</div>
-                    </div>
-                    <div class="list-item" style="flex-direction: column; gap: 0.5rem; padding: 0.5rem 0;">
-                        <div style="display: flex; gap: 0.75rem; width: 100%;">
-                            <div class="list-badge">🚐</div>
-                            <div class="list-text">
-                                <div class="title">Enterprise Passenger Van (Miami Airport)</div>
-                                <div class="desc">Ophalen: Miami Intl Airport (MIA) • Speciaal voertuig voor crew & alle ENG-apparatuur</div>
-                                <div style="margin-top: 0.4rem; font-size: 0.75rem; color: var(--neon-emerald); font-weight: 700;">Reservering: #ENT-MIA-77123</div>
-                            </div>
-                        </div>
-                        <div class="btn-link-grid">
-                            <a href="https://maps.google.com/?q=Enterprise+Rent+A+Car+Miami+International+Airport" target="_blank" class="btn-link maps">
-                                🗺️ Navigeer naar Enterprise
-                            </a>
-                            <a href="https://www.enterprise.com/en/reserve.html" target="_blank" class="btn-link">
-                                ✅ Online Check-in
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="list-item" style="background: rgba(192, 132, 252, 0.12); padding: 0.85rem; border-radius: 14px; border: 1px solid var(--neon-purple); margin-top: 0.75rem;">
-                        <div class="list-badge" style="background: var(--neon-purple); color: #000;">🎦</div>
-                        <div class="list-text">
-                            <div class="title" style="color: var(--neon-purple);">Lokale Fixer Rijd Mee: Big Mike</div>
-                            <div class="desc" style="color: #E2E8F0;">Rijdt met de crew mee in de Transit Van • Rol: Chauffeur, Local Fixer & Security Guard</div>
-                            <div style="margin-top: 0.4rem; font-size: 0.75rem; color: var(--neon-gold); font-weight: 700;">Film Permit: #FL-2026-99</div>
-                            <div class="btn-link-grid">
-                                <button onclick="requestCall('Lokale Fixer Big Mike', '+13055559988')" class="btn-link phone">
-                                    📞 Bellen: +1 305 555 9988
-                                </button>
-                                <a href="mailto:bigmike.fixer@miamiproductions.com" class="btn-link mail">
-                                    ✉️ Mail Fixer
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div></div>
-
-            </div>
-
-            <!-- DUAL TIMEZONE -->
-            <div class="glass-card">
-                <div class="card-header">
-                    <div class="card-title">🕒 Live Tijdzones Dashboard</div>
-                </div>
-                <div class="tz-widget">
-                    <div class="tz-clock">
-                        <div class="time" id="usClock">12:30</div>
-                        <div class="label">📍 Lokaal USA Time (EST)</div>
-                    </div>
-                    <div class="tz-clock">
-                        <div class="time" id="nlClock">18:30</div>
-                        <div class="label">🏠 Hilversum (NL / CET)</div>
-                    </div>
-                </div>
-            </div>
-
+            <p class="transport-notes">📌 Terminal 1, Bagage rechtstreeks ingecheckt.</p>
         </div>
 
-        
-        <!-- TAB 2: VLUCHTEN -->
-        <div id="tab-vluchten" class="tab-section">
-            <div class="glass-card">
-                <div class="card-header">
-                    <div class="card-title">✈️ Vluchtschema & Live Tracking</div>
-                    <span style="font-size: 0.75rem; color: var(--neon-gold); font-weight: 800;">4 Vluchten</span>
-                </div>
-
-                <!-- VLUCHT 1 -->
-                <div class="list-item" style="flex-direction: column; gap: 0.5rem; padding: 1rem 0;">
-                    <div style="display: flex; gap: 0.75rem; width: 100%;">
-                        <div class="list-badge">🛫</div>
-                        <div class="list-text">
-                            <div class="title">Vlucht 1: AMS → JFK (New York)</div>
-                            <div class="desc">KLM KL0641 • Vertrek: 15 Okt 13:15 Schiphol • Aankomst: 15 Okt 15:35 JFK</div>
-                            <div style="margin-top: 0.4rem; font-size: 0.75rem; color: var(--neon-emerald); font-weight: 700;">Boekingscode (PNR): YQ8L9K</div>
-                        </div>
-                    </div>
-                    <div class="btn-link-grid">
-                        <a href="https://www.google.com/search?q=KLM+KL0641" target="_blank" class="btn-link maps">
-                            🌐 Live Flight Tracker
-                        </a>
-                        <a href="https://www.klm.com/check-in" target="_blank" class="btn-link">
-                            ✅ Check-in KLM
-                        </a>
-                    </div>
-                </div>
-
-                <!-- VLUCHT 2 -->
-                <div class="list-item" style="flex-direction: column; gap: 0.5rem; padding: 1rem 0;">
-                    <div style="display: flex; gap: 0.75rem; width: 100%;">
-                        <div class="list-badge">✈️</div>
-                        <div class="list-text">
-                            <div class="title">Vlucht 2: JFK → LAS (Las Vegas)</div>
-                            <div class="desc">Delta Air Lines DL0420 • Vertrek: 20 Okt 09:30 JFK • Aankomst: 20 Okt 12:15 LAS</div>
-                            <div style="margin-top: 0.4rem; font-size: 0.75rem; color: var(--neon-emerald); font-weight: 700;">Boekingscode (PNR): DL773M</div>
-                        </div>
-                    </div>
-                    <div class="btn-link-grid">
-                        <a href="https://www.google.com/search?q=Delta+DL0420" target="_blank" class="btn-link maps">
-                            🌐 Live Flight Tracker
-                        </a>
-                        <a href="https://www.delta.com/eu/en/check-in-security/overview" target="_blank" class="btn-link">
-                            ✅ Check-in Delta
-                        </a>
-                    </div>
-                </div>
-
-                <!-- VLUCHT 3 -->
-                <div class="list-item" style="flex-direction: column; gap: 0.5rem; padding: 1rem 0;">
-                    <div style="display: flex; gap: 0.75rem; width: 100%;">
-                        <div class="list-badge">✈️</div>
-                        <div class="list-text">
-                            <div class="title">Vlucht 3: LAS → MIA (Miami)</div>
-                            <div class="desc">American Airlines AA1102 • Vertrek: 25 Okt 10:45 LAS • Aankomst: 25 Okt 18:20 MIA</div>
-                            <div style="margin-top: 0.4rem; font-size: 0.75rem; color: var(--neon-emerald); font-weight: 700;">Boekingscode (PNR): AA912X</div>
-                        </div>
-                    </div>
-                    <div class="btn-link-grid">
-                        <a href="https://www.google.com/search?q=American+Airlines+AA1102" target="_blank" class="btn-link maps">
-                            🌐 Live Flight Tracker
-                        </a>
-                        <a href="https://www.aa.com/reservation/flightCheckInViewReservationsAccess.do" target="_blank" class="btn-link">
-                            ✅ Check-in AA
-                        </a>
-                    </div>
-                </div>
-
-                <!-- VLUCHT 4 -->
-                <div class="list-item" style="flex-direction: column; gap: 0.5rem; padding: 1rem 0;">
-                    <div style="display: flex; gap: 0.75rem; width: 100%;">
-                        <div class="list-badge">🛬</div>
-                        <div class="list-text">
-                            <div class="title">Vlucht 4: MIA → AMS (Terugvlucht NL)</div>
-                            <div class="desc">KLM KL0628 • Vertrek: 30 Okt 21:10 MIA • Aankomst: 31 Okt 11:45 Schiphol</div>
-                            <div style="margin-top: 0.4rem; font-size: 0.75rem; color: var(--neon-emerald); font-weight: 700;">Boekingscode (PNR): YQ8L9K</div>
-                        </div>
-                    </div>
-                    <div class="btn-link-grid">
-                        <a href="https://www.google.com/search?q=KLM+KL0628" target="_blank" class="btn-link maps">
-                            🌐 Live Flight Tracker
-                        </a>
-                        <a href="https://www.klm.com/check-in" target="_blank" class="btn-link">
-                            ✅ Check-in KLM
-                        </a>
-                    </div>
-                </div>
+        <!-- Etappe 3: Trein -->
+        <div class="transport-card">
+            <div class="transport-header">
+                <span class="badge badge-trein">🚆 Trein</span>
+                <span class="time-tag">16-10 | 14:15 - 15:30</span>
             </div>
-        </div>
-<!-- TAB 3: CREW TEAM (MET DIRECTE VEILIGE BELLER & MAIL) -->
-        <div id="tab-crew" class="tab-section">
-            <div class="glass-card">
-                <div class="card-header">
-                    <div class="card-title">👥 Reizend Team & Contacten</div>
-                    <span style="font-size: 0.75rem; color: var(--neon-emerald); font-weight: 800;">🔒 Beveiligd Bellen met Bevestiging</span>
-                </div>
-
-                <!-- PRINSES CHARLOTTE -->
-                <div class="crew-card">
-                    <div class="crew-card-top">
-                        <div class="crew-avatar">👑</div>
-                        <div class="crew-info-main">
-                            <div class="name">Prinses Charlotte</div>
-                            <div class="role">Presentatie / VIP Host</div>
-                        </div>
-                    </div>
-                    <div class="btn-link-grid">
-                        <button onclick="requestCall('Prinses Charlotte', '+31655443322')" class="btn-link phone">
-                            📞 Bellen (+31 6 55443322)
-                        </button>
-                        <a href="mailto:charlotte.royal@omroep.nl" class="btn-link mail">
-                            ✉️ Mailen (E-mail)
-                        </a>
-                    </div>
-                </div>
-
-                <!-- DAAN -->
-                <div class="crew-card">
-                    <div class="crew-card-top">
-                        <div class="crew-avatar" style="background: linear-gradient(135deg, var(--neon-blue), var(--neon-emerald));">🎥</div>
-                        <div class="crew-info-main">
-                            <div class="name">Daan</div>
-                            <div class="role">Regie / Camjo / Cameraman</div>
-                        </div>
-                    </div>
-                    <div class="btn-link-grid">
-                        <button onclick="requestCall('Daan (Camjo)', '+31698765432')" class="btn-link phone">
-                            📞 Bellen (+31 6 98765432)
-                        </button>
-                        <a href="mailto:daan.camjo@omroep.nl" class="btn-link mail">
-                            ✉️ Mailen (E-mail)
-                        </a>
-                    </div>
-                </div>
-
-                <!-- BIG MIKE -->
-                <div class="crew-card">
-                    <div class="crew-card-top">
-                        <div class="crew-avatar" style="background: linear-gradient(135deg, var(--neon-purple), #7E22CE); color: #FFF;">🕴️</div>
-                        <div class="crew-info-main">
-                            <div class="name">Big Mike (Miami Fixer)</div>
-                            <div class="role">Lokale Chauffeur, Fixer & Security Guard</div>
-                        </div>
-                    </div>
-                    <div class="btn-link-grid">
-                        <button onclick="requestCall('Lokale Fixer Big Mike', '+13055559988')" class="btn-link phone">
-                            📞 Bellen (+1 305 555 9988)
-                        </button>
-                        <a href="mailto:bigmike.fixer@miamiproductions.com" class="btn-link mail">
-                            ✉️ Mail Fixer
-                        </a>
-                    </div>
-                </div>
-
-                                <!-- PETER (PRODUCER) -->
-                <div class="crew-card">
-                    <div class="crew-card-top">
-                        <div class="crew-avatar" style="background: rgba(255,255,255,0.15); color: #FFF;">📋</div>
-                        <div class="crew-info-main">
-                            <div class="name">Peter</div>
-                            <div class="role">Reisproducer / Eindverantwoordelijke</div>
-                        </div>
-                    </div>
-                    <div class="btn-link-grid">
-                        <button onclick="requestCall('Reisproducer Peter', '+31612345678')" class="btn-link phone">
-                            📞 Bellen (+31 6 12345678)
-                        </button>
-                        <a href="mailto:peter.producer@omroep.nl" class="btn-link mail">
-                            ✉️ Mailen (E-mail)
-                        </a>
-                    </div>
-                </div>
+            <div class="route-title">JFK Station ➔ Philly 30th St Station</div>
+            <div class="transport-details">
+                <strong>Maatschappij:</strong> Amtrak &bull; <strong>Ticket:</strong> #993821<br>
+                <strong>Passagiers:</strong> Alle Crew (4p)
             </div>
+            <p class="transport-notes">📌 Spoor 4. Stoelreservering via productie geregeld.</p>
         </div>
 
-        <!-- TAB 4: CRISIS, NOODNUMMERS & VERZEKERING -->
-        <div id="tab-crisis" class="tab-section">
-            <div class="glass-card" style="border-color: var(--neon-rose);">
-                <div class="card-header">
-                    <div class="card-title" style="color: var(--neon-rose);">🚨 NOODNUMMERS & EMBASSY DIRECT</div>
-                    <span style="font-size: 0.75rem; color: var(--neon-rose); font-weight: 800;">🔒 Geen 1-Push Calling</span>
-                </div>
-
-                <!-- LOKAAL ALARMNUMMER 911 -->
-                <div class="list-item">
-                    <div class="list-badge" style="background: rgba(244, 63, 94, 0.2); color: var(--neon-rose);">🚨</div>
-                    <div class="list-text">
-                        <div class="title">Lokaal Alarmnummer (USA)</div>
-                        <div class="desc">Politie / Ambulance / Brandweer: <strong style="color: #FFF;">911</strong></div>
-                        <div class="btn-link-grid" style="grid-template-columns: 1fr;">
-                            <button onclick="requestCall('Lokaal Alarmnummer USA (911)', '911')" class="btn-link danger">
-                                🚨 ALARMNUMMER 911 BELLEN
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- HOOFDREDACTEUR -->
-                <div class="list-item" style="background: rgba(244, 63, 94, 0.1); padding: 0.85rem; border-radius: 14px; border: 1px solid var(--neon-rose); margin: 0.75rem 0;">
-                    <div class="list-badge" style="background: var(--neon-rose); color: #FFF;">👤</div>
-                    <div class="list-text">
-                        <div class="title" style="color: var(--neon-rose);">Hoofdredacteur (24/7 Noodnummer Redactie)</div>
-                        <div class="desc" style="color: #FFF;">Eindverantwoordelijke Noodescalaities Omroep • Bellen: <strong>+31 35 677 9900</strong></div>
-                        <div class="btn-link-grid">
-                            <button onclick="requestCall('Hoofdredacteur (24/7 Redactie Noodlijn)', '+31356779900')" class="btn-link danger">
-                                📞 Bellen Hoofdredacteur
-                            </button>
-                            <a href="mailto:hoofdredactie@omroep.nl" class="btn-link mail">
-                                ✉️ Mail Redactie
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BUZA NOODCENTRUM -->
-                <div class="list-item">
-                    <div class="list-badge">🏛️</div>
-                    <div class="list-text">
-                        <div class="title">BuZa Noodcentrum Hilversum / NL (24/7)</div>
-                        <div class="desc">Ministerie van Buitenlandse Zaken: <strong style="color: #FFF;">+31 247 247 247</strong></div>
-                        <div class="btn-link-grid" style="grid-template-columns: 1fr;">
-                            <button onclick="requestCall('BuZa Noodcentrum NL (24/7)', '+31247247247')" class="btn-link phone">
-                                📞 Bellen BuZa Noodcentrum NL
-                            </button>
-                        </div>
-                    </div>
-                </div>
+        <!-- Etappe 4: Huurauto -->
+        <div class="transport-card">
+            <div class="transport-header">
+                <span class="badge badge-huurauto">🚘 Huurauto</span>
+                <span class="time-tag">16-10 | 16:00 - 16:30</span>
             </div>
-
-            <!-- DEDICATED VERZEKERING & ALARMCENTRALE CARD -->
-            <div class="glass-card" style="border-color: var(--neon-gold);">
-                <div class="card-header">
-                    <div class="card-title" style="color: var(--neon-gold);">🛡️ VERZEKERING & ALARMCENTRALES (DSV MEDIAPOLIS / AVROTROS)</div>
-                    <span style="font-size: 0.75rem; color: var(--neon-gold); font-weight: 800;">Contact & Support</span>
-                </div>
-
-                <!-- MAKELAAR: PEPIJN TEUNISSEN -->
-                <div class="list-item" style="background: rgba(16, 185, 129, 0.1); padding: 0.85rem; border-radius: 14px; border: 1px solid var(--neon-emerald); margin-bottom: 0.75rem;">
-                    <div class="list-badge" style="background: var(--neon-emerald); color: #000;">📋</div>
-                    <div class="list-text">
-                        <div class="title" style="color: var(--neon-emerald);">Verzekeringsmakelaar Pepijn Teunissen</div>
-                        <div class="desc" style="color: #FFF;">DSV Mediapolis (AVROTROS Polis) • Tel: <strong>035-7517923</strong> • E-mail: <strong>pepijn@mediapolis.nl</strong></div>
-                        <div class="btn-link-grid">
-                            <button onclick="requestCall('Pepijn Teunissen DSV Mediapolis', '+31357517923')" class="btn-link phone">
-                                📞 Bellen Pepijn (035-7517923)
-                            </button>
-                            <a href="mailto:pepijn@mediapolis.nl" class="btn-link mail">
-                                ✉️ E-mail Pepijn
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- EVACUATIE & POLITIEK: NGS -->
-                <div class="list-item">
-                    <div class="list-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--neon-gold);">🚁</div>
-                    <div class="list-text">
-                        <div class="title">Vrijheidsberoving, Politieke Onrust & Evacuatie</div>
-                        <div class="desc">Northcott Global Solutions (NGS) • Tel: <strong style="color: #FFF;">+44 207 1838928</strong> • Meldcode: <strong style="color: var(--neon-gold);">Zie Poliskaart</strong></div>
-                        <div class="btn-link-grid" style="grid-template-columns: 1fr;">
-                            <button onclick="requestCall('NGS Evacuatie & Crisis (+44 207 1838928)', '+442071838928')" class="btn-link phone">
-                                📞 Bellen NGS Evacuatie (+44 207 1838928)
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MEDISCH & OVERIG: ANWB / HIENFELD -->
-                <div class="list-item">
-                    <div class="list-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--neon-blue);">🏥</div>
-                    <div class="list-text">
-                        <div class="title">Medische Kosten & Overige Hulpverlening</div>
-                        <div class="desc">ANWB Alarmcentrale • Tel: <strong style="color: #FFF;">+31 70 3145009</strong> • Meldcode: <strong style="color: var(--neon-blue);">Zie Poliskaart</strong> (Ook NGS +44 207 1838928)</div>
-                        <div class="btn-link-grid" style="grid-template-columns: 1fr;">
-                            <button onclick="requestCall('ANWB Alarmcentrale (+31 70 3145009)', '+31703145009')" class="btn-link phone">
-                                📞 Bellen ANWB Alarmcentrale
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- RECHTSBIJSTAND: ARAG -->
-                <div class="list-item">
-                    <div class="list-badge" style="background: rgba(192, 132, 252, 0.2); color: var(--neon-purple);">⚖️</div>
-                    <div class="list-text">
-                        <div class="title">Rechtsbijstand op Reis (ARAG)</div>
-                        <div class="desc">ARAG Rechtsbijstand • Tel: <strong style="color: #FFF;">+31 33 4342342</strong> • Polisnummer: <strong style="color: var(--neon-purple);">Zie Poliskaart</strong></div>
-                        <div class="btn-link-grid" style="grid-template-columns: 1fr;">
-                            <button onclick="requestCall('ARAG Rechtsbijstand (+31 33 4342342)', '+31334342342')" class="btn-link phone">
-                                📞 Bellen ARAG Rechtsbijstand
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="route-title">Philly Station Hertz ➔ Hotel Downtown Philly</div>
+            <div class="transport-details">
+                <strong>Verhuurder:</strong> Hertz &bull; <strong>Reservering:</strong> #8839201<br>
+                <strong>Bestuurder:</strong> Daan
             </div>
+            <p class="transport-notes">📌 Chevy Tahoe (SUV). Borg voldaan via productie-creditcard.</p>
         </div>
-</main>
 
-    <!-- DOCK NAV -->
-    <div class="bottom-dock">
-        <button class="dock-btn active" onclick="switchDock('tab-hubs', this)">
-            <span class="icon">📍</span>
-            <span>3 Hubs</span>
-        </button>
-        <button class="dock-btn" onclick="switchDock('tab-vluchten', this)">
-            <span class="icon">✈️</span>
-            <span>Vluchten</span>
-        </button>
-        <button class="dock-btn" onclick="switchDock('tab-crew', this)">
-            <span class="icon">👥</span>
-            <span>Team</span>
-        </button>
-        <button class="dock-btn" onclick="switchDock('tab-crisis', this)">
-            <span class="icon">🚨</span>
-            <span>Crisis</span>
-        </button>
     </div>
 
-    <!-- SCANNER MODAL -->
-    <div class="modal" id="scannerModal">
-        <div class="modal-card blue-border">
-            <button class="modal-close" onclick="closeScannerModal()">✕</button>
-            <h3 style="font-size: 1.2rem; color: var(--neon-blue); margin-bottom: 0.5rem;">📸 Bonnetjes Scanner</h3>
-            <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1.25rem;">
-                Scan deze QR-code met je mobiel of tik op de knop om direct het 20-seconden formulier te openen.
-            </p>
-
-            <div style="background: white; padding: 12px; border-radius: 16px; display: inline-block; margin-bottom: 1.25rem; box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://docs.google.com/forms/d/e/1FAIpQLSeghG3KKM9f1SLIo1dnHOr_5-ag5MkXZGwp8ojY0jtDXy2WZA/viewform?usp=publish-editor" alt="Scanner QR Code" style="width: 180px; height: 180px; display: block;">
-            </div>
-
-            <div>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeghG3KKM9f1SLIo1dnHOr_5-ag5MkXZGwp8ojY0jtDXy2WZA/viewform?usp=publish-editor" target="_blank" style="background: linear-gradient(135deg, var(--neon-rose), #BE123C); color: white; text-decoration: none; padding: 0.85rem 1.25rem; border-radius: 16px; font-weight: 800; font-size: 0.95rem; display: block;">
-                    🚀 Open Formulier Direct
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- SAFETY CALL CONFIRMATION MODAL (GEEN 1-PUSH CALLING!) -->
-    <div class="modal" id="callConfirmModal">
-        <div class="modal-card">
-            <button class="modal-close" onclick="closeCallModal()">✕</button>
-            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">⚠️</div>
-            <h3 style="font-size: 1.15rem; color: #FFF; margin-bottom: 0.5rem;" id="callTargetName">Weet je zeker dat je wilt bellen?</h3>
-            <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1.25rem;" id="callTargetNumber">
-                Nummer: +31...
-            </p>
-            <div style="display: flex; gap: 0.75rem;">
-                <button onclick="closeCallModal()" class="btn-link" style="background: rgba(255,255,255,0.1); border: none;">
-                    ❌ Annuleren
-                </button>
-                <a href="#" id="executeCallLink" class="btn-link danger" style="background: var(--neon-rose); color: #FFF; font-weight: 900;">
-                    📞 Ja, Nu Bellen
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        let pendingPhone = '';
-
-        // Safety Guard for Phone Calls (Prevents accidental pocket calls!)
-        function requestCall(name, phoneNumber) {
-            document.getElementById('callTargetName').innerText = "Weet je zeker dat je " + name + " wilt bellen?";
-            document.getElementById('callTargetNumber').innerText = "Oproep versturen naar: " + phoneNumber;
-            document.getElementById('executeCallLink').href = "tel:" + phoneNumber;
-            
-            document.getElementById('callConfirmModal').classList.add('active');
-        }
-
-        function closeCallModal() {
-            document.getElementById('callConfirmModal').classList.remove('active');
-        }
-
-        function showHub(num, btn) {
-            document.querySelectorAll('.hub-tab-btn').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.hub-details-panel').forEach(el => el.style.display = 'none');
-            
-            btn.classList.add('active');
-            document.getElementById('hub-details-' + num).style.display = 'block';
-        }
-
-        function switchDock(tabId, btn) {
-            document.querySelectorAll('.tab-section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.dock-btn').forEach(el => el.classList.remove('active'));
-            
-            document.getElementById(tabId).classList.add('active');
-            btn.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function openScannerModal() {
-            document.getElementById('scannerModal').classList.add('active');
-        }
-        function closeScannerModal() {
-            document.getElementById('scannerModal').classList.remove('active');
-        }
-
-        function updateClocks() {
-            const now = new Date();
-            const nlTime = now.toLocaleTimeString('nl-NL', { timeZone: 'Europe/Amsterdam', hour: '2-digit', minute: '2-digit' });
-            document.getElementById('nlClock').innerText = nlTime;
-            
-            const usTime = now.toLocaleTimeString('nl-NL', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit' });
-            document.getElementById('usClock').innerText = usTime;
-        }
-        setInterval(updateClocks, 1000);
-        updateClocks();
-
-        // Send Status WhatsApp Ping to Producer (Clean escaped string without JS syntax error!)
-        function sendWhatsAppStatus() {
-            const msg = encodeURIComponent("🟢 CREW STATUS UPDATE:\nPrinses Charlotte & Daan zijn veilig aangekomen op de hub! Alles op schema. 🎬");
-            window.open("https://wa.me/31612345678?text=" + msg, "_blank");
-        }
-    </script>
 </body>
 </html>
