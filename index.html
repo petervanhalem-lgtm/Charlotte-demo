@@ -2,139 +2,215 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prinses Charlotte in de VS - Digitaal Roadbook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Charlotte Demo - Roadbook</title>
     <style>
         :root {
-            --primary: #1B365D;
-            --secondary: #2C4D75;
-            --accent: #007AFF;
-            --bg: #F2F2F7;
-            --card-bg: #FFFFFF;
-            --text: #1C1C1E;
-            --text-muted: #8E8E93;
-            --border: #E5E5EA;
-            --success: #34C759;
-            --warning: #FF9500;
+            --bg-dark: #0A0F1D;
+            --card-bg: #111A2E;
+            --card-border: #1E2D4A;
+            --accent-cyan: #00B2FF;
+            --accent-gold: #FFB000;
+            --accent-gold-bg: #2A2108;
+            --text-main: #FFFFFF;
+            --text-sub: #94A3B8;
+            --btn-dark: #16233B;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             margin: 0;
-            padding: 12px;
-            padding-bottom: 40px;
-        }
-
-        /* Header */
-        .app-header {
-            background-color: var(--primary);
-            color: white;
-            padding: 18px;
-            border-radius: 14px;
-            margin-bottom: 14px;
-            box-shadow: 0 4px 12px rgba(27,54,93,0.15);
-        }
-        .app-header h1 { margin: 0 0 4px 0; font-size: 20px; font-weight: 700; }
-        .app-header p { margin: 0; font-size: 13px; opacity: 0.85; }
-
-        /* Navigation Tabs */
-        .nav-tabs {
-            display: flex;
-            gap: 6px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-            margin-bottom: 14px;
-            -webkit-overflow-scrolling: touch;
-        }
-        .nav-btn {
-            background: white;
-            border: 1px solid var(--border);
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--secondary);
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .nav-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        /* Cards & Sections */
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 14px;
             padding: 16px;
-            margin-bottom: 12px;
-            border: 1px solid var(--border);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            padding-bottom: 100px;
         }
 
-        .card-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-0 0 10px 0;
+        /* Top Title & Header */
+        .app-header {
+            margin-bottom: 16px;
+        }
+        .app-header h1 {
+            font-size: 20px;
+            font-weight: 800;
+            margin: 0 0 4px 0;
+            letter-spacing: -0.5px;
+        }
+        .app-header p {
+            font-size: 13px;
+            color: var(--text-sub);
+            margin: 0;
+        }
+
+        /* Bonnetjes Scanner Card (Tijdelijk verborgen via HTML commentaar) */
+        .scanner-card {
+            background: linear-gradient(135deg, #0D223A 0%, #111A2E 100%);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-
-        /* Badges & Buttons */
-        .badge {
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 11px;
+        .scanner-info h3 { margin: 0 0 4px 0; font-size: 16px; color: var(--accent-cyan); }
+        .scanner-info p { margin: 0; font-size: 12px; color: var(--text-sub); }
+        .btn-scanner {
+            background: var(--accent-cyan);
+            color: #000;
             font-weight: 700;
-            text-transform: uppercase;
-        }
-        .badge-auto { background: #E3F2FD; color: #0D47A1; }
-        .badge-vlucht { background: #E8EAF6; color: #1A237E; }
-        .badge-trein { background: #E8F5E9; color: #1B5E20; }
-        .badge-huurauto { background: #FFF3E0; color: #E65100; }
-        .badge-ok { background: #E8F5E9; color: #2E7D32; }
-
-        .btn-map {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
+            font-size: 13px;
+            padding: 10px 16px;
+            border-radius: 20px;
             text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        /* Hub Selectors (Pills) */
+        .hub-pills {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .hub-pill {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 10px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .hub-pill.active {
+            border-color: var(--accent-gold);
+            background: linear-gradient(180deg, #261D0C 0%, #111A2E 100%);
+        }
+        .hub-pill .hub-sub { font-size: 10px; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 2px; }
+        .hub-pill .hub-name { font-size: 13px; font-weight: 700; color: var(--text-main); }
+
+        /* General Card Formatting */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+
+        .card-header-title {
+            font-size: 15px;
+            font-weight: 800;
+            margin: 0 0 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-subtitle {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .hotel-item {
+            background: var(--bg-dark);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 10px;
+        }
+        .hotel-title { font-size: 14px; font-weight: 700; margin: 0 0 4px 0; }
+        .hotel-address { font-size: 12px; color: var(--text-sub); margin: 0 0 12px 0; line-height: 1.4; }
+
+        /* Button Grid inside cards */
+        .btn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .btn-action {
+            background: var(--btn-dark);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 10px;
+            border-radius: 10px;
             font-size: 12px;
             font-weight: 600;
-            margin-top: 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-align: center;
         }
 
-        /* List Items */
+        /* Tab Visibility */
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+
+        /* Sticky Bottom Navigation Bar (iOS Dock) */
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 16px;
+            right: 16px;
+            background: rgba(17, 26, 46, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 30px;
+            padding: 6px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        .nav-item {
+            background: transparent;
+            border: none;
+            color: var(--text-sub);
+            padding: 8px 0;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .nav-item.active {
+            background: var(--accent-gold);
+            color: #000;
+            font-weight: 800;
+        }
+        .nav-item .icon { font-size: 16px; }
+        .nav-item .label { font-size: 10px; font-weight: 700; }
+
+        /* Info Rows */
         .info-row {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #F2F2F7;
             font-size: 13px;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--card-border);
         }
         .info-row:last-child { border-bottom: none; }
-        .info-label { color: var(--text-muted); font-weight: 500; }
+        .info-lbl { color: var(--text-sub); }
         .info-val { font-weight: 600; text-align: right; }
-
-        .transport-notes {
+        .notes-box {
+            background: #182640;
+            border-left: 3px solid var(--accent-cyan);
+            padding: 8px;
+            border-radius: 6px;
             font-size: 12px;
-            background: #F8F9FA;
-            padding: 8px 10px;
-            border-radius: 8px;
-            border-left: 3px solid var(--accent);
             margin-top: 8px;
+            color: #D1E8FF;
         }
     </style>
 </head>
@@ -143,202 +219,217 @@
     <!-- Header -->
     <div class="app-header">
         <h1>Prinses Charlotte in de VS</h1>
-        <p>3 Werelden &bull; Digitaal Roadbook & Logistiek Dashboard</p>
-    </div>
-
-    <!-- Navigatie Tabs -->
-    <div class="nav-tabs">
-        <button class="nav-btn active" onclick="switchTab('transport')">🚘 Transport</button>
-        <button class="nav-btn" onclick="switchTab('crew')">👥 Crew Matrix</button>
-        <button class="nav-btn" onclick="switchTab('hubs')">📍 Hubs & Hotels</button>
-        <button class="nav-btn" onclick="switchTab('safety')">🛡️ Veiligheid & Nood</button>
+        <p>3 Werelden &bull; Digitaal Roadbook</p>
     </div>
 
     <!-- ========================================================= -->
-    <!-- TIJDELIJK VERBORGEN VOOR DEZE REIS: BONNETJES SCANNER      -->
+    <!-- TIJDELIJK VERBORGEN: BONNETJES SCANNER (OPTIER A)           -->
+    <!-- Om later te heractiveren: verwijder de commentaar-tags    -->
     <!-- ========================================================= -->
     <!--
-    <div class="card" style="border: 2px dashed var(--accent);">
-        <div class="card-title">📸 Bonnetjes Scanner</div>
-        <p style="font-size: 13px; color: var(--text-muted);">Upload bonnetjes direct naar de cloud.</p>
-        <a href="https://forms.gle/demo-charlotte-usa" class="btn-map" target="_blank">Scan Bonnetje</a>
+    <div class="scanner-card">
+        <div class="scanner-info">
+            <h3>📸 Bonnetjes Invoeren (20 Sec)</h3>
+            <p>Tik om taxi-, eten- of brandstofbonnetje te uploaden</p>
+        </div>
+        <a href="https://forms.gle/demo-charlotte-usa" target="_blank" class="btn-scanner">Open Scanner ➔</a>
     </div>
     -->
 
-    <!-- TAB 1: TRANSPORT & REISSCHEMA -->
-    <div id="tab-transport" class="tab-content active">
+    <!-- TAB 1: HUBS & HOTELS -->
+    <div id="tab-hubs" class="tab-pane active">
         
-        <div class="card">
-            <div class="card-title">
-                <span>Baarn ➔ Düsseldorf</span>
-                <span class="badge badge-auto">Eigen Auto</span>
+        <!-- Hub Selector Pills -->
+        <div class="hub-pills">
+            <div class="hub-pill active" onclick="selectHub(1)">
+                <div class="hub-sub">HUB 1 (OV)</div>
+                <div class="hub-name">New York</div>
             </div>
-            <div class="info-row">
-                <span class="info-label">Datum & Tijd</span>
-                <span class="info-val">16-10 | 05:30 - 07:15</span>
+            <div class="hub-pill" onclick="selectHub(2)">
+                <div class="hub-sub">HUB 2 (AUTO 1)</div>
+                <div class="hub-name">Las Vegas</div>
             </div>
-            <div class="info-row">
-                <span class="info-label">Kenteken</span>
-                <span class="info-val">AB-123-C (Privé)</span>
+            <div class="hub-pill" onclick="selectHub(3)">
+                <div class="hub-sub">HUB 3 (FIXER)</div>
+                <div class="hub-name">Miami</div>
             </div>
-            <div class="info-row">
-                <span class="info-label">Inzittenden</span>
-                <span class="info-val">Peter & Daan</span>
-            </div>
-            <div class="transport-notes">📌 Parkeren op P3 Düsseldorf Airport. 210 km (Km-vergoeding).</div>
         </div>
 
-        <div class="card">
-            <div class="card-title">
-                <span>Düsseldorf ➔ New York (JFK)</span>
-                <span class="badge badge-vlucht">Vlucht</span>
+        <!-- Hub 1 Content -->
+        <div id="hub-content-1">
+            <div class="card">
+                <div class="card-header-title">🏨 Hotel 1 (Hoofdverblijf) : The Plaza Hotel</div>
+                <div class="card-subtitle">15 OKT – 20 OKT</div>
+
+                <div class="hotel-item">
+                    <div class="hotel-title">The Plaza Hotel Manhattan</div>
+                    <div class="hotel-address">768 5th Ave, New York, NY 10019 &bull; Reservering: #PLAZA-NY-8812 (2 Kamers, Ontbijt inbegrepen)</div>
+                    <div class="btn-grid">
+                        <a href="https://maps.google.com/?q=The+Plaza+Hotel+Manhattan" target="_blank" class="btn-action">🗺️ Google Maps Navigatie</a>
+                        <a href="tel:+12127593000" class="btn-action">📞 Receptie: +1 212 759 3000</a>
+                    </div>
+                </div>
+
+                <div class="hotel-item" style="margin-top: 14px;">
+                    <div class="hotel-title">Hotel 2 (Extra / Boutique Stay): The William Vale</div>
+                    <div class="hotel-address">111 N 12th St, Brooklyn, NY 11249 &bull; Reservering: #VALE-BK-9921</div>
+                    <div class="btn-grid">
+                        <a href="https://maps.google.com/?q=The+William+Vale+Brooklyn" target="_blank" class="btn-action">🗺️ Google Maps Brooklyn</a>
+                        <a href="tel:+17186318400" class="btn-action">📞 +1 718 631 8400</a>
+                    </div>
+                </div>
             </div>
-            <div class="info-row">
-                <span class="info-label">Vlucht</span>
-                <span class="info-val">Eurowings / Lufthansa</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Datum & Tijd</span>
-                <span class="info-val">16-10 | 09:45 - 12:30</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Boekingscode (PNR)</span>
-                <span class="info-val">ABC123</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Passagiers</span>
-                <span class="info-val">Alle Crew (4p)</span>
-            </div>
-            <div class="transport-notes">📌 Terminal 1, Bagage rechtstreeks ingecheckt.</div>
         </div>
 
-        <div class="card">
-            <div class="card-title">
-                <span>JFK Airport ➔ Philly Station</span>
-                <span class="badge badge-trein">Trein</span>
+        <!-- Hub 2 Content -->
+        <div id="hub-content-2" style="display: none;">
+            <div class="card">
+                <div class="card-header-title">🏨 Hotel Hub 2 : The Strip Plaza Hotel</div>
+                <div class="card-subtitle">20 OKT – 25 OKT</div>
+                <div class="hotel-item">
+                    <div class="hotel-title">The Strip Plaza Hotel Las Vegas</div>
+                    <div class="hotel-address">3570 S Las Vegas Blvd, Las Vegas, NV &bull; Reservering: #VEGAS-8820</div>
+                    <div class="btn-grid">
+                        <a href="https://maps.google.com/?q=The+Strip+Plaza+Hotel+Las+Vegas" target="_blank" class="btn-action">🗺️ Google Maps</a>
+                        <a href="tel:+17027317110" class="btn-action">📞 Receptie</a>
+                    </div>
+                </div>
             </div>
-            <div class="info-row">
-                <span class="info-label">Maatschappij</span>
-                <span class="info-val">Amtrak</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Datum & Tijd</span>
-                <span class="info-val">16-10 | 14:15 - 15:30</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Ticketnummer</span>
-                <span class="info-val">#993821</span>
-            </div>
-            <div class="transport-notes">📌 Spoor 4. Stoelreservering via productie geregeld.</div>
         </div>
 
-        <div class="card">
-            <div class="card-title">
-                <span>Philly Station ➔ Hotel</span>
-                <span class="badge badge-huurauto">Huurauto</span>
+        <!-- Hub 3 Content -->
+        <div id="hub-content-3" style="display: none;">
+            <div class="card">
+                <div class="card-header-title">🏨 Hotel Hub 3 : Ocean Drive Resort</div>
+                <div class="card-subtitle">25 OKT – 30 OKT</div>
+                <div class="hotel-item">
+                    <div class="hotel-title">Ocean Drive Resort Miami Beach</div>
+                    <div class="hotel-address">1001 Ocean Dr, Miami Beach, FL &bull; Reservering: #MIAMI-9901</div>
+                    <div class="btn-grid">
+                        <a href="https://maps.google.com/?q=Ocean+Drive+Resort+Miami" target="_blank" class="btn-action">🗺️ Google Maps</a>
+                        <a href="tel:+13055316611" class="btn-action">📞 Receptie</a>
+                    </div>
+                </div>
             </div>
-            <div class="info-row">
-                <span class="info-label">Verhuurder</span>
-                <span class="info-val">Hertz</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Reservering</span>
-                <span class="info-val">#8839201</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Bestuurder</span>
-                <span class="info-val">Daan</span>
-            </div>
-            <div class="transport-notes">📌 Chevy Tahoe (SUV). Borg voldaan via creditcard.</div>
         </div>
 
     </div>
 
-    <!-- TAB 2: CREW MATRIX -->
-    <div id="tab-crew" class="tab-content">
+    <!-- TAB 2: TRANSPORT & LOGISTIEK TIJDSLIJN -->
+    <div id="tab-transport" class="tab-pane">
         <div class="card">
-            <div class="card-title">👥 Productie Team</div>
-            
-            <div class="info-row">
-                <span class="info-label">Charlotte (Presentatie)</span>
-                <span class="info-val">+31 6 12345671</span>
+            <div class="card-header-title">🚘 Reisschema & Transportketen</div>
+            <div class="card-subtitle">Chronologische Etappes</div>
+
+            <!-- Etappe 1 -->
+            <div class="hotel-item">
+                <div class="hotel-title">🚘 Baarn ➔ Düsseldorf Airport</div>
+                <div class="info-row"><span class="info-lbl">Tijd</span><span class="info-val">16-10 | 05:30 - 07:15</span></div>
+                <div class="info-row"><span class="info-lbl">Vervoer</span><span class="info-val">Eigen Auto (AB-123-C)</span></div>
+                <div class="notes-box">📌 Parkeren op P3 Düsseldorf Airport. 210 km (Km-vergoeding).</div>
             </div>
-            <div class="info-row">
-                <span class="info-label">Daan (Regie / Camera)</span>
-                <span class="info-val">+31 6 12345672</span>
+
+            <!-- Etappe 2 -->
+            <div class="hotel-item">
+                <div class="hotel-title">✈️ Düsseldorf (DUS) ➔ New York (JFK)</div>
+                <div class="info-row"><span class="info-lbl">Vlucht</span><span class="info-val">Eurowings / Lufthansa (PNR: ABC123)</span></div>
+                <div class="info-row"><span class="info-lbl">Tijd</span><span class="info-val">16-10 | 09:45 - 12:30</span></div>
+                <div class="notes-box">📌 Terminal 1, Bagage rechtstreeks ingecheckt.</div>
             </div>
-            <div class="info-row">
-                <span class="info-label">Peter (Producer)</span>
-                <span class="info-val">+31 6 12345678</span>
+
+            <!-- Etappe 3 -->
+            <div class="hotel-item">
+                <div class="hotel-title">🚆 JFK AirTrain ➔ Philly 30th St Station</div>
+                <div class="info-row"><span class="info-lbl">Trein</span><span class="info-val">Amtrak (Ticket: #993821)</span></div>
+                <div class="info-row"><span class="info-lbl">Tijd</span><span class="info-val">16-10 | 14:15 - 15:30</span></div>
+                <div class="notes-box">📌 Spoor 4. Stoelreservering via productie.</div>
             </div>
-            <div class="info-row">
-                <span class="info-label">Geluid / Techniek</span>
-                <span class="info-val">+31 6 12345674</span>
+
+            <!-- Etappe 4 -->
+            <div class="hotel-item">
+                <div class="hotel-title">🚘 Hertz Philly Station ➔ Hotel</div>
+                <div class="info-row"><span class="info-lbl">Huurauto</span><span class="info-val">Hertz (Reservering: #8839201)</span></div>
+                <div class="info-row"><span class="info-lbl">Bestuurder</span><span class="info-val">Daan (Chevy Tahoe SUV)</span></div>
+                <div class="notes-box">📌 Borg voldaan via creditcard.</div>
             </div>
         </div>
     </div>
 
-    <!-- TAB 3: HUBS & HOTELS -->
-    <div id="tab-hubs" class="tab-content">
+    <!-- TAB 3: TEAM / CREW -->
+    <div id="tab-team" class="tab-pane">
         <div class="card">
-            <div class="card-title">
-                <span>📍 Hub 1: New York City</span>
-                <span class="badge badge-ok">15-10 / 20-10</span>
-            </div>
-            <p style="font-size: 13px; margin: 4px 0;"><strong>Hotel:</strong> Manhattan Midtown Hotel</p>
-            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">452 5th Ave, New York, NY 10018</p>
-            <a href="https://maps.google.com/?q=452+5th+Ave,+New+York,+NY+10018" target="_blank" class="btn-map">🗺️ Open in Google Maps</a>
-        </div>
+            <div class="card-header-title">👥 Productie Team & Contacten</div>
+            <div class="card-subtitle">Direct Bellen / WhatsApp</div>
 
-        <div class="card">
-            <div class="card-title">
-                <span>📍 Hub 2: Las Vegas</span>
-                <span class="badge badge-ok">20-10 / 25-10</span>
+            <div class="hotel-item">
+                <div class="hotel-title">Charlotte (Presentatie)</div>
+                <div class="info-row"><span class="info-lbl">Telefoon</span><span class="info-val"><a href="tel:+31612345671" style="color:var(--accent-cyan);">+31 6 12345671</a></span></div>
             </div>
-            <p style="font-size: 13px; margin: 4px 0;"><strong>Hotel:</strong> The Strip Plaza Hotel</p>
-            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">3570 S Las Vegas Blvd, Las Vegas, NV</p>
-            <a href="https://maps.google.com/?q=3570+S+Las+Vegas+Blvd,+Las+Vegas,+NV" target="_blank" class="btn-map">🗺️ Open in Google Maps</a>
-        </div>
-
-        <div class="card">
-            <div class="card-title">
-                <span>📍 Hub 3: Miami</span>
-                <span class="badge badge-ok">25-10 / 30-10</span>
+            <div class="hotel-item">
+                <div class="hotel-title">Peter (Producer)</div>
+                <div class="info-row"><span class="info-lbl">Telefoon</span><span class="info-val"><a href="tel:+31612345678" style="color:var(--accent-cyan);">+31 6 12345678</a></span></div>
             </div>
-            <p style="font-size: 13px; margin: 4px 0;"><strong>Hotel:</strong> Ocean Drive Resort</p>
-            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">1001 Ocean Dr, Miami Beach, FL</p>
-            <a href="https://maps.google.com/?q=1001+Ocean+Dr,+Miami+Beach,+FL" target="_blank" class="btn-map">🗺️ Open in Google Maps</a>
+            <div class="hotel-item">
+                <div class="hotel-title">Daan (Regie / Camera)</div>
+                <div class="info-row"><span class="info-lbl">Telefoon</span><span class="info-val"><a href="tel:+31612345672" style="color:var(--accent-cyan);">+31 6 12345672</a></span></div>
+            </div>
         </div>
     </div>
 
-    <!-- TAB 4: VEILIGHEID & NOODNUMMERS -->
-    <div id="tab-safety" class="tab-content">
+    <!-- TAB 4: CRISIS & NOOD -->
+    <div id="tab-crisis" class="tab-pane">
         <div class="card">
-            <div class="card-title">🛡️ Noodnummers USA</div>
-            <div class="info-row">
-                <span class="info-label">Lokaal Alarmnummer</span>
-                <span class="info-val">🚨 911</span>
+            <div class="card-header-title">🚨 Noodnummers & Veiligheid</div>
+            <div class="card-subtitle">USA Emergency Protocol</div>
+
+            <div class="hotel-item">
+                <div class="hotel-title">🚨 Lokaal Alarmnummer USA</div>
+                <a href="tel:911" class="btn-action" style="background:#8B0000; color:white; margin-top:6px;">📞 BEL DIRECT 911</a>
             </div>
-            <div class="info-row">
-                <span class="info-label">Ambassade NL (24/7)</span>
-                <span class="info-val">+31 247 247 247</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Producer Peter</span>
-                <span class="info-val">+31 6 12345678</span>
+            <div class="hotel-item">
+                <div class="hotel-title">🏛️ Ambassade Nederland (24/7 Nood)</div>
+                <a href="tel:+31247247247" class="btn-action" style="margin-top:6px;">📞 +31 247 247 247</a>
             </div>
         </div>
+    </div>
+
+    <!-- Sticky Bottom Dock Navigation -->
+    <div class="bottom-nav">
+        <button class="nav-item active" onclick="switchMainTab('hubs', this)">
+            <span class="icon">📍</span>
+            <span class="label">3 Hubs</span>
+        </button>
+        <button class="nav-item" onclick="switchMainTab('transport', this)">
+            <span class="icon">🚘</span>
+            <span class="label">Transport</span>
+        </button>
+        <button class="nav-item" onclick="switchMainTab('team', this)">
+            <span class="icon">👥</span>
+            <span class="label">Team</span>
+        </button>
+        <button class="nav-item" onclick="switchMainTab('crisis', this)">
+            <span class="icon">🚨</span>
+            <span class="label">Crisis</span>
+        </button>
     </div>
 
     <script>
-        function switchTab(tabId) {
-            // Unactive all tabs & buttons
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+        function switchMainTab(tabId, btn) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.bottom-nav .nav-item').forEach(el => el.classList.remove('active'));
             
-            // Activate selected tab & button
             document.getElementById('tab-' + tabId).classList.add('active');
-            event.target.classList.add('active');
+            btn.classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function selectHub(hubNum) {
+            document.querySelectorAll('.hub-pill').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            document.getElementById('hub-content-1').style.display = hubNum === 1 ? 'block' : 'none';
+            document.getElementById('hub-content-2').style.display = hubNum === 2 ? 'block' : 'none';
+            document.getElementById('hub-content-3').style.display = hubNum === 3 ? 'block' : 'none';
         }
     </script>
 </body>
