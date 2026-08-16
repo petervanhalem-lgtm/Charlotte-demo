@@ -591,12 +591,12 @@
 
     <script>
         function safeCall(phoneNumber, contactName) {
-            // Direct bellen voor echte alarmnummers
+            // Direct bellen voor echte alarmnummers zonder pop-up vertraging
             if (phoneNumber === '911' || phoneNumber === '112') {
                 window.location.href = "tel:" + phoneNumber;
                 return;
             }
-            // Bevestigingsscherm voor alle overige nummers
+            // Bevestigingsscherm voor alle overige nummers om per ongeluk bellen te voorkomen
             if (confirm("🚨 BEVESTIGING NOODOPROEP\n\nWeet je zeker dat je wilt bellen met:\n" + contactName + " (" + phoneNumber + ")?")) {
                 window.location.href = "tel:" + phoneNumber;
             }
