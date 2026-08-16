@@ -17,6 +17,7 @@
             --accent-red: #EF4444;
             --accent-red-bg: #3F1212;
             --accent-green: #10B981;
+            --accent-green-bg: #064E3B;
             --text-main: #F8FAFC;
             --text-sub: #94A3B8;
             --btn-dark: #1A2A4A;
@@ -48,44 +49,6 @@
             font-size: 13px;
             color: var(--text-sub);
             margin: 0;
-        }
-
-        /* Bonnetjes Scanner Card (Tijdelijk verborgen via HTML commentaar) */
-        .scanner-card {
-            background: linear-gradient(135deg, #0C2847 0%, var(--card-bg) 100%);
-            border: 1px solid var(--accent-cyan);
-            border-radius: 18px;
-            padding: 16px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
-        }
-        .scanner-icon-box {
-            width: 46px;
-            height: 46px;
-            background: rgba(56, 189, 248, 0.15);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            flex-shrink: 0;
-        }
-        .scanner-info { flex: 1; }
-        .scanner-info h3 { margin: 0 0 2px 0; font-size: 15px; color: var(--accent-cyan); font-weight: 700; }
-        .scanner-info p { margin: 0; font-size: 11px; color: var(--text-sub); line-height: 1.3; }
-        .btn-scanner {
-            background: var(--accent-cyan);
-            color: #000;
-            font-weight: 800;
-            font-size: 12px;
-            padding: 10px 14px;
-            border-radius: 20px;
-            text-decoration: none;
-            white-space: nowrap;
-            display: inline-block;
         }
 
         /* Hub Selectors (Pills) */
@@ -168,6 +131,30 @@
         .item-title { font-size: 14px; font-weight: 700; margin: 0 0 2px 0; color: var(--text-main); }
         .item-desc { font-size: 12px; color: var(--text-sub); margin: 0; line-height: 1.4; }
 
+        /* Airport Action Grid (Balie & Bagageband Highlighting) */
+        .airport-highlight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 8px 0;
+        }
+        .airport-badge-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 8px 10px;
+            border-radius: 10px;
+        }
+        .airport-badge-box.checkin {
+            border-color: var(--accent-cyan);
+            background: var(--accent-cyan-bg);
+        }
+        .airport-badge-box.baggage {
+            border-color: var(--accent-green);
+            background: var(--accent-green-bg);
+        }
+        .airport-lbl { font-size: 9px; font-weight: 800; text-transform: uppercase; color: var(--text-sub); margin-bottom: 2px; }
+        .airport-val { font-size: 12px; font-weight: 800; color: var(--text-main); }
+
         /* Button Grid inside cards */
         .btn-grid {
             display: grid;
@@ -192,22 +179,9 @@
             cursor: pointer;
         }
         .btn-action:active { opacity: 0.8; }
-        .btn-red {
-            background: var(--accent-red-bg);
-            border-color: var(--accent-red);
-            color: #FF8080;
-        }
-        .btn-gold {
-            background: var(--accent-gold-bg);
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
-        }
-        .btn-cyan {
-            background: var(--accent-cyan-bg);
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-            font-weight: 800;
-        }
+        .btn-red { background: var(--accent-red-bg); border-color: var(--accent-red); color: #FF8080; }
+        .btn-gold { background: var(--accent-gold-bg); border-color: var(--accent-gold); color: var(--accent-gold); }
+        .btn-cyan { background: var(--accent-cyan-bg); border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 800; }
 
         /* Status Badges */
         .status-badge {
@@ -370,6 +344,16 @@
                         <div class="item-desc">Lufthansa / Eurowings &bull; PNR: ABC123</div>
                     </div>
                 </div>
+                <div class="airport-highlight-grid">
+                    <div class="airport-badge-box checkin">
+                        <div class="airport-lbl">🛫 Vertrek (DUS)</div>
+                        <div class="airport-val">Balie 120-128 (T1)</div>
+                    </div>
+                    <div class="airport-badge-box baggage">
+                        <div class="airport-lbl">🛬 Aankomst (JFK)</div>
+                        <div class="airport-val">🧳 Bagageband 4 (T1)</div>
+                    </div>
+                </div>
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">16-10 | 09:45 - 12:30</span></div>
                 <div class="notes-box">📌 Terminal 1, Bagage rechtstreeks ingecheckt. Media bags in ruim.</div>
             </div>
@@ -493,7 +477,7 @@
         </div>
     </div>
 
-    <!-- TAB 3: VLUCHTEN & LIVE PORTALS -->
+    <!-- TAB 3: VLUCHTEN & LUCHTHAVEN ACTUEEL -->
     <div id="tab-vluchten" class="tab-pane">
         
         <!-- IN-APP PORTAL SNELLINKS (DOUANE & LIVE FLIGHT TRACKER) -->
@@ -501,15 +485,15 @@
             <div class="item-header" style="margin-bottom: 6px;">
                 <div class="icon-container" style="background:var(--card-bg); border-color:var(--accent-cyan);">🌐</div>
                 <div class="item-title-group">
-                    <div class="item-title" style="color:var(--accent-cyan);">In-App Portals & Live Tracking</div>
-                    <div class="item-desc">Rechtstreeks openen zonder de app te verlaten</div>
+                    <div class="item-title" style="color:var(--accent-cyan);">In-App Portals & Live Status</div>
+                    <div class="item-desc">Douane-formulieren & Flight Status zonder de app te verlaten</div>
                 </div>
             </div>
             <div class="btn-grid" style="margin-top: 6px;">
                 <button class="btn-action btn-cyan" onclick="openPortal('https://m.cbp.gov/', '🛃 Custom Finder & Douane Portal')">
                     🛃 Custom Finder
                 </button>
-                <button class="btn-action btn-cyan" onclick="openPortal('https://www.flightradar24.com/', '✈️ Live Flight Tracker')">
+                <button class="btn-action btn-cyan" onclick="openPortal('https://www.flightradar24.com/', '✈️ Live Flight Status')">
                     ✈️ Live Tracker
                 </button>
             </div>
@@ -517,11 +501,12 @@
 
         <div class="card">
             <div class="card-header-title">
-                <span>✈️ Vluchten & Tickets</span>
-                <span class="status-badge badge-green">OK</span>
+                <span>✈️ Vluchten & Incheck / Bagage</span>
+                <span class="status-badge badge-green">Ingevuld</span>
             </div>
-            <div class="card-subtitle">Transatlantisch & Binnenlands</div>
+            <div class="card-subtitle">Luchthaven & Terminal Details</div>
 
+            <!-- Vlucht 1 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🛫</div>
@@ -530,12 +515,25 @@
                         <div class="item-desc">Lufthansa / Eurowings &bull; Vluchtnr: LH408 / EW1102</div>
                     </div>
                 </div>
+
+                <!-- DIRECT ZICHTBAAR: BALIE VOOR VERTREK & BAGAGEBAND NA LANDING -->
+                <div class="airport-highlight-grid">
+                    <div class="airport-badge-box checkin">
+                        <div class="airport-lbl">🛫 Incheckbalie (DUS)</div>
+                        <div class="airport-val">Balie 120-128 (T1)</div>
+                    </div>
+                    <div class="airport-badge-box baggage">
+                        <div class="airport-lbl">🛬 Bagageband (JFK)</div>
+                        <div class="airport-val">🧳 Carousel 4 (T1)</div>
+                    </div>
+                </div>
+
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">16-10 | 09:45 ➔ 12:30</span></div>
                 <div class="info-row"><span class="info-lbl">Boekingscode (PNR)</span><span class="info-val" style="color:var(--accent-gold);">PNR: ABC123</span></div>
-                <div class="info-row"><span class="info-lbl">Passagiers</span><span class="info-val">Charlotte, Daan, Tech (4p)</span></div>
                 <div class="notes-box">🧳 2x Ruimbagage (23kg) p.p. + Media Bags op Carnet BKK code.</div>
             </div>
 
+            <!-- Vlucht 2 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">✈️</div>
@@ -544,10 +542,23 @@
                         <div class="item-desc">Delta Airlines DL0420</div>
                     </div>
                 </div>
+
+                <div class="airport-highlight-grid">
+                    <div class="airport-badge-box checkin">
+                        <div class="airport-lbl">🛫 Incheckbalie (JFK)</div>
+                        <div class="airport-val">SkyPriority Desk 3 (T4)</div>
+                    </div>
+                    <div class="airport-badge-box baggage">
+                        <div class="airport-lbl">🛬 Bagageband (LAS)</div>
+                        <div class="airport-val">🧳 Carousel 8 (T1)</div>
+                    </div>
+                </div>
+
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">20-10 | 09:30 ➔ 12:15</span></div>
                 <div class="info-row"><span class="info-lbl">Boekingscode (PNR)</span><span class="info-val" style="color:var(--accent-gold);">PNR: DL773M</span></div>
             </div>
 
+            <!-- Vlucht 3 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">✈️</div>
@@ -556,10 +567,23 @@
                         <div class="item-desc">American Airlines AA1204</div>
                     </div>
                 </div>
+
+                <div class="airport-highlight-grid">
+                    <div class="airport-badge-box checkin">
+                        <div class="airport-lbl">🛫 Incheckbalie (LAS)</div>
+                        <div class="airport-val">AA Balie 14-22 (T1)</div>
+                    </div>
+                    <div class="airport-badge-box baggage">
+                        <div class="airport-lbl">🛬 Bagageband (MIA)</div>
+                        <div class="airport-val">🧳 Carousel 14 (North)</div>
+                    </div>
+                </div>
+
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">25-10 | 11:00 ➔ 18:45</span></div>
                 <div class="info-row"><span class="info-lbl">Boekingscode (PNR)</span><span class="info-val" style="color:var(--accent-gold);">PNR: AA9921</span></div>
             </div>
 
+            <!-- Vlucht 4 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🛬</div>
@@ -568,6 +592,18 @@
                         <div class="item-desc">KLM Royal Dutch KL0642</div>
                     </div>
                 </div>
+
+                <div class="airport-highlight-grid">
+                    <div class="airport-badge-box checkin">
+                        <div class="airport-lbl">🛫 Incheckbalie (MIA)</div>
+                        <div class="airport-val">KLM / SkyTeam (Concourse H)</div>
+                    </div>
+                    <div class="airport-badge-box baggage">
+                        <div class="airport-lbl">🛬 Bagageband (AMS)</div>
+                        <div class="airport-val">🧳 Carousel 16 (Plaza)</div>
+                    </div>
+                </div>
+
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">30-10 | 21:15 ➔ 11:30 (+1d)</span></div>
                 <div class="info-row"><span class="info-lbl">Boekingscode (PNR)</span><span class="info-val" style="color:var(--accent-gold);">PNR: KL9012</span></div>
             </div>
