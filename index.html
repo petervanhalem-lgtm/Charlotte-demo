@@ -50,7 +50,7 @@
             margin: 0;
         }
 
-        /* Bonnetjes Scanner Card (Tijdelijk verborgen via HTML commentaar - Optie A) */
+        /* Bonnetjes Scanner Card (Tijdelijk verborgen via HTML commentaar) */
         .scanner-card {
             background: linear-gradient(135deg, #0C2847 0%, var(--card-bg) 100%);
             border: 1px solid var(--accent-cyan);
@@ -189,6 +189,7 @@
             justify-content: center;
             gap: 6px;
             text-align: center;
+            cursor: pointer;
         }
         .btn-action:active { opacity: 0.8; }
         .btn-red {
@@ -201,6 +202,12 @@
             border-color: var(--accent-gold);
             color: var(--accent-gold);
         }
+        .btn-cyan {
+            background: var(--accent-cyan-bg);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            font-weight: 800;
+        }
 
         /* Status Badges */
         .status-badge {
@@ -212,7 +219,6 @@
         }
         .badge-green { background: #064E3B; color: var(--accent-green); border: 1px solid #059669; }
         .badge-cyan { background: #0C4A6E; color: var(--accent-cyan); border: 1px solid #0284C7; }
-        .badge-gold { background: var(--accent-gold-bg); color: var(--accent-gold); border: 1px solid var(--accent-gold); }
 
         /* Tab Visibility */
         .tab-pane { display: none; }
@@ -280,6 +286,51 @@
             color: #BAE6FD;
             line-height: 1.4;
         }
+
+        /* In-App Universal Portal Modal Overlay */
+        .portal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(11, 18, 32, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
+            padding-top: max(12px, env(safe-area-inset-top));
+            padding-bottom: max(12px, env(safe-area-inset-bottom));
+        }
+        .portal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px 16px 0 0;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--accent-cyan);
+        }
+        .btn-close-portal {
+            background: var(--accent-red-bg);
+            border: 1px solid var(--accent-red);
+            color: #FF8080;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+        .portal-frame {
+            flex: 1;
+            width: 100%;
+            border: 1px solid var(--card-border);
+            border-top: none;
+            border-radius: 0 0 16px 16px;
+            background: #FFFFFF;
+        }
     </style>
 </head>
 <body>
@@ -290,21 +341,6 @@
         <p>3 Werelden &bull; Digitaal Roadbook & Logistiek Dashboard</p>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- TIJDELIJK VERBORGEN: BONNETJES SCANNER (OPTIER A)           -->
-    <!-- Haal de '<!--' en '-->' weg om de knop direct te herstellen  -->
-    <!-- ========================================================= -->
-    <!--
-    <div class="scanner-card">
-        <div class="scanner-icon-box">📸</div>
-        <div class="scanner-info">
-            <h3>Bonnetjes Invoeren (20 Sec)</h3>
-            <p>Tik om taxi-, eten- of brandstofbonnetje te uploaden</p>
-        </div>
-        <a href="https://forms.gle/demo-charlotte-usa" target="_blank" class="btn-scanner">Open Scanner ➔</a>
-    </div>
-    -->
-
     <!-- TAB 1: TRANSPORT (OVERZICHT ALLERLEI VERVOER) -->
     <div id="tab-transport" class="tab-pane active">
         <div class="card">
@@ -314,7 +350,6 @@
             </div>
             <div class="card-subtitle">Volledige Logistieke Keten</div>
 
-            <!-- Etappe 1 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🚘</div>
@@ -327,7 +362,6 @@
                 <div class="notes-box">📌 Parkeren op P3 Düsseldorf Airport. 210 km (Km-vergoeding declareerbaar).</div>
             </div>
 
-            <!-- Etappe 2 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">✈️</div>
@@ -340,7 +374,6 @@
                 <div class="notes-box">📌 Terminal 1, Bagage rechtstreeks ingecheckt. Media bags in ruim.</div>
             </div>
 
-            <!-- Etappe 3 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🚆</div>
@@ -353,7 +386,6 @@
                 <div class="notes-box">📌 Spoor 4. Stoelreservering op naam van productie.</div>
             </div>
 
-            <!-- Etappe 4 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🚙</div>
@@ -370,8 +402,6 @@
 
     <!-- TAB 2: HUBS & HOTELS -->
     <div id="tab-hubs" class="tab-pane">
-        
-        <!-- Hub Selector Pills -->
         <div class="hub-pills">
             <div class="hub-pill active" onclick="selectHub(1, this)">
                 <div class="hub-sub">HUB 1 (OV)</div>
@@ -387,7 +417,6 @@
             </div>
         </div>
 
-        <!-- Hub 1 Content -->
         <div id="hub-content-1">
             <div class="card">
                 <div class="card-header-title">🏨 Hotel 1 (Hoofdverblijf) : The Plaza Hotel</div>
@@ -398,7 +427,7 @@
                         <div class="icon-container">🏨</div>
                         <div class="item-title-group">
                             <div class="item-title">The Plaza Hotel Manhattan</div>
-                            <div class="item-desc">768 5th Ave, New York, NY 10019 &bull; Reservering: #PLAZA-NY-8812 (2 Kamers, Ontbijt inbegrepen)</div>
+                            <div class="item-desc">768 5th Ave, New York, NY 10019 &bull; Reservering: #PLAZA-NY-8812 (2 Kamers)</div>
                         </div>
                     </div>
                     <div class="btn-grid">
@@ -411,7 +440,7 @@
                     <div class="item-header">
                         <div class="icon-container">🏨</div>
                         <div class="item-title-group">
-                            <div class="item-title">Hotel 2 (Extra / Boutique Stay): The William Vale</div>
+                            <div class="item-title">Hotel 2: The William Vale</div>
                             <div class="item-desc">111 N 12th St, Brooklyn, NY 11249 &bull; Reservering: #VALE-BK-9921</div>
                         </div>
                     </div>
@@ -423,7 +452,6 @@
             </div>
         </div>
 
-        <!-- Hub 2 Content -->
         <div id="hub-content-2" style="display: none;">
             <div class="card">
                 <div class="card-header-title">🏨 Hotel Hub 2 : The Strip Plaza Hotel</div>
@@ -444,7 +472,6 @@
             </div>
         </div>
 
-        <!-- Hub 3 Content -->
         <div id="hub-content-3" style="display: none;">
             <div class="card">
                 <div class="card-header-title">🏨 Hotel Hub 3 : Ocean Drive Resort</div>
@@ -464,11 +491,30 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-    <!-- TAB 3: VLUCHTEN (DEDICATED VLUCHTOVERZICHT) -->
+    <!-- TAB 3: VLUCHTEN & LIVE PORTALS -->
     <div id="tab-vluchten" class="tab-pane">
+        
+        <!-- IN-APP PORTAL SNELLINKS (DOUANE & LIVE FLIGHT TRACKER) -->
+        <div class="item-box" style="border: 1px solid var(--accent-cyan); background: var(--accent-cyan-bg); margin-bottom: 14px; margin-top: 0;">
+            <div class="item-header" style="margin-bottom: 6px;">
+                <div class="icon-container" style="background:var(--card-bg); border-color:var(--accent-cyan);">🌐</div>
+                <div class="item-title-group">
+                    <div class="item-title" style="color:var(--accent-cyan);">In-App Portals & Live Tracking</div>
+                    <div class="item-desc">Rechtstreeks openen zonder de app te verlaten</div>
+                </div>
+            </div>
+            <div class="btn-grid" style="margin-top: 6px;">
+                <button class="btn-action btn-cyan" onclick="openPortal('https://m.cbp.gov/', '🛃 Custom Finder & Douane Portal')">
+                    🛃 Custom Finder
+                </button>
+                <button class="btn-action btn-cyan" onclick="openPortal('https://www.flightradar24.com/', '✈️ Live Flight Tracker')">
+                    ✈️ Live Tracker
+                </button>
+            </div>
+        </div>
+
         <div class="card">
             <div class="card-header-title">
                 <span>✈️ Vluchten & Tickets</span>
@@ -487,7 +533,7 @@
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">16-10 | 09:45 ➔ 12:30</span></div>
                 <div class="info-row"><span class="info-lbl">Boekingscode (PNR)</span><span class="info-val" style="color:var(--accent-gold);">PNR: ABC123</span></div>
                 <div class="info-row"><span class="info-lbl">Passagiers</span><span class="info-val">Charlotte, Daan, Tech (4p)</span></div>
-                <div class="notes-box">🧳 2x Ruimbagage (23kg) p.p. + Media Bags / Heavy Gear op BKK code geregistreerd.</div>
+                <div class="notes-box">🧳 2x Ruimbagage (23kg) p.p. + Media Bags op Carnet BKK code.</div>
             </div>
 
             <div class="item-box">
@@ -534,7 +580,6 @@
             <div class="card-header-title">👥 Productie Team & Contacten</div>
             <div class="card-subtitle">Set Crew & Thuisfront NL</div>
 
-            <!-- Thuisfront Producer met Directe Mail Button -->
             <div class="item-box" style="border: 1px solid var(--accent-gold);">
                 <div class="item-header">
                     <div class="icon-container" style="background:var(--accent-gold-bg); border-color:var(--accent-gold);">👑</div>
@@ -549,7 +594,6 @@
                 </div>
             </div>
 
-            <!-- Set Crew -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🎙️</div>
@@ -594,7 +638,7 @@
         </div>
     </div>
 
-    <!-- TAB 5: CRISIS & SECURITY (HOOGSTE NIVEAU) -->
+    <!-- TAB 5: CRISIS & SECURITY -->
     <div id="tab-crisis" class="tab-pane">
         <div class="card">
             <div class="card-header-title">
@@ -603,7 +647,6 @@
             </div>
             <div class="card-subtitle">High-Risk & Emergency Response</div>
 
-            <!-- Direct 911 Knop -->
             <div class="item-box" style="border: 1px solid var(--accent-red);">
                 <div class="item-header">
                     <div class="icon-container" style="background:var(--accent-red-bg); border-color:var(--accent-red);">🚨</div>
@@ -615,7 +658,6 @@
                 <a href="tel:911" class="btn-action btn-red" style="width: 100%; margin-top: 6px;">📞 BEL DIRECT 911</a>
             </div>
 
-            <!-- Ambassade & BuZa 24/7 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🏛️</div>
@@ -630,7 +672,6 @@
                 </div>
             </div>
 
-            <!-- Security Status per Hub -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🛡️</div>
@@ -644,7 +685,6 @@
                 <div class="info-row"><span class="info-lbl">Hub 3: Miami</span><span class="info-val" style="color:var(--accent-green);">🟢 Geel (Let op)</span></div>
             </div>
 
-            <!-- Medische Polissen & Drive Docs -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🏥</div>
@@ -658,6 +698,15 @@
                 <div class="notes-box">📌 Paspoortkopieën, ESTA-bevestigingen en medische paspoorten van de gehele crew staan veilig opgeslagen in de beveiligde Google Drive van Producer Peter.</div>
             </div>
         </div>
+    </div>
+
+    <!-- IN-APP PORTAL MODAL OVERLAY (UNIVERSEEL) -->
+    <div id="portal-modal" class="portal-overlay" style="display: none;">
+        <div class="portal-header">
+            <span id="portal-title">🌐 In-App Portal</span>
+            <button class="btn-close-portal" onclick="closePortal()">✖ Sluiten</button>
+        </div>
+        <iframe id="portal-iframe" class="portal-frame" src="about:blank"></iframe>
     </div>
 
     <!-- Sticky Bottom Dock Navigation (5 Items) -->
@@ -701,6 +750,18 @@
             document.getElementById('hub-content-1').style.display = hubNum === 1 ? 'block' : 'none';
             document.getElementById('hub-content-2').style.display = hubNum === 2 ? 'block' : 'none';
             document.getElementById('hub-content-3').style.display = hubNum === 3 ? 'block' : 'none';
+        }
+
+        /* Universele In-App Portal Functies */
+        function openPortal(targetUrl, titleText) {
+            document.getElementById('portal-title').innerText = titleText;
+            document.getElementById('portal-iframe').src = targetUrl;
+            document.getElementById('portal-modal').style.display = 'flex';
+        }
+
+        function closePortal() {
+            document.getElementById('portal-modal').style.display = 'none';
+            document.getElementById('portal-iframe').src = 'about:blank';
         }
     </script>
 </body>
