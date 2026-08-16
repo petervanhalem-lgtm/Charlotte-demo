@@ -131,7 +131,7 @@
         .item-title { font-size: 14px; font-weight: 700; margin: 0 0 2px 0; color: var(--text-main); }
         .item-desc { font-size: 12px; color: var(--text-sub); margin: 0; line-height: 1.4; }
 
-        /* Airport Action Grid (Balie & Bagageband Highlighting) */
+        /* Airport Action Grid */
         .airport-highlight-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -341,7 +341,7 @@
                     <div class="icon-container">✈️</div>
                     <div class="item-title-group">
                         <div class="item-title">Düsseldorf (DUS) ➔ New York (JFK)</div>
-                        <div class="item-desc">Lufthansa / Eurowings &bull; PNR: ABC123</div>
+                        <div class="item-desc">Lufthansa / Eurowings &bull; Vluchtnr: LH408 / EW1102 &bull; PNR: ABC123</div>
                     </div>
                 </div>
                 <div class="airport-highlight-grid">
@@ -512,7 +512,7 @@
                     <div class="icon-container">🛫</div>
                     <div class="item-title-group">
                         <div class="item-title">Heenvlucht: Düsseldorf (DUS) ➔ New York (JFK)</div>
-                        <div class="item-desc">Lufthansa / Eurowings &bull; Vluchtnr: LH408 / EW1102</div>
+                        <div class="item-desc">Lufthansa / Eurowings</div>
                     </div>
                 </div>
 
@@ -527,6 +527,7 @@
                     </div>
                 </div>
 
+                <div class="info-row"><span class="info-lbl">Vluchtnummer</span><span class="info-val" style="color:var(--accent-cyan);">LH408 / EW1102</span></div>
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">16-10 | 09:45 ➔ 12:30</span></div>
                 <div class="info-row"><span class="info-lbl">Boekingscode (PNR)</span><span class="info-val" style="color:var(--accent-gold);">PNR: ABC123</span></div>
                 <div class="notes-box">🧳 2x Ruimbagage (23kg) p.p. + Media Bags op Carnet BKK code.</div>
@@ -538,7 +539,7 @@
                     <div class="icon-container">✈️</div>
                     <div class="item-title-group">
                         <div class="item-title">Binnenlands 1: New York (JFK) ➔ Las Vegas (LAS)</div>
-                        <div class="item-desc">Delta Airlines DL0420</div>
+                        <div class="item-desc">Delta Airlines</div>
                     </div>
                 </div>
 
@@ -553,6 +554,7 @@
                     </div>
                 </div>
 
+                <div class="info-row"><span class="info-lbl">Vluchtnummer</span><span class="info-val" style="color:var(--accent-cyan);">DL0420</span></div>
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">20-10 | 09:30 ➔ 12:15</span></div>
                 <div class="info-row"><span class="info-lbl">Boekingscode (PNR)</span><span class="info-val" style="color:var(--accent-gold);">PNR: DL773M</span></div>
             </div>
@@ -563,7 +565,7 @@
                     <div class="icon-container">✈️</div>
                     <div class="item-title-group">
                         <div class="item-title">Binnenlands 2: Las Vegas (LAS) ➔ Miami (MIA)</div>
-                        <div class="item-desc">American Airlines AA1204</div>
+                        <div class="item-desc">American Airlines</div>
                     </div>
                 </div>
 
@@ -578,6 +580,7 @@
                     </div>
                 </div>
 
+                <div class="info-row"><span class="info-lbl">Vluchtnummer</span><span class="info-val" style="color:var(--accent-cyan);">AA1204</span></div>
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">25-10 | 11:00 ➔ 18:45</span></div>
                 <div class="info-row"><span class="info-lbl">Boekingscode (PNR)</span><span class="info-val" style="color:var(--accent-gold);">PNR: AA9921</span></div>
             </div>
@@ -588,7 +591,7 @@
                     <div class="icon-container">🛬</div>
                     <div class="item-title-group">
                         <div class="item-title">Terugvlucht: Miami (MIA) ➔ Amsterdam (AMS)</div>
-                        <div class="item-desc">KLM Royal Dutch KL0642</div>
+                        <div class="item-desc">KLM Royal Dutch</div>
                     </div>
                 </div>
 
@@ -603,6 +606,7 @@
                     </div>
                 </div>
 
+                <div class="info-row"><span class="info-lbl">Vluchtnummer</span><span class="info-val" style="color:var(--accent-cyan);">KL0642</span></div>
                 <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">30-10 | 21:15 ➔ 11:30 (+1d)</span></div>
                 <div class="info-row"><span class="info-lbl">Boekingscode (PNR)</span><span class="info-val" style="color:var(--accent-gold);">PNR: KL9012</span></div>
             </div>
@@ -675,8 +679,6 @@
 
     <!-- TAB 5: CRISIS & DIPLOMATIEKE CONTACTEN PER STAD -->
     <div id="tab-crisis" class="tab-pane">
-        
-        <!-- HOOFDREDACTEUR & NOODKNOPPEN MET BEL-BEVEILIGING -->
         <div class="card" style="border: 1px solid var(--accent-red);">
             <div class="card-header-title">
                 <span style="color:#FF8080;">🚨 Directe Nood-Escalatie (24/7)</span>
@@ -684,7 +686,6 @@
             </div>
             <div class="card-subtitle">Redactie Hilversum & Nooddiensten</div>
 
-            <!-- HOOFDREDACTEUR NOODKNOP -->
             <div class="item-box" style="border: 1px solid var(--accent-gold); background: var(--accent-gold-bg);">
                 <div class="item-header">
                     <div class="icon-container" style="background:#4A3205; border-color:var(--accent-gold);">📺</div>
@@ -698,7 +699,6 @@
                 </button>
             </div>
 
-            <!-- 911 US EMERGENCY -->
             <div class="item-box" style="border: 1px solid var(--accent-red);">
                 <div class="item-header">
                     <div class="icon-container" style="background:var(--accent-red-bg); border-color:var(--accent-red);">🚨</div>
@@ -713,7 +713,6 @@
             </div>
         </div>
 
-        <!-- AMBASSADES & CONSULATEN PER STAD/HUB -->
         <div class="card">
             <div class="card-header-title">
                 <span>🏛️ Ambassades & Consulaten per Stad</span>
@@ -721,7 +720,6 @@
             </div>
             <div class="card-subtitle">Nederlandse Vertegenwoordiging in de VS</div>
 
-            <!-- Hub 1: New York -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🗽</div>
@@ -736,7 +734,6 @@
                 </div>
             </div>
 
-            <!-- Hub 2: Las Vegas / Nevada -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🎰</div>
@@ -751,7 +748,6 @@
                 </div>
             </div>
 
-            <!-- Hub 3: Miami -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🌴</div>
@@ -766,7 +762,6 @@
                 </div>
             </div>
 
-            <!-- BuZa 24/7 Den Haag -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">🌐</div>
@@ -782,7 +777,6 @@
             </div>
         </div>
 
-        <!-- MEDISCHE ASSISTENTIE & POLISSEN -->
         <div class="card">
             <div class="card-header-title">🏥 Medische Assistentie & Polissen</div>
             <div class="card-subtitle">Verzekering & Documenten</div>
@@ -829,7 +823,6 @@
     </div>
 
     <script>
-        /* Bel-Beveiliging Functie (Voorkomt per ongeluk bellen) */
         function safeCall(phoneNumber, contactName) {
             if (confirm("🚨 BEVESTIGING NOODOPROEP\n\nWeet je zeker dat je wilt bellen met:\n" + contactName + " (" + phoneNumber + ")?")) {
                 window.location.href = "tel:" + phoneNumber;
@@ -854,7 +847,6 @@
             document.getElementById('hub-content-3').style.display = hubNum === 3 ? 'block' : 'none';
         }
 
-        /* Universele In-App Portal Functies */
         function openPortal(targetUrl, titleText) {
             document.getElementById('portal-title').innerText = titleText;
             document.getElementById('portal-iframe').src = targetUrl;
