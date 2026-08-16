@@ -3,70 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charlotte Demo - Roadbook</title>
+    <title>Prinses Charlotte in de VS - Digitaal Roadbook</title>
     <style>
         :root {
             --primary: #1B365D;
             --secondary: #2C4D75;
             --accent: #007AFF;
-            --bg: #F4F6F9;
+            --bg: #F2F2F7;
             --card-bg: #FFFFFF;
             --text: #1C1C1E;
-            --text-muted: #6E6E73;
+            --text-muted: #8E8E93;
             --border: #E5E5EA;
+            --success: #34C759;
+            --warning: #FF9500;
         }
 
+        * { box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
-            padding: 16px;
+            padding: 12px;
+            padding-bottom: 40px;
         }
 
-        .header {
+        /* Header */
+        .app-header {
             background-color: var(--primary);
             color: white;
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            padding: 18px;
+            border-radius: 14px;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 12px rgba(27,54,93,0.15);
+        }
+        .app-header h1 { margin: 0 0 4px 0; font-size: 20px; font-weight: 700; }
+        .app-header p { margin: 0; font-size: 13px; opacity: 0.85; }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+            -webkit-overflow-scrolling: touch;
+        }
+        .nav-btn {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--secondary);
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
 
-        .header h1 { margin: 0 0 6px 0; font-size: 20px; }
-        .header p { margin: 0; font-size: 13px; opacity: 0.85; }
+        /* Cards & Sections */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
 
-        .section-title {
+        .card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .card-title {
             font-size: 16px;
             font-weight: 700;
             color: var(--primary);
-            margin: 20px 0 12px 0;
+            margin-0 0 10px 0;
             display: flex;
             align-items: center;
-            gap: 8px;
-        }
-
-        /* Transport Cards Styling */
-        .transport-timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .transport-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 14px;
-            border: 1px solid var(--border);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-        }
-
-        .transport-header {
-            display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
         }
 
+        /* Badges & Buttons */
         .badge {
             padding: 4px 8px;
             border-radius: 6px;
@@ -74,129 +98,248 @@
             font-weight: 700;
             text-transform: uppercase;
         }
-
         .badge-auto { background: #E3F2FD; color: #0D47A1; }
         .badge-vlucht { background: #E8EAF6; color: #1A237E; }
         .badge-trein { background: #E8F5E9; color: #1B5E20; }
         .badge-huurauto { background: #FFF3E0; color: #E65100; }
-        .badge-taxi { background: #FFFDE7; color: #F57F17; }
+        .badge-ok { background: #E8F5E9; color: #2E7D32; }
 
-        .time-tag {
+        .btn-map {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 8px;
             font-size: 12px;
             font-weight: 600;
-            color: var(--text-muted);
+            margin-top: 8px;
         }
 
-        .route-title {
-            font-size: 15px;
-            font-weight: 700;
-            margin: 0 0 6px 0;
-        }
-
-        .transport-details {
+        /* List Items */
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #F2F2F7;
             font-size: 13px;
-            color: var(--text-muted);
-            margin: 0 0 6px 0;
-            line-height: 1.4;
         }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { color: var(--text-muted); font-weight: 500; }
+        .info-val { font-weight: 600; text-align: right; }
 
         .transport-notes {
             font-size: 12px;
             background: #F8F9FA;
-            padding: 8px;
-            border-radius: 6px;
+            padding: 8px 10px;
+            border-radius: 8px;
             border-left: 3px solid var(--accent);
-            margin: 0;
-        }
-
-        /* Bonnetjes Scanner Styling */
-        .scanner-card-hidden {
-            display: none; /* Veiligheidshalve extra verborgen via CSS */
+            margin-top: 8px;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1 id="project-title">Prinses Charlotte in de VS</h1>
-        <p>📱 Digitaal Roadbook & Logistiek Dashboard</p>
+    <!-- Header -->
+    <div class="app-header">
+        <h1>Prinses Charlotte in de VS</h1>
+        <p>3 Werelden &bull; Digitaal Roadbook & Logistiek Dashboard</p>
+    </div>
+
+    <!-- Navigatie Tabs -->
+    <div class="nav-tabs">
+        <button class="nav-btn active" onclick="switchTab('transport')">🚘 Transport</button>
+        <button class="nav-btn" onclick="switchTab('crew')">👥 Crew Matrix</button>
+        <button class="nav-btn" onclick="switchTab('hubs')">📍 Hubs & Hotels</button>
+        <button class="nav-btn" onclick="switchTab('safety')">🛡️ Veiligheid & Nood</button>
     </div>
 
     <!-- ========================================================= -->
-    <!-- TIJDELIJK VERBORGEN: BONNETJES SCANNER (OPTIER A)           -->
-    <!-- Om later te heractiveren: verwijder de commentaar-tags    -->
+    <!-- TIJDELIJK VERBORGEN VOOR DEZE REIS: BONNETJES SCANNER      -->
     <!-- ========================================================= -->
     <!--
-    <div class="scanner-card">
-        <div class="section-title">📸 Bonnetjes Scanner</div>
-        <p>Upload je declaratie of kassabon rechtstreeks naar het productiedossier.</p>
-        <a href="https://forms.gle/demo-charlotte-usa" class="btn" target="_blank">Scan Bonnetje</a>
+    <div class="card" style="border: 2px dashed var(--accent);">
+        <div class="card-title">📸 Bonnetjes Scanner</div>
+        <p style="font-size: 13px; color: var(--text-muted);">Upload bonnetjes direct naar de cloud.</p>
+        <a href="https://forms.gle/demo-charlotte-usa" class="btn-map" target="_blank">Scan Bonnetje</a>
     </div>
     -->
 
-    <!-- ========================================================= -->
-    <!-- CHRONOLOGISCHE TRANSPORT TIJDSLIJN                          -->
-    <!-- ========================================================= -->
-    <div class="section-title">🚘 Transport & Reisschema</div>
-
-    <div class="transport-timeline">
-
-        <!-- Etappe 1: Eigen Auto -->
-        <div class="transport-card">
-            <div class="transport-header">
-                <span class="badge badge-auto">🚘 Eigen auto</span>
-                <span class="time-tag">16-10 | 05:30 - 07:15</span>
+    <!-- TAB 1: TRANSPORT & REISSCHEMA -->
+    <div id="tab-transport" class="tab-content active">
+        
+        <div class="card">
+            <div class="card-title">
+                <span>Baarn ➔ Düsseldorf</span>
+                <span class="badge badge-auto">Eigen Auto</span>
             </div>
-            <div class="route-title">Baarn (Thuis) ➔ Düsseldorf Airport (DUS)</div>
-            <div class="transport-details">
-                <strong>Kenteken:</strong> AB-123-C &bull; <strong>Crew:</strong> Peter & Daan
+            <div class="info-row">
+                <span class="info-label">Datum & Tijd</span>
+                <span class="info-val">16-10 | 05:30 - 07:15</span>
             </div>
-            <p class="transport-notes">📌 Parkeren op P3. 210 km (Km-vergoeding declareerbaar).</p>
+            <div class="info-row">
+                <span class="info-label">Kenteken</span>
+                <span class="info-val">AB-123-C (Privé)</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Inzittenden</span>
+                <span class="info-val">Peter & Daan</span>
+            </div>
+            <div class="transport-notes">📌 Parkeren op P3 Düsseldorf Airport. 210 km (Km-vergoeding).</div>
         </div>
 
-        <!-- Etappe 2: Vlucht -->
-        <div class="transport-card">
-            <div class="transport-header">
-                <span class="badge badge-vlucht">✈️ Vlucht</span>
-                <span class="time-tag">16-10 | 09:45 - 12:30</span>
+        <div class="card">
+            <div class="card-title">
+                <span>Düsseldorf ➔ New York (JFK)</span>
+                <span class="badge badge-vlucht">Vlucht</span>
             </div>
-            <div class="route-title">Düsseldorf (DUS) ➔ New York (JFK)</div>
-            <div class="transport-details">
-                <strong>Airline:</strong> Eurowings / Lufthansa &bull; <strong>PNR:</strong> ABC123<br>
-                <strong>Passagiers:</strong> Alle Crew (4p)
+            <div class="info-row">
+                <span class="info-label">Vlucht</span>
+                <span class="info-val">Eurowings / Lufthansa</span>
             </div>
-            <p class="transport-notes">📌 Terminal 1, Bagage rechtstreeks ingecheckt.</p>
+            <div class="info-row">
+                <span class="info-label">Datum & Tijd</span>
+                <span class="info-val">16-10 | 09:45 - 12:30</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Boekingscode (PNR)</span>
+                <span class="info-val">ABC123</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Passagiers</span>
+                <span class="info-val">Alle Crew (4p)</span>
+            </div>
+            <div class="transport-notes">📌 Terminal 1, Bagage rechtstreeks ingecheckt.</div>
         </div>
 
-        <!-- Etappe 3: Trein -->
-        <div class="transport-card">
-            <div class="transport-header">
-                <span class="badge badge-trein">🚆 Trein</span>
-                <span class="time-tag">16-10 | 14:15 - 15:30</span>
+        <div class="card">
+            <div class="card-title">
+                <span>JFK Airport ➔ Philly Station</span>
+                <span class="badge badge-trein">Trein</span>
             </div>
-            <div class="route-title">JFK Station ➔ Philly 30th St Station</div>
-            <div class="transport-details">
-                <strong>Maatschappij:</strong> Amtrak &bull; <strong>Ticket:</strong> #993821<br>
-                <strong>Passagiers:</strong> Alle Crew (4p)
+            <div class="info-row">
+                <span class="info-label">Maatschappij</span>
+                <span class="info-val">Amtrak</span>
             </div>
-            <p class="transport-notes">📌 Spoor 4. Stoelreservering via productie geregeld.</p>
+            <div class="info-row">
+                <span class="info-label">Datum & Tijd</span>
+                <span class="info-val">16-10 | 14:15 - 15:30</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Ticketnummer</span>
+                <span class="info-val">#993821</span>
+            </div>
+            <div class="transport-notes">📌 Spoor 4. Stoelreservering via productie geregeld.</div>
         </div>
 
-        <!-- Etappe 4: Huurauto -->
-        <div class="transport-card">
-            <div class="transport-header">
-                <span class="badge badge-huurauto">🚘 Huurauto</span>
-                <span class="time-tag">16-10 | 16:00 - 16:30</span>
+        <div class="card">
+            <div class="card-title">
+                <span>Philly Station ➔ Hotel</span>
+                <span class="badge badge-huurauto">Huurauto</span>
             </div>
-            <div class="route-title">Philly Station Hertz ➔ Hotel Downtown Philly</div>
-            <div class="transport-details">
-                <strong>Verhuurder:</strong> Hertz &bull; <strong>Reservering:</strong> #8839201<br>
-                <strong>Bestuurder:</strong> Daan
+            <div class="info-row">
+                <span class="info-label">Verhuurder</span>
+                <span class="info-val">Hertz</span>
             </div>
-            <p class="transport-notes">📌 Chevy Tahoe (SUV). Borg voldaan via productie-creditcard.</p>
+            <div class="info-row">
+                <span class="info-label">Reservering</span>
+                <span class="info-val">#8839201</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Bestuurder</span>
+                <span class="info-val">Daan</span>
+            </div>
+            <div class="transport-notes">📌 Chevy Tahoe (SUV). Borg voldaan via creditcard.</div>
         </div>
 
     </div>
 
+    <!-- TAB 2: CREW MATRIX -->
+    <div id="tab-crew" class="tab-content">
+        <div class="card">
+            <div class="card-title">👥 Productie Team</div>
+            
+            <div class="info-row">
+                <span class="info-label">Charlotte (Presentatie)</span>
+                <span class="info-val">+31 6 12345671</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Daan (Regie / Camera)</span>
+                <span class="info-val">+31 6 12345672</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Peter (Producer)</span>
+                <span class="info-val">+31 6 12345678</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Geluid / Techniek</span>
+                <span class="info-val">+31 6 12345674</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: HUBS & HOTELS -->
+    <div id="tab-hubs" class="tab-content">
+        <div class="card">
+            <div class="card-title">
+                <span>📍 Hub 1: New York City</span>
+                <span class="badge badge-ok">15-10 / 20-10</span>
+            </div>
+            <p style="font-size: 13px; margin: 4px 0;"><strong>Hotel:</strong> Manhattan Midtown Hotel</p>
+            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">452 5th Ave, New York, NY 10018</p>
+            <a href="https://maps.google.com/?q=452+5th+Ave,+New+York,+NY+10018" target="_blank" class="btn-map">🗺️ Open in Google Maps</a>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span>📍 Hub 2: Las Vegas</span>
+                <span class="badge badge-ok">20-10 / 25-10</span>
+            </div>
+            <p style="font-size: 13px; margin: 4px 0;"><strong>Hotel:</strong> The Strip Plaza Hotel</p>
+            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">3570 S Las Vegas Blvd, Las Vegas, NV</p>
+            <a href="https://maps.google.com/?q=3570+S+Las+Vegas+Blvd,+Las+Vegas,+NV" target="_blank" class="btn-map">🗺️ Open in Google Maps</a>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                <span>📍 Hub 3: Miami</span>
+                <span class="badge badge-ok">25-10 / 30-10</span>
+            </div>
+            <p style="font-size: 13px; margin: 4px 0;"><strong>Hotel:</strong> Ocean Drive Resort</p>
+            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">1001 Ocean Dr, Miami Beach, FL</p>
+            <a href="https://maps.google.com/?q=1001+Ocean+Dr,+Miami+Beach,+FL" target="_blank" class="btn-map">🗺️ Open in Google Maps</a>
+        </div>
+    </div>
+
+    <!-- TAB 4: VEILIGHEID & NOODNUMMERS -->
+    <div id="tab-safety" class="tab-content">
+        <div class="card">
+            <div class="card-title">🛡️ Noodnummers USA</div>
+            <div class="info-row">
+                <span class="info-label">Lokaal Alarmnummer</span>
+                <span class="info-val">🚨 911</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Ambassade NL (24/7)</span>
+                <span class="info-val">+31 247 247 247</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Producer Peter</span>
+                <span class="info-val">+31 6 12345678</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            // Unactive all tabs & buttons
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            
+            // Activate selected tab & button
+            document.getElementById('tab-' + tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
