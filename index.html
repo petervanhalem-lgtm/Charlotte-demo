@@ -45,6 +45,8 @@
         .app-header h1 { font-size: 20px; font-weight: 800; margin: 0 0 4px 0; letter-spacing: -0.5px; }
         .app-header p { font-size: 13px; color: var(--text-sub); margin: 0; }
         .offline-badge { font-size: 9px; font-weight: 800; background: var(--accent-red-bg); color: #FF8080; border: 1px solid var(--accent-red); padding: 3px 6px; border-radius: 6px; text-transform: uppercase; }
+        .offline-badge.ready { background: var(--accent-green-bg); color: var(--accent-green); border-color: var(--accent-green); }
+        
         .hub-pills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
         .hub-pill {
             background: var(--card-bg);
@@ -61,31 +63,66 @@
             box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
         }
         .hub-pill .hub-sub { font-size: 9px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 2px; }
+        .hub-pill.active .hub-sub { color: var(--accent-gold); }
         .hub-pill .hub-name { font-size: 12px; font-weight: 700; color: var(--text-main); }
+        
         .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 14px; }
         .card-header-title { font-size: 15px; font-weight: 800; margin: 0 0 2px 0; display: flex; align-items: center; justify-content: space-between; }
         .card-subtitle { font-size: 11px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 12px; }
+        
+        .scanner-card {
+            background: linear-gradient(135deg, #0C2942 0%, #121E36 100%);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 18px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .scanner-info { display: flex; align-items: center; gap: 12px; }
+        .scanner-icon { font-size: 28px; }
+        .scanner-text h3 { margin: 0 0 2px 0; font-size: 14px; color: var(--accent-cyan); font-weight: 800; }
+        .scanner-text p { margin: 0; font-size: 11px; color: var(--text-sub); max-width: 170px; line-height: 1.3; }
+        .btn-scanner {
+            background: var(--accent-cyan);
+            color: #000;
+            font-weight: 800;
+            font-size: 11px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+
         .item-box { background: var(--item-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 14px; margin-top: 10px; }
         .item-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
         .icon-container { width: 38px; height: 38px; background: var(--btn-dark); border: 1px solid var(--card-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
         .item-title-group { flex: 1; }
         .item-title { font-size: 14px; font-weight: 700; margin: 0 0 2px 0; color: var(--text-main); }
         .item-desc { font-size: 12px; color: var(--text-sub); margin: 0; line-height: 1.4; }
+        
         .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
         .btn-action {
             background: var(--btn-dark); border: 1px solid var(--card-border); color: var(--text-main);
             padding: 10px 8px; border-radius: 10px; font-size: 11px; font-weight: 700;
             text-decoration: none; display: flex; align-items: center; justify-content: center;
-            gap: 6px; text-align: center; cursor: pointer;
+            gap: 6px; text-align: center; cursor: pointer; width: 100%;
         }
         .btn-red { background: var(--accent-red-bg); border-color: var(--accent-red); color: #FF8080; }
         .btn-gold { background: var(--accent-gold-bg); border-color: var(--accent-gold); color: var(--accent-gold); }
         .btn-cyan { background: var(--accent-cyan-bg); border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 800; }
+        
         .status-badge { font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; }
         .badge-green { background: #064E3B; color: var(--accent-green); border: 1px solid #059669; }
         .badge-red { background: var(--accent-red-bg); color: #FF8080; border: 1px solid var(--accent-red); }
+        
         .tab-pane { display: none; }
         .tab-pane.active { display: block; }
+        
         .bottom-nav {
             position: fixed; bottom: max(16px, env(safe-area-inset-bottom)); left: 10px; right: 10px;
             background: rgba(18, 30, 54, 0.92); backdrop-filter: blur(20px); border: 1px solid var(--card-border);
@@ -99,20 +136,26 @@
         .nav-item.active { background: var(--accent-gold); color: #000; font-weight: 800; }
         .nav-item .icon { font-size: 16px; }
         .nav-item .label { font-size: 9px; font-weight: 800; }
+        
         .info-row { display: flex; justify-content: space-between; font-size: 12px; padding: 6px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .info-lbl { color: var(--text-sub); }
         .info-val { font-weight: 600; text-align: right; }
         .notes-box { background: #0D223A; border-left: 3px solid var(--accent-cyan); padding: 8px 10px; border-radius: 8px; font-size: 11px; margin-top: 8px; color: #BAE6FD; }
         .alert-box { background: #3F1212; border-left: 3px solid var(--accent-red); padding: 8px 10px; border-radius: 8px; font-size: 11px; margin-top: 8px; color: #FF8080; }
+        
+        .hub-content-pane { display: none; }
+        .hub-content-pane.active { display: block; }
+        .crisis-content-pane { display: none; }
+        .crisis-content-pane.active { display: block; }
     </style>
 </head>
 <body>
     <div class="app-header">
         <div>
-            <h1>Midden-Oosten Productie</h1>
-            <p>Jordanië &bull; Syrië &bull; Irak (High-Risk Roadbook v7)</p>
+            <h1>[PROJECTNAAM / PROGRAMMA]</h1>
+            <p>[LAND 1] &bull; [LAND 2] &bull; [LAND 3] (Multi-Risk Roadbook v7)</p>
         </div>
-        <span class="offline-badge">🛡️ High Risk Active</span>
+        <span class="offline-badge" id="offline-status">🛡️ High Risk Active</span>
     </div>
 
     <!-- TAB 1: TRANSPORT -->
@@ -122,22 +165,249 @@
                 <span>🚘 Transport & Route Keten</span>
                 <span class="status-badge badge-red">Armored Escort</span>
             </div>
-            <div class="card-subtitle">Volledige Overland Route met Tijdzones</div>
+            <div class="card-subtitle">Volledige Overland Route met Lokale Tijden</div>
+            
+            <!-- Route Item 1 -->
             <div class="item-box">
                 <div class="item-header">
                     <div class="icon-container">✈️</div>
                     <div class="item-title-group">
-                        <div class="item-title">Amsterdam (AMS) ➔ Amman (AMM)</div>
-                        <div class="item-desc">Royal Jordanian RJ152 &bull; PNR: RJ9921X</div>
+                        <div class="item-title">Amsterdam (AMS) ➔ [STAD 1] ([LUCHTHAVEN 1])</div>
+                        <div class="item-desc">[MAATSCHAPPIJ] [VLUCHTNR] &bull; PNR: [PNR-CODE]</div>
                     </div>
                 </div>
-                <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">15-10 | 13:15 CET ➔ 18:30 EEST</span></div>
-                <div class="notes-box">📌 Vliegveldbuis Amman: Fixer Sami ophaalbalie.</div>
+                <div class="info-row"><span class="info-lbl">Datum & Lokaal Vertrek/Aankomst</span><span class="info-val">15-10 | 13:15 ➔ 18:30</span></div>
+                <div class="notes-box">📌 Vliegveldbuis [STAD 1]: Fixer / Ophaalbalie contact.</div>
+            </div>
+
+            <!-- Route Item 2 -->
+            <div class="item-box" style="border-color: var(--accent-gold);">
+                <div class="item-header">
+                    <div class="icon-container">🚗</div>
+                    <div class="item-title-group">
+                        <div class="item-title">[STAD 1] ([LAND 1]) ➔ [STAD 2] ([LAND 2])</div>
+                        <div class="item-desc">Gepantserde Auto / Fixer &bull; Ref: [SYR-99201]</div>
+                    </div>
+                </div>
+                <div class="info-row"><span class="info-lbl">Datum & Lokale Tijd</span><span class="info-val">17-10 | 07:00 ➔ 13:00</span></div>
+                <div class="alert-box">⚠️ Grensovergang: Carnet BKK stempels & Fixer begeleiding verplicht!</div>
+            </div>
+
+            <!-- Route Item 3 -->
+            <div class="item-box" style="border-color: var(--accent-red);">
+                <div class="item-header">
+                    <div class="icon-container">🛡️</div>
+                    <div class="item-title-group">
+                        <div class="item-title">[STAD 2] ([LAND 2]) ➔ [STAD 3] ([LAND 3])</div>
+                        <div class="item-desc">Armored Convoy B6 &bull; Fixer Lead &bull; Ref: [BG-88301]</div>
+                    </div>
+                </div>
+                <div class="info-row"><span class="info-lbl">Datum & Lokale Tijd</span><span class="info-val">21-10 | 06:00 ➔ 16:00</span></div>
+                <div class="alert-box">🚨 HIGH SECURITY CONVOY: Verplichte check-in bij vertrek & aankomst!</div>
+            </div>
+
+            <!-- Route Item 4 -->
+            <div class="item-box">
+                <div class="item-header">
+                    <div class="icon-container">🚙</div>
+                    <div class="item-title-group">
+                        <div class="item-title">[STAD 3] ([LAND 3]) ➔ [STAD 1] ([LAND 1])</div>
+                        <div class="item-desc">Secure Escort / Airport Transfer &bull; Ref: [TRANS-102]</div>
+                    </div>
+                </div>
+                <div class="info-row"><span class="info-lbl">Datum & Lokale Tijd</span><span class="info-val">26-10 | 08:00 ➔ 17:00</span></div>
             </div>
         </div>
     </div>
 
-    <!-- TAB 5: CRISIS -->
+    <!-- TAB 2: 3 HUBS (HOTELS & ACCOMMODATIE) -->
+    <div id="tab-hubs" class="tab-pane">
+        <!-- Bonnetjes Scanner Link -->
+        <div class="scanner-card">
+            <div class="scanner-info">
+                <div class="scanner-icon">📸</div>
+                <div class="scanner-text">
+                    <h3>Bonnetjes Invoeren (20 Sec)</h3>
+                    <p>Tik om taxi-, eten- of brandstofbonnetjes direct te uploaden</p>
+                </div>
+            </div>
+            <a href="https://forms.google.com" target="_blank" class="btn-scanner">Open Scanner ➔</a>
+        </div>
+
+        <!-- Hub Selector Pills -->
+        <div class="hub-pills">
+            <div class="hub-pill active" id="hub-main-pill-1" onclick="switchMainHub(1)">
+                <div class="hub-sub">HUB 1 ([LAND 1])</div>
+                <div class="hub-name">[STAD 1]</div>
+            </div>
+            <div class="hub-pill" id="hub-main-pill-2" onclick="switchMainHub(2)">
+                <div class="hub-sub" style="color:#FF8080;">HUB 2 ([LAND 2])</div>
+                <div class="hub-name">[STAD 2]</div>
+            </div>
+            <div class="hub-pill" id="hub-main-pill-3" onclick="switchMainHub(3)">
+                <div class="hub-sub" style="color:#FF8080;">HUB 3 ([LAND 3])</div>
+                <div class="hub-name">[STAD 3]</div>
+            </div>
+        </div>
+
+        <!-- Hub 1 Content -->
+        <div id="hub-main-content-1" class="hub-content-pane active">
+            <div class="card">
+                <div class="card-header-title">
+                    <span>🏢 Hub 1: [HOTEL NAAM 1]</span>
+                    <span class="status-badge badge-green">Safe Location</span>
+                </div>
+                <div class="card-subtitle">15 OKT – 20 OKT (LOKALE TIJD)</div>
+
+                <div class="item-box">
+                    <div class="item-title">[HOTEL NAAM 1 MANHATTAN / CENTRUM]</div>
+                    <div class="item-desc" style="margin-bottom:8px;">[ADRES HOTEL 1] &bull; Reservering: #[RES-CODE-1] (Ontbijt inbegrepen)</div>
+                    <div class="btn-grid">
+                        <a href="https://www.google.com/maps/search/?api=1&query=[ADRES+HOTEL+1]" target="_blank" class="btn-action">🗺️ Google Maps Navigatie</a>
+                        <a href="tel:[TEL_HOTEL_1]" class="btn-action">📞 Receptie: [TEL 1]</a>
+                    </div>
+                </div>
+
+                <div class="item-box" style="margin-top:12px;">
+                    <div class="item-title">Extra / Uitwijk Hotel: [BOUTIQUE HOTEL 1]</div>
+                    <div class="item-desc" style="margin-bottom:8px;">[ADRES UITWIJK HOTEL 1] &bull; Reservering: #[RES-CODE-1B]</div>
+                    <div class="btn-grid">
+                        <a href="https://www.google.com/maps/search/?api=1&query=[ADRES+UITWIJK+HOTEL+1]" target="_blank" class="btn-action">🗺️ Google Maps Navigatie</a>
+                        <a href="tel:[TEL_HOTEL_1B]" class="btn-action">📞 Receptie: [TEL 1B]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hub 2 Content -->
+        <div id="hub-main-content-2" class="hub-content-pane">
+            <div class="card" style="border-color: var(--accent-gold);">
+                <div class="card-header-title">
+                    <span>🏢 Hub 2: [HOTEL NAAM 2]</span>
+                    <span class="status-badge badge-red">High Risk Area</span>
+                </div>
+                <div class="card-subtitle">20 OKT – 23 OKT (LOKALE TIJD)</div>
+
+                <div class="item-box">
+                    <div class="item-title">[HOTEL NAAM 2]</div>
+                    <div class="item-desc" style="margin-bottom:8px;">[ADRES HOTEL 2] &bull; Reservering: #[RES-CODE-2]</div>
+                    <div class="alert-box">⚠️ LET OP: Voertuigen uitsluitend parkeren op bewaakt binnenterrein.</div>
+                    <div class="btn-grid" style="margin-top:10px;">
+                        <a href="https://www.google.com/maps/search/?api=1&query=[ADRES+HOTEL+2]" target="_blank" class="btn-action">🗺️ Google Maps Navigatie</a>
+                        <a href="tel:[TEL_HOTEL_2]" class="btn-action">📞 Receptie: [TEL 2]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hub 3 Content -->
+        <div id="hub-main-content-3" class="hub-content-pane">
+            <div class="card" style="border-color: var(--accent-red);">
+                <div class="card-header-title">
+                    <span style="color:#FF8080;">🏢 Hub 3: [HOTEL NAAM 3 / GREEN ZONE]</span>
+                    <span class="status-badge badge-red">HIGH RISK</span>
+                </div>
+                <div class="card-subtitle">23 OKT – 28 OKT (HIGH RISK ZONE)</div>
+
+                <div class="item-box">
+                    <div class="info-row"><span class="info-lbl">Adres</span><span class="info-val">[ADRES HOTEL 3 / GREEN ZONE]</span></div>
+                    <div class="info-row"><span class="info-lbl">Security Detail Lead</span><span class="info-val">[NAAM FIXER] (<a href="tel:[TEL_FIXER]" style="color:var(--accent-cyan);">[TEL FIXER]</a>)</span></div>
+                    <div class="info-row"><span class="info-lbl">Safehouse</span><span class="info-val">[SAFEHOUSE ALPHA LOCATIE]</span></div>
+                    <div class="alert-box">🚨 VERPLICHT ARMORED ESCORT bij elke verplaatsing buiten het hotel.</div>
+                    <div class="btn-grid" style="margin-top:10px;">
+                        <a href="https://www.google.com/maps/search/?api=1&query=[ADRES+HOTEL+3]" target="_blank" class="btn-action">🗺️ Google Maps Navigatie</a>
+                        <a href="tel:[TEL_HOTEL_3]" class="btn-action">📞 Receptie: [TEL 3]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: VLUCHTEN -->
+    <div id="tab-flights" class="tab-pane">
+        <div class="card">
+            <div class="card-header-title">
+                <span>✈️ Vluchten & E-Tickets</span>
+                <span class="status-badge badge-green">PNR Active</span>
+            </div>
+            <div class="card-subtitle">Inclusief Directe Boardingpass / App Links</div>
+
+            <!-- Vlucht 1 -->
+            <div class="item-box">
+                <div class="item-header">
+                    <div class="icon-container">🛫</div>
+                    <div class="item-title-group">
+                        <div class="item-title">Heenvlucht: Amsterdam (AMS) ➔ [STAD 1]</div>
+                        <div class="item-desc">[MAATSCHAPPIJ 1] &bull; Vluchtnr: [KL0641] &bull; PNR: <strong style="color:var(--accent-gold);">[PNR-1]</strong></div>
+                    </div>
+                </div>
+                <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">15 OKT | 13:15 ➔ 18:30 (Lokale Tijd)</span></div>
+                <div class="info-row"><span class="info-lbl">Passagiers</span><span class="info-val">Alle Crewleden (4p)</span></div>
+                <div class="btn-grid">
+                    <a href="https://www.apple.com/wallet/" target="_blank" class="btn-action btn-cyan">🎫 Apple Wallet E-Ticket</a>
+                    <a href="#" class="btn-action">✈️ Luchtvaartmaatschappij App</a>
+                </div>
+            </div>
+
+            <!-- Vlucht 2 -->
+            <div class="item-box">
+                <div class="item-header">
+                    <div class="icon-container">🛬</div>
+                    <div class="item-title-group">
+                        <div class="item-title">Terugvlucht: [STAD 1] ➔ Amsterdam (AMS)</div>
+                        <div class="item-desc">[MAATSCHAPPIJ 2] &bull; Vluchtnr: [KL0642] &bull; PNR: <strong style="color:var(--accent-gold);">[PNR-2]</strong></div>
+                    </div>
+                </div>
+                <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">28 OKT | 11:30 ➔ 15:45 (Lokale Tijd)</span></div>
+                <div class="info-row"><span class="info-lbl">Passagiers</span><span class="info-val">Alle Crewleden (4p)</span></div>
+                <div class="btn-grid">
+                    <a href="https://www.apple.com/wallet/" target="_blank" class="btn-action btn-cyan">🎫 Apple Wallet E-Ticket</a>
+                    <a href="#" class="btn-action">✈️ Luchtvaartmaatschappij App</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 4: TEAM (CREW & NOODCONTACTEN) -->
+    <div id="tab-team" class="tab-pane">
+        <div class="card">
+            <div class="card-header-title">
+                <span>👥 Productie Crew & Team</span>
+                <span class="status-badge badge-green">4 Leden Op Set</span>
+            </div>
+            <div class="card-subtitle">Direct Bellen & Noodcontacten Thuisfront</div>
+
+            <!-- Crew 1 -->
+            <div class="item-box">
+                <div class="item-title">[NAAM CREWLID 1] (Presentatie / Regie)</div>
+                <div class="info-row"><span class="info-lbl">Mobiel</span><span class="info-val"><a href="tel:[TEL_CREW_1]" style="color:var(--accent-cyan);">[TEL CREWLID 1]</a></span></div>
+                <div class="info-row"><span class="info-lbl">Noodcontact Thuis</span><span class="info-val">[NAAM NOOD 1] ([TEL NOOD 1])</span></div>
+            </div>
+
+            <!-- Crew 2 -->
+            <div class="item-box">
+                <div class="item-title">[NAAM CREWLID 2] (Camera / DOP)</div>
+                <div class="info-row"><span class="info-lbl">Mobiel</span><span class="info-val"><a href="tel:[TEL_CREW_2]" style="color:var(--accent-cyan);">[TEL CREWLID 2]</a></span></div>
+                <div class="info-row"><span class="info-lbl">Noodcontact Thuis</span><span class="info-val">[NAAM NOOD 2] ([TEL NOOD 2])</span></div>
+            </div>
+
+            <!-- Crew 3 -->
+            <div class="item-box">
+                <div class="item-title">[NAAM CREWLID 3] (Geluid / Security)</div>
+                <div class="info-row"><span class="info-lbl">Mobiel</span><span class="info-val"><a href="tel:[TEL_CREW_3]" style="color:var(--accent-cyan);">[TEL CREWLID 3]</a></span></div>
+                <div class="info-row"><span class="info-lbl">Noodcontact Thuis</span><span class="info-val">[NAAM NOOD 3] ([TEL NOOD 3])</span></div>
+            </div>
+
+            <!-- Producer -->
+            <div class="item-box" style="border-color: var(--accent-gold);">
+                <div class="item-title">[NAAM PRODUCER] (Reis Producer)</div>
+                <div class="info-row"><span class="info-lbl">Dienstmobiel</span><span class="info-val"><a href="tel:[TEL_PRODUCER]" style="color:var(--accent-gold);">[TEL PRODUCER]</a></span></div>
+                <div class="info-row"><span class="info-lbl">Hoofdredactie 24/7</span><span class="info-val"><a href="tel:+31356779000" style="color:var(--accent-gold);">+31 35 677 9000</a></span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 5: CRISIS (DYNAMIC MULTI-COUNTRY CRISIS DOCK) -->
     <div id="tab-crisis" class="tab-pane">
         <div class="card" style="border: 1px solid var(--accent-red);">
             <div class="card-header-title">
@@ -145,36 +415,139 @@
                 <span class="status-badge badge-red">High-Risk</span>
             </div>
             <div class="card-subtitle">Selecteer de actuele locatie op de route:</div>
+
             <div class="hub-pills" style="margin-top: 10px; margin-bottom: 10px;">
                 <div class="hub-pill active" id="crisis-pill-1" onclick="switchCrisisHub(1)">
                     <div class="hub-sub">HUB 1</div>
-                    <div class="hub-name">Jordanië</div>
+                    <div class="hub-name">[LAND 1]</div>
                 </div>
                 <div class="hub-pill" id="crisis-pill-2" onclick="switchCrisisHub(2)">
                     <div class="hub-sub" style="color:#FF8080;">HUB 2 (ROOD)</div>
-                    <div class="hub-name">Syrië</div>
+                    <div class="hub-name">[LAND 2]</div>
                 </div>
                 <div class="hub-pill" id="crisis-pill-3" onclick="switchCrisisHub(3)">
                     <div class="hub-sub" style="color:#FF8080;">HUB 3 (ROOD)</div>
-                    <div class="hub-name">Irak</div>
+                    <div class="hub-name">[LAND 3]</div>
                 </div>
             </div>
-            <div id="crisis-content-1">
-                <div class="item-box" style="border-color: var(--accent-red);">
-                    <button class="btn-action btn-red" onclick="safeCall('911', 'Lokaal Alarmnummer Jordanië (911)')" style="width: 100%;">
-                        📞 BEL ALARMNUMMER 911 (JORDANIË)
+
+            <!-- Crisis Hub 1 Content -->
+            <div id="crisis-content-1" class="crisis-content-pane active">
+                <div class="item-box" style="border-color: var(--accent-gold);">
+                    <!-- 1-Click WA Check-in -->
+                    <button class="btn-action btn-gold" onclick="window.location.href='https://wa.me/?text=STATUS%3A%20ROYAL-EAGLE%20-%20HUB%201%20([LAND%201])%20ALL%20SECURE'" style="width: 100%; margin-bottom: 10px; padding: 12px; font-size: 12px;">
+                        💬 1-Klik WA Check-In [LAND 1]
                     </button>
+
+                    <!-- Direct Emergency Call -->
+                    <button class="btn-action btn-red" onclick="safeCall('[112/ALARMNUMMER 1]', 'Lokaal Alarmnummer [LAND 1]')" style="width: 100%; padding: 12px; font-size: 12px;">
+                        📞 BEL LOKAAL ALARMNUMMER / 112 ([LAND 1])
+                    </button>
+                </div>
+
+                <div class="item-box" style="margin-top: 10px;">
+                    <div style="font-weight:800; color:var(--accent-cyan); margin-bottom:6px;">🏛️ Ambassade / Consulaat ([STAD 1]):</div>
+                    <div class="info-row"><span class="info-lbl">Adres</span><span class="info-val">[ADRES NL AMBASSADE 1]</span></div>
+                    <div class="info-row"><span class="info-lbl">24/7 Noodnummer</span><span class="info-val"><a href="tel:[TEL_AMBASSADE_1]" style="color:var(--accent-cyan);">[TEL AMBASSADE 1]</a></span></div>
+                    <div class="info-row"><span class="info-lbl">BuZa NL Noodcentrum</span><span class="info-val"><a href="tel:+31247247247" style="color:var(--accent-cyan);">+31 247 247 247</a></span></div>
+                    <div class="btn-grid" style="margin-top:10px;">
+                        <a href="https://www.google.com/maps/search/?api=1&query=[ADRES+NL+AMBASSADE+1]" target="_blank" class="btn-action btn-cyan">📍 Open Offline Maps Ambassade</a>
+                        <a href="tel:[TEL_AMBASSADE_1]" class="btn-action">📞 Bel Ambassade Direct</a>
+                    </div>
+                </div>
+
+                <div class="item-box" style="margin-top: 10px;">
+                    <div style="font-weight:800; color:#FF8080; margin-bottom:4px;">🛡️ Safehouse & Security Detail:</div>
+                    <div class="notes-box" style="margin-top:0; margin-bottom:8px;"><strong>Safehouse:</strong> [VUL SAFEHOUSE 1 IN]</div>
+                    <div class="notes-box" style="margin-top:0;"><strong>Fixer / Security:</strong> [VUL FIXER 1 IN] &bull; <a href="tel:[TEL_FIXER_1]" style="color:#BAE6FD;">[TEL FIXER 1]</a></div>
+                </div>
+            </div>
+
+            <!-- Crisis Hub 2 Content -->
+            <div id="crisis-content-2" class="crisis-content-pane">
+                <div class="item-box" style="border-color: var(--accent-red);">
+                    <!-- 1-Klik WA Check-in -->
+                    <button class="btn-action btn-gold" onclick="window.location.href='https://wa.me/?text=STATUS%3A%20ROYAL-EAGLE%20-%20HUB%202%20([LAND%202])%20ALL%20SECURE'" style="width: 100%; margin-bottom: 10px; padding: 12px; font-size: 12px;">
+                        💬 1-Klik WA Check-In [LAND 2]
+                    </button>
+
+                    <!-- Direct Emergency Call -->
+                    <button class="btn-action btn-red" onclick="safeCall('[112/ALARMNUMMER 2]', 'Lokaal Alarmnummer [LAND 2]')" style="width: 100%; padding: 12px; font-size: 12px;">
+                        📞 BEL LOKAAL ALARMNUMMER / 112 ([LAND 2])
+                    </button>
+                </div>
+
+                <div class="item-box" style="margin-top: 10px;">
+                    <div style="font-weight:800; color:var(--accent-cyan); margin-bottom:6px;">🏛️ Ambassade / Consulaat ([STAD 2]):</div>
+                    <div class="info-row"><span class="info-lbl">Adres</span><span class="info-val">[ADRES NL AMBASSADE 2]</span></div>
+                    <div class="info-row"><span class="info-lbl">24/7 Noodnummer</span><span class="info-val"><a href="tel:[TEL_AMBASSADE_2]" style="color:var(--accent-cyan);">[TEL AMBASSADE 2]</a></span></div>
+                    <div class="info-row"><span class="info-lbl">BuZa NL Noodcentrum</span><span class="info-val"><a href="tel:+31247247247" style="color:var(--accent-cyan);">+31 247 247 247</a></span></div>
+                    <div class="btn-grid" style="margin-top:10px;">
+                        <a href="https://www.google.com/maps/search/?api=1&query=[ADRES+NL+AMBASSADE+2]" target="_blank" class="btn-action btn-cyan">📍 Open Offline Maps Ambassade</a>
+                        <a href="tel:[TEL_AMBASSADE_2]" class="btn-action">📞 Bel Ambassade Direct</a>
+                    </div>
+                </div>
+
+                <div class="item-box" style="margin-top: 10px;">
+                    <div style="font-weight:800; color:#FF8080; margin-bottom:4px;">🛡️ Safehouse & Security Detail:</div>
+                    <div class="notes-box" style="margin-top:0; margin-bottom:8px;"><strong>Safehouse:</strong> [VUL SAFEHOUSE 2 IN]</div>
+                    <div class="notes-box" style="margin-top:0;"><strong>Fixer / Security:</strong> [VUL FIXER 2 IN] &bull; <a href="tel:[TEL_FIXER_2]" style="color:#BAE6FD;">[TEL FIXER 2]</a></div>
+                </div>
+            </div>
+
+            <!-- Crisis Hub 3 Content -->
+            <div id="crisis-content-3" class="crisis-content-pane">
+                <div class="item-box" style="border-color: var(--accent-red);">
+                    <!-- 1-Klik WA Check-in -->
+                    <button class="btn-action btn-gold" onclick="window.location.href='https://wa.me/?text=STATUS%3A%20ROYAL-EAGLE%20-%20HUB%203%20([LAND%203])%20ALL%20SECURE'" style="width: 100%; margin-bottom: 10px; padding: 12px; font-size: 12px;">
+                        💬 1-Klik WA Check-In [LAND 3]
+                    </button>
+
+                    <!-- Direct Emergency Call -->
+                    <button class="btn-action btn-red" onclick="safeCall('[112/ALARMNUMMER 3]', 'Lokaal Alarmnummer [LAND 3]')" style="width: 100%; padding: 12px; font-size: 12px;">
+                        📞 BEL LOKAAL ALARMNUMMER / 112 ([LAND 3])
+                    </button>
+                </div>
+
+                <div class="item-box" style="margin-top: 10px;">
+                    <div style="font-weight:800; color:var(--accent-cyan); margin-bottom:6px;">🏛️ Ambassade / Consulaat ([STAD 3]):</div>
+                    <div class="info-row"><span class="info-lbl">Adres</span><span class="info-val">[ADRES NL AMBASSADE 3]</span></div>
+                    <div class="info-row"><span class="info-lbl">24/7 Noodnummer</span><span class="info-val"><a href="tel:[TEL_AMBASSADE_3]" style="color:var(--accent-cyan);">[TEL AMBASSADE 3]</a></span></div>
+                    <div class="info-row"><span class="info-lbl">BuZa NL Noodcentrum</span><span class="info-val"><a href="tel:+31247247247" style="color:var(--accent-cyan);">+31 247 247 247</a></span></div>
+                    <div class="btn-grid" style="margin-top:10px;">
+                        <a href="https://www.google.com/maps/search/?api=1&query=[ADRES+NL+AMBASSADE+3]" target="_blank" class="btn-action btn-cyan">📍 Open Offline Maps Ambassade</a>
+                        <a href="tel:[TEL_AMBASSADE_3]" class="btn-action">📞 Bel Ambassade Direct</a>
+                    </div>
+                </div>
+
+                <div class="item-box" style="margin-top: 10px;">
+                    <div style="font-weight:800; color:#FF8080; margin-bottom:4px;">🛡️ Safehouse & Security Detail:</div>
+                    <div class="notes-box" style="margin-top:0; margin-bottom:8px;"><strong>Safehouse:</strong> [VUL SAFEHOUSE 3 IN]</div>
+                    <div class="notes-box" style="margin-top:0;"><strong>Fixer / Security:</strong> [VUL FIXER 3 IN] &bull; <a href="tel:[TEL_FIXER_3]" style="color:#BAE6FD;">[TEL FIXER 3]</a></div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- BOTTOM NAVIGATION BAR (ALL 5 TABS RESTORED) -->
     <div class="bottom-nav">
-        <button class="nav-item active" onclick="switchMainTab('transport', this)">
+        <button class="nav-item active" id="nav-btn-transport" onclick="switchMainTab('transport', this)">
             <span class="icon">🚘</span>
             <span class="label">Transport</span>
         </button>
-        <button class="nav-item" onclick="switchMainTab('crisis', this)">
+        <button class="nav-item" id="nav-btn-hubs" onclick="switchMainTab('hubs', this)">
+            <span class="icon">📍</span>
+            <span class="label">3 Hubs</span>
+        </button>
+        <button class="nav-item" id="nav-btn-flights" onclick="switchMainTab('flights', this)">
+            <span class="icon">✈️</span>
+            <span class="label">Vluchten</span>
+        </button>
+        <button class="nav-item" id="nav-btn-team" onclick="switchMainTab('team', this)">
+            <span class="icon">👥</span>
+            <span class="label">Team</span>
+        </button>
+        <button class="nav-item" id="nav-btn-crisis" onclick="switchMainTab('crisis', this)">
             <span class="icon">🚨</span>
             <span class="label">Crisis</span>
         </button>
@@ -182,6 +555,10 @@
 
     <script>
         function safeCall(phoneNumber, contactName) {
+            if (phoneNumber.includes('[')) {
+                alert("Vul eerst het juiste alarmnummer in op de System_Config sheet.");
+                return;
+            }
             if (phoneNumber === '911' || phoneNumber === '112' || phoneNumber === '110' || phoneNumber === '104') {
                 window.location.href = "tel:" + phoneNumber;
                 return;
@@ -190,17 +567,42 @@
                 window.location.href = "tel:" + phoneNumber;
             }
         }
+
         function switchMainTab(tabId, btn) {
             document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.bottom-nav .nav-item').forEach(el => el.classList.remove('active'));
             document.getElementById('tab-' + tabId).classList.add('active');
             btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        function switchMainHub(hubNum) {
+            document.getElementById('hub-main-pill-1').classList.remove('active');
+            document.getElementById('hub-main-pill-2').classList.remove('active');
+            document.getElementById('hub-main-pill-3').classList.remove('active');
+            document.getElementById('hub-main-pill-' + hubNum).classList.add('active');
+
+            document.querySelectorAll('.hub-content-pane').forEach(el => el.classList.remove('active'));
+            document.getElementById('hub-main-content-' + hubNum).classList.add('active');
+        }
+
         function switchCrisisHub(hubNum) {
             document.getElementById('crisis-pill-1').classList.remove('active');
             document.getElementById('crisis-pill-2').classList.remove('active');
             document.getElementById('crisis-pill-3').classList.remove('active');
             document.getElementById('crisis-pill-' + hubNum).classList.add('active');
+
+            document.querySelectorAll('.crisis-content-pane').forEach(el => el.classList.remove('active'));
+            document.getElementById('crisis-content-' + hubNum).classList.add('active');
+        }
+
+        // PWA Offline Caching
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                let badge = document.getElementById('offline-status');
+                badge.innerText = 'OFFLINE GEREED';
+                badge.classList.add('ready');
+            });
         }
     </script>
 </body>
