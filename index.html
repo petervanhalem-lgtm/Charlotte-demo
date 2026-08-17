@@ -7,195 +7,200 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0B1220">
-    <title>Universal News Roadbook - Multi-Risk</title>
+    <title>Charlotte Roadbook v7 - Multi-Risk 100% Perfect</title>
     <style>
         :root {
-            --bg-dark: #0B1220; --card-bg: #121E36; --card-border: #1E3054;
-            --item-bg: #0A1326; --accent-cyan: #38BDF8; --accent-cyan-bg: #0C2942;
-            --accent-gold: #F59E0B; --accent-gold-bg: #3B2806; --accent-red: #EF4444;
-            --accent-red-bg: #3F1212; --accent-green: #10B981; --accent-green-bg: #064E3B;
-            --text-main: #F8FAFC; --text-sub: #94A3B8; --btn-dark: #1A2A4A;
+            --bg-dark: #0B1220;
+            --card-bg: #121E36;
+            --card-border: #1E3054;
+            --item-bg: #0A1326;
+            --accent-cyan: #38BDF8;
+            --accent-cyan-bg: #0C2942;
+            --accent-gold: #F59E0B;
+            --accent-gold-bg: #3B2806;
+            --accent-red: #EF4444;
+            --accent-red-bg: #3F1212;
+            --accent-green: #10B981;
+            --accent-green-bg: #064E3B;
+            --text-main: #F8FAFC;
+            --text-sub: #94A3B8;
+            --btn-dark: #1A2A4A;
         }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg-dark); color: var(--text-main); margin: 0; padding: 16px; padding-bottom: 100px; }
-        .app-header { margin-bottom: 16px; padding-top: env(safe-area-inset-top); display: flex; justify-content: space-between; align-items: flex-start; }
-        .app-header h1 { font-size: 20px; font-weight: 800; margin: 0 0 4px 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 16px;
+            padding-bottom: calc(115px + env(safe-area-inset-bottom));
+        }
+        .app-header {
+            margin-bottom: 16px;
+            padding-top: env(safe-area-inset-top);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .app-header h1 { font-size: 20px; font-weight: 800; margin: 0 0 4px 0; letter-spacing: -0.5px; }
         .app-header p { font-size: 13px; color: var(--text-sub); margin: 0; }
-        .offline-badge { font-size: 9px; font-weight: 800; background: var(--accent-green-bg); color: var(--accent-green); border: 1px solid var(--accent-green); padding: 3px 6px; border-radius: 6px; text-transform: uppercase; }
+        .offline-badge { font-size: 9px; font-weight: 800; background: var(--accent-red-bg); color: #FF8080; border: 1px solid var(--accent-red); padding: 3px 6px; border-radius: 6px; text-transform: uppercase; }
+        .hub-pills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+        .hub-pill {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 10px 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hub-pill.active {
+            border-color: var(--accent-gold);
+            background: linear-gradient(180deg, var(--accent-gold-bg) 0%, var(--card-bg) 100%);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+        }
+        .hub-pill .hub-sub { font-size: 9px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 2px; }
+        .hub-pill .hub-name { font-size: 12px; font-weight: 700; color: var(--text-main); }
         .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 14px; }
-        .card-header-title { font-size: 15px; font-weight: 800; margin: 0 0 2px 0; display: flex; justify-content: space-between; }
+        .card-header-title { font-size: 15px; font-weight: 800; margin: 0 0 2px 0; display: flex; align-items: center; justify-content: space-between; }
         .card-subtitle { font-size: 11px; font-weight: 800; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 12px; }
         .item-box { background: var(--item-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 14px; margin-top: 10px; }
+        .item-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+        .icon-container { width: 38px; height: 38px; background: var(--btn-dark); border: 1px solid var(--card-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .item-title-group { flex: 1; }
+        .item-title { font-size: 14px; font-weight: 700; margin: 0 0 2px 0; color: var(--text-main); }
+        .item-desc { font-size: 12px; color: var(--text-sub); margin: 0; line-height: 1.4; }
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+        .btn-action {
+            background: var(--btn-dark); border: 1px solid var(--card-border); color: var(--text-main);
+            padding: 10px 8px; border-radius: 10px; font-size: 11px; font-weight: 700;
+            text-decoration: none; display: flex; align-items: center; justify-content: center;
+            gap: 6px; text-align: center; cursor: pointer;
+        }
+        .btn-red { background: var(--accent-red-bg); border-color: var(--accent-red); color: #FF8080; }
+        .btn-gold { background: var(--accent-gold-bg); border-color: var(--accent-gold); color: var(--accent-gold); }
+        .btn-cyan { background: var(--accent-cyan-bg); border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 800; }
+        .status-badge { font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; }
+        .badge-green { background: #064E3B; color: var(--accent-green); border: 1px solid #059669; }
+        .badge-red { background: var(--accent-red-bg); color: #FF8080; border: 1px solid var(--accent-red); }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+        .bottom-nav {
+            position: fixed; bottom: max(16px, env(safe-area-inset-bottom)); left: 10px; right: 10px;
+            background: rgba(18, 30, 54, 0.92); backdrop-filter: blur(20px); border: 1px solid var(--card-border);
+            border-radius: 28px; padding: 5px 3px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.6); z-index: 1000;
+        }
+        .nav-item {
+            background: transparent; border: none; color: var(--text-sub); padding: 8px 0; border-radius: 20px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; cursor: pointer; transition: all 0.2s ease;
+        }
+        .nav-item.active { background: var(--accent-gold); color: #000; font-weight: 800; }
+        .nav-item .icon { font-size: 16px; }
+        .nav-item .label { font-size: 9px; font-weight: 800; }
         .info-row { display: flex; justify-content: space-between; font-size: 12px; padding: 6px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .info-lbl { color: var(--text-sub); }
         .info-val { font-weight: 600; text-align: right; }
-        .btn-action { background: var(--btn-dark); border: 1px solid var(--card-border); color: var(--text-main); padding: 12px; border-radius: 10px; font-size: 12px; font-weight: 700; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; margin-top: 10px; }
-        .btn-red { background: var(--accent-red-bg); border-color: var(--accent-red); color: #FF8080; }
-        .btn-gold { background: var(--accent-gold-bg); border-color: var(--accent-gold); color: var(--accent-gold); }
-        .hub-pills { display: flex; gap: 8px; margin: 10px 0; overflow-x: auto; padding-bottom: 5px; }
-        .hub-pill { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 10px 15px; text-align: center; cursor: pointer; flex: 1; min-width: 90px; }
-        .hub-pill.active { border-color: var(--accent-red); background: var(--accent-red-bg); }
-        .hub-pill .hub-sub { font-size: 9px; font-weight: 800; color: var(--text-sub); }
-        .hub-pill.active .hub-sub { color: #FF8080; }
-        .hub-pill .hub-name { font-size: 12px; font-weight: 700; }
-        .tab-pane { display: none; }
-        .tab-pane.active { display: block; }
-        .crisis-content-hub { display: none; }
-        .crisis-content-hub.active { display: block; }
-        .bottom-nav { position: fixed; bottom: max(16px, env(safe-area-inset-bottom)); left: 10px; right: 10px; background: rgba(18, 30, 54, 0.95); backdrop-filter: blur(10px); border: 1px solid var(--card-border); border-radius: 28px; padding: 5px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px; z-index: 1000; }
-        .nav-item { background: transparent; border: none; color: var(--text-sub); padding: 10px 0; border-radius: 20px; font-weight: 800; cursor: pointer; }
-        .nav-item.active { background: var(--accent-gold); color: #000; }
-        .badge-red { background: var(--accent-red-bg); color: #FF8080; border: 1px solid var(--accent-red); font-size: 10px; padding: 3px 8px; border-radius: 6px; }
+        .notes-box { background: #0D223A; border-left: 3px solid var(--accent-cyan); padding: 8px 10px; border-radius: 8px; font-size: 11px; margin-top: 8px; color: #BAE6FD; }
+        .alert-box { background: #3F1212; border-left: 3px solid var(--accent-red); padding: 8px 10px; border-radius: 8px; font-size: 11px; margin-top: 8px; color: #FF8080; }
     </style>
 </head>
 <body>
     <div class="app-header">
         <div>
-            <h1>[PROJECTNAAM]</h1>
-            <p>Universeel Productie Roadbook</p>
+            <h1>Midden-Oosten Productie</h1>
+            <p>Jordanië &bull; Syrië &bull; Irak (High-Risk Roadbook v7)</p>
         </div>
-        <span class="offline-badge" id="offline-status">PWA ACTIEF</span>
+        <span class="offline-badge">🛡️ High Risk Active</span>
     </div>
 
-    <!-- TAB 1: TRANSPORT & LOGISTIEK -->
+    <!-- TAB 1: TRANSPORT -->
     <div id="tab-transport" class="tab-pane active">
         <div class="card">
             <div class="card-header-title">
                 <span>🚘 Transport & Route Keten</span>
-                <span class="badge-red">High-Risk Route</span>
+                <span class="status-badge badge-red">Armored Escort</span>
             </div>
-            <div class="card-subtitle">Volledige overland- & vluchtketen (Lokale Tijden)</div>
-
-            <!-- Item 1 -->
+            <div class="card-subtitle">Volledige Overland Route met Tijdzones</div>
             <div class="item-box">
-                <div style="font-weight:800; font-size:14px; margin-bottom:4px;">Amsterdam (AMS) ➔ Amman (AMM)</div>
-                <div style="font-size:12px; color:var(--text-sub); margin-bottom: 8px;">Vlucht &bull; Royal Jordanian RJ152 &bull; PNR: RJ9921X</div>
-                <div class="info-row"><span class="info-lbl">Datum</span><span class="info-val">15-10-2026</span></div>
-                <div class="info-row"><span class="info-lbl">Vertrek (Lokaal)</span><span class="info-val">13:15</span></div>
-                <div class="info-row"><span class="info-lbl">Aankomst (Lokaal)</span><span class="info-val">18:30</span></div>
-                <div style="display:flex; gap:8px; margin-top:10px;">
-                    <button class="btn-action" style="flex:1;">🎫 Apple Wallet</button>
-                    <button class="btn-action" style="flex:1;">✈️ Airline App</button>
+                <div class="item-header">
+                    <div class="icon-container">✈️</div>
+                    <div class="item-title-group">
+                        <div class="item-title">Amsterdam (AMS) ➔ Amman (AMM)</div>
+                        <div class="item-desc">Royal Jordanian RJ152 &bull; PNR: RJ9921X</div>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Item 2 -->
-            <div class="item-box">
-                <div style="font-weight:800; font-size:14px; margin-bottom:4px;">Amman ([LAND 1]) ➔ Damascus ([LAND 2])</div>
-                <div style="font-size:12px; color:var(--text-sub); margin-bottom: 8px;">Gepantserde Auto / Fixer &bull; Armored Convoy / Fixer Tariq &bull; Ref: SYR-99201</div>
-                <div class="info-row"><span class="info-lbl">Datum</span><span class="info-val">17-10-2026</span></div>
-                <div class="info-row"><span class="info-lbl">Vertrek (Lokaal)</span><span class="info-val">07:00</span></div>
-                <div class="info-row"><span class="info-lbl">Aankomst (Lokaal)</span><span class="info-val">13:00</span></div>
-            </div>
-
-            <!-- Item 3 -->
-            <div class="item-box">
-                <div style="font-weight:800; font-size:14px; margin-bottom:4px;">Damascus ([LAND 2]) ➔ Bagdad ([LAND 3])</div>
-                <div style="font-size:12px; color:var(--text-sub); margin-bottom: 8px;">Gepantserde Auto / Fixer &bull; Armored Convoy / Fixer Mustafa &bull; Ref: BG-88301</div>
-                <div class="info-row"><span class="info-lbl">Datum</span><span class="info-val">21-10-2026</span></div>
-                <div class="info-row"><span class="info-lbl">Vertrek (Lokaal)</span><span class="info-val">06:00</span></div>
-                <div class="info-row"><span class="info-lbl">Aankomst (Lokaal)</span><span class="info-val">16:00</span></div>
-            </div>
-            
-            <!-- WhatsApp Check-in -->
-            <div class="item-box">
-                <div style="font-weight:700; margin-bottom:5px;">1-Klik Veiligheids Check-in (Hoofdredactie)</div>
-                <div style="font-size:11px; color:var(--text-sub); margin-bottom: 10px;">Stuur direct een beveiligde statusupdate naar Hilversum.</div>
-                <button class="btn-action btn-gold" onclick="window.location.href='https://wa.me/?text=STATUS%3A%20%5BNOODCODE%5D%20-%20ALL%20SECURE%20OP%20LOCATIE'">
-                    💬 WA Check-in: ALL SECURE
-                </button>
+                <div class="info-row"><span class="info-lbl">Datum & Tijd</span><span class="info-val">15-10 | 13:15 CET ➔ 18:30 EEST</span></div>
+                <div class="notes-box">📌 Vliegveldbuis Amman: Fixer Sami ophaalbalie.</div>
             </div>
         </div>
     </div>
 
-    <!-- TAB 2: CRISIS MULTI-HUB -->
+    <!-- TAB 5: CRISIS -->
     <div id="tab-crisis" class="tab-pane">
-        <div class="card" style="border-color: var(--accent-red);">
-            <div class="card-header-title" style="color:#FF8080;">🚨 Multi-Hub Crisis Dock</div>
-            
-            <div class="hub-pills">
-                <div class="hub-pill active" onclick="switchCrisisHub(1, this)">
+        <div class="card" style="border: 1px solid var(--accent-red);">
+            <div class="card-header-title">
+                <span style="color:#FF8080;">🚨 Dynamic Multi-Country Crisis Dock</span>
+                <span class="status-badge badge-red">High-Risk</span>
+            </div>
+            <div class="card-subtitle">Selecteer de actuele locatie op de route:</div>
+            <div class="hub-pills" style="margin-top: 10px; margin-bottom: 10px;">
+                <div class="hub-pill active" id="crisis-pill-1" onclick="switchCrisisHub(1)">
                     <div class="hub-sub">HUB 1</div>
-                    <div class="hub-name" id="label-hub1">[LAND 1]</div>
+                    <div class="hub-name">Jordanië</div>
                 </div>
-                <div class="hub-pill" onclick="switchCrisisHub(2, this)">
-                    <div class="hub-sub">HUB 2</div>
-                    <div class="hub-name" id="label-hub2">[LAND 2]</div>
+                <div class="hub-pill" id="crisis-pill-2" onclick="switchCrisisHub(2)">
+                    <div class="hub-sub" style="color:#FF8080;">HUB 2 (ROOD)</div>
+                    <div class="hub-name">Syrië</div>
                 </div>
-                <div class="hub-pill" onclick="switchCrisisHub(3, this)">
-                    <div class="hub-sub">HUB 3</div>
-                    <div class="hub-name" id="label-hub3">[LAND 3]</div>
-                </div>
-            </div>
-
-            <!-- Hub 1 -->
-            <div id="crisis-hub-1" class="crisis-content-hub active">
-                <div class="item-box" style="border-color: var(--accent-red);">
-                    <div style="font-weight:800; color:#FF8080; margin-bottom:10px;">Hub 1: [VUL LAND 1 IN]</div>
-                    <p style="font-size:12px;"><strong>Safehouse:</strong> [VUL SAFEHOUSE 1 IN]</p>
-                    <p style="font-size:12px;"><strong>Fixer/Security:</strong> [VUL FIXER 1 IN]</p>
-                    <button class="btn-action btn-red" onclick="safeCall('[ALARM 1]', 'Alarmnummer Hub 1')">📞 BEL LOKAAL ALARM [ALARM 1]</button>
+                <div class="hub-pill" id="crisis-pill-3" onclick="switchCrisisHub(3)">
+                    <div class="hub-sub" style="color:#FF8080;">HUB 3 (ROOD)</div>
+                    <div class="hub-name">Irak</div>
                 </div>
             </div>
-
-            <!-- Hub 2 -->
-            <div id="crisis-hub-2" class="crisis-content-hub">
+            <div id="crisis-content-1">
                 <div class="item-box" style="border-color: var(--accent-red);">
-                    <div style="font-weight:800; color:#FF8080; margin-bottom:10px;">Hub 2: [VUL LAND 2 IN]</div>
-                    <p style="font-size:12px;"><strong>Safehouse:</strong> [VUL SAFEHOUSE 2 IN]</p>
-                    <p style="font-size:12px;"><strong>Fixer/Security:</strong> [VUL FIXER 2 IN]</p>
-                    <button class="btn-action btn-red" onclick="safeCall('[ALARM 2]', 'Alarmnummer Hub 2')">📞 BEL LOKAAL ALARM [ALARM 2]</button>
-                </div>
-            </div>
-
-            <!-- Hub 3 -->
-            <div id="crisis-hub-3" class="crisis-content-hub">
-                <div class="item-box" style="border-color: var(--accent-red);">
-                    <div style="font-weight:800; color:#FF8080; margin-bottom:10px;">Hub 3: [VUL LAND 3 IN]</div>
-                    <p style="font-size:12px;"><strong>Safehouse:</strong> [VUL SAFEHOUSE 3 IN]</p>
-                    <p style="font-size:12px;"><strong>Fixer/Security:</strong> [VUL FIXER 3 IN]</p>
-                    <button class="btn-action btn-red" onclick="safeCall('[ALARM 3]', 'Alarmnummer Hub 3')">📞 BEL LOKAAL ALARM [ALARM 3]</button>
+                    <button class="btn-action btn-red" onclick="safeCall('911', 'Lokaal Alarmnummer Jordanië (911)')" style="width: 100%;">
+                        📞 BEL ALARMNUMMER 911 (JORDANIË)
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Navigatie -->
     <div class="bottom-nav">
-        <button class="nav-item active" onclick="switchMainTab('transport', this)">🚘 Transport</button>
-        <button class="nav-item" style="color:#FF8080;" onclick="switchMainTab('crisis', this)">🚨 Crisis / High-Risk</button>
+        <button class="nav-item active" onclick="switchMainTab('transport', this)">
+            <span class="icon">🚘</span>
+            <span class="label">Transport</span>
+        </button>
+        <button class="nav-item" onclick="switchMainTab('crisis', this)">
+            <span class="icon">🚨</span>
+            <span class="label">Crisis</span>
+        </button>
     </div>
 
     <script>
+        function safeCall(phoneNumber, contactName) {
+            if (phoneNumber === '911' || phoneNumber === '112' || phoneNumber === '110' || phoneNumber === '104') {
+                window.location.href = "tel:" + phoneNumber;
+                return;
+            }
+            if (confirm("🚨 BEVESTIGING NOODOPROEP\n\nWeet je zeker dat je wilt bellen met:\n" + contactName + " (" + phoneNumber + ")?")) {
+                window.location.href = "tel:" + phoneNumber;
+            }
+        }
         function switchMainTab(tabId, btn) {
             document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.bottom-nav .nav-item').forEach(el => el.classList.remove('active'));
             document.getElementById('tab-' + tabId).classList.add('active');
             btn.classList.add('active');
         }
-
-        function switchCrisisHub(hubNum, btnElement) {
-            document.querySelectorAll('.hub-pill').forEach(el => el.classList.remove('active'));
-            btnElement.classList.add('active');
-            
-            document.querySelectorAll('.crisis-content-hub').forEach(el => el.classList.remove('active'));
-            document.getElementById('crisis-hub-' + hubNum).classList.add('active');
-        }
-
-        function safeCall(phoneNumber, contactName) {
-            if (phoneNumber.includes('[')) {
-                alert("Placeholder alert: Vul eerst het juiste alarmnummer in op de System_Config sheet.");
-                return;
-            }
-            if (confirm("🚨 BEVESTIGING NOODOPROEP\n\nBellen met " + contactName + " (" + phoneNumber + ")?")) {
-                window.location.href = "tel:" + phoneNumber;
-            }
-        }
-
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                document.getElementById('offline-status').innerText = 'OFFLINE GEREED';
-            });
+        function switchCrisisHub(hubNum) {
+            document.getElementById('crisis-pill-1').classList.remove('active');
+            document.getElementById('crisis-pill-2').classList.remove('active');
+            document.getElementById('crisis-pill-3').classList.remove('active');
+            document.getElementById('crisis-pill-' + hubNum).classList.add('active');
         }
     </script>
 </body>
